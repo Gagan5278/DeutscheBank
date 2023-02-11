@@ -17,6 +17,13 @@
 		5D59A68E2997CDDF007FA87C /* DeutscheBankUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D59A68D2997CDDF007FA87C /* DeutscheBankUITests.swift */; };
 		5D59A6902997CDDF007FA87C /* DeutscheBankUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D59A68F2997CDDF007FA87C /* DeutscheBankUITestsLaunchTests.swift */; };
 		5D59A6A02997D045007FA87C /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D59A69F2997D045007FA87C /* AppCoordinator.swift */; };
+		5D59A6A62997D325007FA87C /* LoginUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D59A6A52997D325007FA87C /* LoginUserModel.swift */; };
+		5D59A6A92997D3DF007FA87C /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D59A6A82997D3DF007FA87C /* UITextField+Extension.swift */; };
+		5D59A6AB2997D5FE007FA87C /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D59A6AA2997D5FE007FA87C /* UIView+Extension.swift */; };
+		5D59A6AE2997DACF007FA87C /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D59A6AD2997DACF007FA87C /* AppConstants.swift */; };
+		5D59A6B02997E1A8007FA87C /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D59A6AF2997E1A7007FA87C /* Color+Extension.swift */; };
+		5D59A6B22997E882007FA87C /* AppCoordinatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D59A6B12997E882007FA87C /* AppCoordinatorTest.swift */; };
+		5D59A6B42997E892007FA87C /* LoginViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D59A6B32997E892007FA87C /* LoginViewControllerTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +58,13 @@
 		5D59A68D2997CDDF007FA87C /* DeutscheBankUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeutscheBankUITests.swift; sourceTree = "<group>"; };
 		5D59A68F2997CDDF007FA87C /* DeutscheBankUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeutscheBankUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		5D59A69F2997D045007FA87C /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		5D59A6A52997D325007FA87C /* LoginUserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUserModel.swift; sourceTree = "<group>"; };
+		5D59A6A82997D3DF007FA87C /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
+		5D59A6AA2997D5FE007FA87C /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		5D59A6AD2997DACF007FA87C /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
+		5D59A6AF2997E1A7007FA87C /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
+		5D59A6B12997E882007FA87C /* AppCoordinatorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinatorTest.swift; sourceTree = "<group>"; };
+		5D59A6B32997E892007FA87C /* LoginViewControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewControllerTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,9 +115,12 @@
 		5D59A6682997CDDE007FA87C /* DeutscheBank */ = {
 			isa = PBXGroup;
 			children = (
-				5D59A6A12997D1D2007FA87C /* LoginView */,
-				5D59A69E2997D002007FA87C /* AppCoordinator */,
+				5D59A6AC2997DAB7007FA87C /* Constants */,
+				5D59A6A72997D3D4007FA87C /* Extensions */,
 				5D59A69C2997CECA007FA87C /* AppDelegate */,
+				5D59A69E2997D002007FA87C /* AppCoordinator */,
+				5D59A6A12997D1D2007FA87C /* Login */,
+				5D59A6B52997E8C3007FA87C /* Posts */,
 				5D59A6752997CDDF007FA87C /* Assets.xcassets */,
 				5D59A6772997CDDF007FA87C /* LaunchScreen.storyboard */,
 				5D59A67A2997CDDF007FA87C /* Info.plist */,
@@ -116,6 +133,8 @@
 			isa = PBXGroup;
 			children = (
 				5D59A6832997CDDF007FA87C /* DeutscheBankTests.swift */,
+				5D59A6B12997E882007FA87C /* AppCoordinatorTest.swift */,
+				5D59A6B32997E892007FA87C /* LoginViewControllerTest.swift */,
 			);
 			path = DeutscheBankTests;
 			sourceTree = "<group>";
@@ -146,12 +165,86 @@
 			path = AppCoordinator;
 			sourceTree = "<group>";
 		};
-		5D59A6A12997D1D2007FA87C /* LoginView */ = {
+		5D59A6A12997D1D2007FA87C /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				5D59A6A42997D30C007FA87C /* ViewModel */,
+				5D59A6A32997D2FF007FA87C /* Model */,
+				5D59A6A22997D2D5007FA87C /* View */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		5D59A6A22997D2D5007FA87C /* View */ = {
 			isa = PBXGroup;
 			children = (
 				5D59A66D2997CDDE007FA87C /* LoginViewController.swift */,
 			);
-			path = LoginView;
+			path = View;
+			sourceTree = "<group>";
+		};
+		5D59A6A32997D2FF007FA87C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5D59A6A52997D325007FA87C /* LoginUserModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		5D59A6A42997D30C007FA87C /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		5D59A6A72997D3D4007FA87C /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				5D59A6A82997D3DF007FA87C /* UITextField+Extension.swift */,
+				5D59A6AA2997D5FE007FA87C /* UIView+Extension.swift */,
+				5D59A6AF2997E1A7007FA87C /* Color+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		5D59A6AC2997DAB7007FA87C /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				5D59A6AD2997DACF007FA87C /* AppConstants.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		5D59A6B52997E8C3007FA87C /* Posts */ = {
+			isa = PBXGroup;
+			children = (
+				5D59A6B82997E8E5007FA87C /* ViewModel */,
+				5D59A6B72997E8DC007FA87C /* Model */,
+				5D59A6B62997E8D5007FA87C /* View */,
+			);
+			path = Posts;
+			sourceTree = "<group>";
+		};
+		5D59A6B62997E8D5007FA87C /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		5D59A6B72997E8DC007FA87C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		5D59A6B82997E8E5007FA87C /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -305,7 +398,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D59A6A62997D325007FA87C /* LoginUserModel.swift in Sources */,
+				5D59A6B02997E1A8007FA87C /* Color+Extension.swift in Sources */,
+				5D59A6AE2997DACF007FA87C /* AppConstants.swift in Sources */,
 				5D59A66E2997CDDE007FA87C /* LoginViewController.swift in Sources */,
+				5D59A6AB2997D5FE007FA87C /* UIView+Extension.swift in Sources */,
+				5D59A6A92997D3DF007FA87C /* UITextField+Extension.swift in Sources */,
 				5D59A66A2997CDDE007FA87C /* AppDelegate.swift in Sources */,
 				5D59A6A02997D045007FA87C /* AppCoordinator.swift in Sources */,
 				5D59A6742997CDDE007FA87C /* DeutscheBank.xcdatamodeld in Sources */,
@@ -317,6 +415,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D59A6B42997E892007FA87C /* LoginViewControllerTest.swift in Sources */,
+				5D59A6B22997E882007FA87C /* AppCoordinatorTest.swift in Sources */,
 				5D59A6842997CDDF007FA87C /* DeutscheBankTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
