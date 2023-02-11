@@ -9,14 +9,14 @@
 /* Begin PBXBuildFile section */
 		5D59A66A2997CDDE007FA87C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D59A6692997CDDE007FA87C /* AppDelegate.swift */; };
 		5D59A66C2997CDDE007FA87C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D59A66B2997CDDE007FA87C /* SceneDelegate.swift */; };
-		5D59A66E2997CDDE007FA87C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D59A66D2997CDDE007FA87C /* ViewController.swift */; };
-		5D59A6712997CDDE007FA87C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5D59A66F2997CDDE007FA87C /* Main.storyboard */; };
+		5D59A66E2997CDDE007FA87C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D59A66D2997CDDE007FA87C /* LoginViewController.swift */; };
 		5D59A6742997CDDE007FA87C /* DeutscheBank.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5D59A6722997CDDE007FA87C /* DeutscheBank.xcdatamodeld */; };
 		5D59A6762997CDDF007FA87C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5D59A6752997CDDF007FA87C /* Assets.xcassets */; };
 		5D59A6792997CDDF007FA87C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5D59A6772997CDDF007FA87C /* LaunchScreen.storyboard */; };
 		5D59A6842997CDDF007FA87C /* DeutscheBankTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D59A6832997CDDF007FA87C /* DeutscheBankTests.swift */; };
 		5D59A68E2997CDDF007FA87C /* DeutscheBankUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D59A68D2997CDDF007FA87C /* DeutscheBankUITests.swift */; };
 		5D59A6902997CDDF007FA87C /* DeutscheBankUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D59A68F2997CDDF007FA87C /* DeutscheBankUITestsLaunchTests.swift */; };
+		5D59A6A02997D045007FA87C /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D59A69F2997D045007FA87C /* AppCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,8 +40,7 @@
 		5D59A6662997CDDE007FA87C /* DeutscheBank.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DeutscheBank.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D59A6692997CDDE007FA87C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5D59A66B2997CDDE007FA87C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		5D59A66D2997CDDE007FA87C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		5D59A6702997CDDE007FA87C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		5D59A66D2997CDDE007FA87C /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		5D59A6732997CDDE007FA87C /* DeutscheBank.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DeutscheBank.xcdatamodel; sourceTree = "<group>"; };
 		5D59A6752997CDDF007FA87C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5D59A6782997CDDF007FA87C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -51,6 +50,7 @@
 		5D59A6892997CDDF007FA87C /* DeutscheBankUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DeutscheBankUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D59A68D2997CDDF007FA87C /* DeutscheBankUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeutscheBankUITests.swift; sourceTree = "<group>"; };
 		5D59A68F2997CDDF007FA87C /* DeutscheBankUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeutscheBankUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		5D59A69F2997D045007FA87C /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,10 +101,9 @@
 		5D59A6682997CDDE007FA87C /* DeutscheBank */ = {
 			isa = PBXGroup;
 			children = (
-				5D59A6692997CDDE007FA87C /* AppDelegate.swift */,
-				5D59A66B2997CDDE007FA87C /* SceneDelegate.swift */,
-				5D59A66D2997CDDE007FA87C /* ViewController.swift */,
-				5D59A66F2997CDDE007FA87C /* Main.storyboard */,
+				5D59A6A12997D1D2007FA87C /* LoginView */,
+				5D59A69E2997D002007FA87C /* AppCoordinator */,
+				5D59A69C2997CECA007FA87C /* AppDelegate */,
 				5D59A6752997CDDF007FA87C /* Assets.xcassets */,
 				5D59A6772997CDDF007FA87C /* LaunchScreen.storyboard */,
 				5D59A67A2997CDDF007FA87C /* Info.plist */,
@@ -130,6 +129,31 @@
 			path = DeutscheBankUITests;
 			sourceTree = "<group>";
 		};
+		5D59A69C2997CECA007FA87C /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				5D59A6692997CDDE007FA87C /* AppDelegate.swift */,
+				5D59A66B2997CDDE007FA87C /* SceneDelegate.swift */,
+			);
+			path = AppDelegate;
+			sourceTree = "<group>";
+		};
+		5D59A69E2997D002007FA87C /* AppCoordinator */ = {
+			isa = PBXGroup;
+			children = (
+				5D59A69F2997D045007FA87C /* AppCoordinator.swift */,
+			);
+			path = AppCoordinator;
+			sourceTree = "<group>";
+		};
+		5D59A6A12997D1D2007FA87C /* LoginView */ = {
+			isa = PBXGroup;
+			children = (
+				5D59A66D2997CDDE007FA87C /* LoginViewController.swift */,
+			);
+			path = LoginView;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -140,6 +164,7 @@
 				5D59A6622997CDDE007FA87C /* Sources */,
 				5D59A6632997CDDE007FA87C /* Frameworks */,
 				5D59A6642997CDDE007FA87C /* Resources */,
+				5D59A69D2997CF19007FA87C /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -236,7 +261,6 @@
 			files = (
 				5D59A6792997CDDF007FA87C /* LaunchScreen.storyboard in Resources */,
 				5D59A6762997CDDF007FA87C /* Assets.xcassets in Resources */,
-				5D59A6712997CDDE007FA87C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -256,13 +280,34 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		5D59A69D2997CF19007FA87C /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nexport PATH=\"$PATH:/opt/homebrew/bin\"\nif which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		5D59A6622997CDDE007FA87C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5D59A66E2997CDDE007FA87C /* ViewController.swift in Sources */,
+				5D59A66E2997CDDE007FA87C /* LoginViewController.swift in Sources */,
 				5D59A66A2997CDDE007FA87C /* AppDelegate.swift in Sources */,
+				5D59A6A02997D045007FA87C /* AppCoordinator.swift in Sources */,
 				5D59A6742997CDDE007FA87C /* DeutscheBank.xcdatamodeld in Sources */,
 				5D59A66C2997CDDE007FA87C /* SceneDelegate.swift in Sources */,
 			);
@@ -301,14 +346,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		5D59A66F2997CDDE007FA87C /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				5D59A6702997CDDE007FA87C /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		5D59A6772997CDDF007FA87C /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -444,8 +481,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DeutscheBank/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -471,8 +507,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DeutscheBank/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
