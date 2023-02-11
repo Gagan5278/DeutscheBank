@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5D4E80692998445300D5745B /* PostsViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4E80682998445300D5745B /* PostsViewViewModel.swift */; };
+		5D4E806B299845C800D5745B /* PostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4E806A299845C800D5745B /* PostModel.swift */; };
+		5D4E806D2998495F00D5745B /* PostListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4E806C2998495F00D5745B /* PostListViewController.swift */; };
+		5D4E806F29984A1800D5745B /* PostViewModelItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4E806E29984A1800D5745B /* PostViewModelItem.swift */; };
+		5D4E807229984D3700D5745B /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4E807129984D3700D5745B /* BaseTableViewCell.swift */; };
+		5D4E807429984D7500D5745B /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4E807329984D7500D5745B /* PostTableViewCell.swift */; };
+		5D4E807629985EF500D5745B /* PostViewViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4E807529985EF500D5745B /* PostViewViewModelTest.swift */; };
+		5D4E807829985F1300D5745B /* PostListViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4E807729985F1300D5745B /* PostListViewControllerTest.swift */; };
 		5D59A66A2997CDDE007FA87C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D59A6692997CDDE007FA87C /* AppDelegate.swift */; };
 		5D59A66C2997CDDE007FA87C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D59A66B2997CDDE007FA87C /* SceneDelegate.swift */; };
 		5D59A66E2997CDDE007FA87C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D59A66D2997CDDE007FA87C /* LoginViewController.swift */; };
@@ -56,6 +64,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5D4E80682998445300D5745B /* PostsViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsViewViewModel.swift; sourceTree = "<group>"; };
+		5D4E806A299845C800D5745B /* PostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostModel.swift; sourceTree = "<group>"; };
+		5D4E806C2998495F00D5745B /* PostListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostListViewController.swift; sourceTree = "<group>"; };
+		5D4E806E29984A1800D5745B /* PostViewModelItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewModelItem.swift; sourceTree = "<group>"; };
+		5D4E807129984D3700D5745B /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
+		5D4E807329984D7500D5745B /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
+		5D4E807529985EF500D5745B /* PostViewViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewViewModelTest.swift; sourceTree = "<group>"; };
+		5D4E807729985F1300D5745B /* PostListViewControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostListViewControllerTest.swift; sourceTree = "<group>"; };
 		5D59A6662997CDDE007FA87C /* DeutscheBank.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DeutscheBank.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D59A6692997CDDE007FA87C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5D59A66B2997CDDE007FA87C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -116,6 +132,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5D4E807029984D2F00D5745B /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				5D4E807129984D3700D5745B /* BaseTableViewCell.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
 		5D59A65D2997CDDE007FA87C = {
 			isa = PBXGroup;
 			children = (
@@ -139,6 +163,7 @@
 		5D59A6682997CDDE007FA87C /* DeutscheBank */ = {
 			isa = PBXGroup;
 			children = (
+				5D4E807029984D2F00D5745B /* Utilities */,
 				5D59A6BB29980852007FA87C /* Manager */,
 				5D59A6AC2997DAB7007FA87C /* Constants */,
 				5D59A6A72997D3D4007FA87C /* Extensions */,
@@ -163,6 +188,8 @@
 				5D59A6B12997E882007FA87C /* AppCoordinatorTest.swift */,
 				5D59A6B32997E892007FA87C /* LoginViewControllerTest.swift */,
 				5D59A6CF2998104B007FA87C /* NetworkRequestTest.swift */,
+				5D4E807529985EF500D5745B /* PostViewViewModelTest.swift */,
+				5D4E807729985F1300D5745B /* PostListViewControllerTest.swift */,
 			);
 			path = DeutscheBankTests;
 			sourceTree = "<group>";
@@ -261,6 +288,8 @@
 		5D59A6B62997E8D5007FA87C /* View */ = {
 			isa = PBXGroup;
 			children = (
+				5D4E806C2998495F00D5745B /* PostListViewController.swift */,
+				5D4E807329984D7500D5745B /* PostTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -268,6 +297,7 @@
 		5D59A6B72997E8DC007FA87C /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				5D4E806A299845C800D5745B /* PostModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -275,6 +305,8 @@
 		5D59A6B82997E8E5007FA87C /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				5D4E80682998445300D5745B /* PostsViewViewModel.swift */,
+				5D4E806E29984A1800D5745B /* PostViewModelItem.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -458,19 +490,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D4E806D2998495F00D5745B /* PostListViewController.swift in Sources */,
 				5D59A6A62997D325007FA87C /* LoginUserModel.swift in Sources */,
 				5D59A6BA2997EC40007FA87C /* String+Extension.swift in Sources */,
 				5D59A6B02997E1A8007FA87C /* Color+Extension.swift in Sources */,
+				5D4E80692998445300D5745B /* PostsViewViewModel.swift in Sources */,
 				5D59A6AE2997DACF007FA87C /* AppConstants.swift in Sources */,
 				5D59A6C7299809A0007FA87C /* HTTPURLResponse+Extension.swift in Sources */,
 				5D59A6CC29980CAB007FA87C /* Dictionary+Extension.swift in Sources */,
 				5D59A66E2997CDDE007FA87C /* LoginViewController.swift in Sources */,
 				5D59A6AB2997D5FE007FA87C /* UIView+Extension.swift in Sources */,
 				5D59A6C52998095C007FA87C /* APIManagerError.swift in Sources */,
+				5D4E806B299845C800D5745B /* PostModel.swift in Sources */,
 				5D59A6A92997D3DF007FA87C /* UITextField+Extension.swift in Sources */,
 				5D59A6CE29980D20007FA87C /* ServiceEndPoint.swift in Sources */,
 				5D59A66A2997CDDE007FA87C /* AppDelegate.swift in Sources */,
 				5D59A6BF299808C3007FA87C /* HTTPServiceMethod.swift in Sources */,
+				5D4E807229984D3700D5745B /* BaseTableViewCell.swift in Sources */,
+				5D4E807429984D7500D5745B /* PostTableViewCell.swift in Sources */,
+				5D4E806F29984A1800D5745B /* PostViewModelItem.swift in Sources */,
 				5D59A6A02997D045007FA87C /* AppCoordinator.swift in Sources */,
 				5D59A6C3299808EE007FA87C /* URLRequest+Extension.swift in Sources */,
 				5D59A6742997CDDE007FA87C /* DeutscheBank.xcdatamodeld in Sources */,
@@ -484,8 +522,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D4E807829985F1300D5745B /* PostListViewControllerTest.swift in Sources */,
 				5D59A6D5299810A8007FA87C /* MockNetworkRequest.swift in Sources */,
 				5D59A6B42997E892007FA87C /* LoginViewControllerTest.swift in Sources */,
+				5D4E807629985EF500D5745B /* PostViewViewModelTest.swift in Sources */,
 				5D59A6B22997E882007FA87C /* AppCoordinatorTest.swift in Sources */,
 				5D59A6D02998104B007FA87C /* NetworkRequestTest.swift in Sources */,
 				5D59A6D32998106D007FA87C /* MockServiceEndPoint.swift in Sources */,

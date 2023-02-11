@@ -19,6 +19,8 @@ class AppCoordinator: Coordinator {
     // MARK: - init
     init(navigationContoller: UINavigationController) {
         self.navigationController = navigationContoller
+        navigationController.view.backgroundColor = .white
+
     }
     
     func start() {
@@ -30,5 +32,8 @@ class AppCoordinator: Coordinator {
     
     func pushToShowPostsFor(userID: Int) {
         let userModel = LoginUserModel(userid: userID)
+        let postListViewController = PostListViewController(viewModel: PostsViewViewModel(request: NetworkRequest(), endPoint: ServiceEndPoint.fetchPosts, user: userModel))
+        postListViewController.view.backgroundColor = .white
+        self.navigationController.pushViewController(postListViewController, animated: true)
     }
 }

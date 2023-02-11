@@ -29,3 +29,11 @@ extension AppConstants {
         static let textFieldToolbarButtonTitle = "Done"
     }
 }
+
+extension AppConstants {
+    enum PostListScreenConstants {
+        static let navigationTitle = "Post"
+        static let filterAllPostSegmentTitle = "All Posts"
+        static let filterFavoritePostSegmentTitle = "Favorite Posts"
+    }
+}
