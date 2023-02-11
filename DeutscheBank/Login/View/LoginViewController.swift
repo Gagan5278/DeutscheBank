@@ -60,17 +60,18 @@ class LoginViewController: UIViewController {
     private func addTextFieldSubscriber() {
         userIDTextFieldSubscriber = userIDEntryTextField
             .textPublisher()
-            .compactMap({ str in
-                guard let _ = str.integer else { return false }
-                return true
-            })
+            .map({ $0.integer != nil })
             .assign(to: \.isEnabled, on: loginButton)
     }
     
     // MARK: - Add Views in main view
     private func addViewsOnMainView() {
         self.view.addSubviews(userIDEntryTextField, loginButton)
-        // UserID Textfield constraint setup
+        userIDTextFieldConstraintSetup()
+        loginButtonConstraintSetup()
+    }
+    
+    private func userIDTextFieldConstraintSetup() {
         userIDEntryTextField.anchor(
             top: nil,
             leading: self.view.leadingAnchor,
@@ -88,8 +89,10 @@ class LoginViewController: UIViewController {
             )
         )
         userIDEntryTextField.addViewInCenterVertically()
-        
-        loginButton.anchor(
+    }
+
+    private func loginButtonConstraintSetup() {
+         loginButton.anchor(
             top: userIDEntryTextField.bottomAnchor,
             leading: self.view.leadingAnchor,
             bottom: nil,
@@ -126,5 +129,4 @@ class LoginViewController: UIViewController {
             loginCoordinator?.pushToShowPostsFor(userID: userID)
         }
     }
-    
 }

@@ -8,7 +8,6 @@
 import UIKit
 
 extension UIView {
-    // MARK: - Call this functioin to apply some constraint to  UIView . Can be used any UIView subclass Object.
     @discardableResult
     func anchor(
         top: NSLayoutYAxisAnchor?,
@@ -43,8 +42,7 @@ extension UIView {
             anchoredConstraints.bottom,
             anchoredConstraints.trailing,
             anchoredConstraints.width, anchoredConstraints.height
-        ]
-            .forEach { $0?.isActive = true }
+        ].forEach { $0?.isActive = true }
         return anchoredConstraints
     }
     
