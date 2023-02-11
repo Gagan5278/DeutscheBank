@@ -10,6 +10,7 @@ import UIKit
 protocol Coordinator {
     var navigationController: UINavigationController {get set}
     func start()
+    func pushToShowPostsFor(userID: Int)
 }
 
 class AppCoordinator: Coordinator {
@@ -25,5 +26,9 @@ class AppCoordinator: Coordinator {
         loginViewController.loginCoordinator = self
         loginViewController.view.backgroundColor = .white
         navigationController.pushViewController(loginViewController, animated: true)
+    }
+    
+    func pushToShowPostsFor(userID: Int) {
+        let userModel = LoginUserModel(userid: userID)
     }
 }

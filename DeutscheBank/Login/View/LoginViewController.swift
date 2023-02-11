@@ -53,13 +53,17 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         addViewsOnMainView()
         addTextFieldSubscriber()
+        addTapGestureToHideKeyboard()
     }
     
     // MARK: - TextField event subscriber/listner
     private func addTextFieldSubscriber() {
         userIDTextFieldSubscriber = userIDEntryTextField
             .textPublisher()
-            .map { !$0.isEmpty }
+            .compactMap({ str in
+                guard let _ = str.integer else { return false }
+                return true
+            })
             .assign(to: \.isEnabled, on: loginButton)
     }
     
@@ -103,6 +107,14 @@ class LoginViewController: UIViewController {
         )
     }
     
+    private func addTapGestureToHideKeyboard() {
+        // add a tap Gesture Recognizer
+        self.view.addGestureRecognizer(UITapGestureRecognizer(
+            target: self,
+            action: #selector(doneButtonAction))
+        )
+    }
+    
     // MARK: - Hide Keyboard
     @objc private func doneButtonAction() {
         userIDEntryTextField.resignFirstResponder()
@@ -110,7 +122,9 @@ class LoginViewController: UIViewController {
     
     // MARK: - Next Button Action
     @objc private func nextButtonAction(sender: UIAction?) {
-        
+        if let userID = userIDEntryTextField.text?.integer {
+            loginCoordinator?.pushToShowPostsFor(userID: userID)
+        }
     }
     
 }
