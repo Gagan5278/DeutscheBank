@@ -68,7 +68,7 @@ extension FavoritePostService {
         do {
             try coreDataManager.context.save()
             comletionHandler(true)
-        } catch let error {
+        } catch {
             comletionHandler(false)
         }
     }

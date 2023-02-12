@@ -28,11 +28,11 @@ struct PostViewModelItem: PostViewModelItemProtocol {
     var isFavoritePost: Bool = false
     
     var postTitle: String {
-        postModel.title
+        postModel.title.capitalizeFirstLetterOfSentence
     }
     
     var postBody: String {
-        postModel.body
+        postModel.body.capitalizeFirstLetterOfSentence
     }
     
     var postID: Int {

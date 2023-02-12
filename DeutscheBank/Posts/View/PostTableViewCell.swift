@@ -13,8 +13,8 @@ class PostTableViewCell: BaseTableViewCell<PostViewModelItemProtocol> {
     var favoriteSelectionCompletionHandler: ((PostViewModelItemProtocol) -> Void)?
     
     private let favoriteButtonSize = CGSize(
-        width: AppConstants.commonPaadingConstants*3,
-        height: AppConstants.commonPaadingConstants*3
+        width: AppConstants.commonPaadingConstants*4,
+        height: AppConstants.commonPaadingConstants*4
     )
     
     private let postTitleLabel: UILabel = {

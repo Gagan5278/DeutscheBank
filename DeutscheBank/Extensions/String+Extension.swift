@@ -11,4 +11,8 @@ extension String {
     var integer: Int? {
         Int(self)
     }
+    
+    var capitalizeFirstLetterOfSentence: Self {
+         prefix(1).capitalized + dropFirst()
+    }
 }
