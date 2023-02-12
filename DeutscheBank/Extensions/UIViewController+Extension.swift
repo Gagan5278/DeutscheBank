@@ -18,19 +18,31 @@ extension UIViewController {
         withFirstCallback callBackFirst: ((UIAlertAction) -> Void)? = nil,
         withSecondCallback callBackSecond: ((UIAlertAction) -> Void)? = nil
     ) {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let alertController = UIAlertController(
+            title: title,
+            message: message,
+            preferredStyle: .alert
+        )
         
         if let firstButtonTitle = firstButtonTitle {
-            alertController.addAction(UIAlertAction(title: firstButtonTitle,
-                                                    style: firstButtonStyle,
-                                                    handler: callBackFirst))
+            alertController.addAction(UIAlertAction(
+                title: firstButtonTitle,
+                style: firstButtonStyle,
+                handler: callBackFirst)
+            )
         }
         
         if let secondButtonTitle = secondButtonTitle {
-            alertController.addAction(UIAlertAction(title: secondButtonTitle,
-                                                    style: secondButtonStyle,
-                                                    handler: callBackSecond))
+            alertController.addAction(UIAlertAction(
+                title: secondButtonTitle,
+                style: secondButtonStyle,
+                handler: callBackSecond)
+            )
         }
-        present(alertController, animated: true, completion: nil)
+        present(
+            alertController,
+            animated: true,
+            completion: nil
+        )
     }
 }

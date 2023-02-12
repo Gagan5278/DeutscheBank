@@ -47,8 +47,7 @@ class PostsViewViewModel {
                 } else {
                     output.send(.fetchPostsDidSucceed)
                 }
-            } catch let error {
-                print(error)
+            } catch let _ {
                 output.send(.fetchPostsDidFail)
             }
         }

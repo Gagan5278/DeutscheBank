@@ -37,17 +37,24 @@ class PostTableViewCell: BaseTableViewCell<PostViewModelItemProtocol> {
         return btn
     }()
     
+    // MARK: - View Life cycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        addViewsOnContentView()
+        addViewsOnContentViewAndSetupConstraints()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
-    
-    private func addViewsOnContentView() {
+      
+    // MARK: - Conetnt View UI Seup
+    private func addViewsOnContentViewAndSetupConstraints() {
         contentView.addSubviews(titleLabel, favoriteButton)
+        favoriteButtonConstraintSetup()
+        titleLabelConstraintSetup()
+    }
+    
+    private func favoriteButtonConstraintSetup() {
         favoriteButton.anchor(
             top: nil,
             leading: nil,
@@ -62,8 +69,10 @@ class PostTableViewCell: BaseTableViewCell<PostViewModelItemProtocol> {
             size: favoriteButtonSize
         )
         favoriteButton.addViewInCenterVertically()
-        
-        titleLabel.anchor(
+    }
+    
+    private func titleLabelConstraintSetup() {
+        return titleLabel.anchor(
             top: contentView.topAnchor,
             leading: contentView.leadingAnchor,
             bottom: contentView.bottomAnchor,
@@ -83,6 +92,7 @@ class PostTableViewCell: BaseTableViewCell<PostViewModelItemProtocol> {
         }
     }
     
+    // MARK: - Favorite button action
     @objc private func didTapFavoriteButton(sender: UIButton) {
         sender.isSelected = !sender.isSelected
     }
