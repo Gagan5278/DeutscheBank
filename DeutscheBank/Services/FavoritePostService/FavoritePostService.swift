@@ -35,7 +35,7 @@ extension FavoritePostService {
 extension FavoritePostService {
     private func fetchFavoritePostFor(user: LoginUserModel) {
         let fetchRequest = NSFetchRequest<FavoritePostEntity>(entityName: coreDataManager.favoriteEntityName)
-        //fetchRequest.predicate = NSPredicate(format: "userID = %d", user.userid)
+        fetchRequest.predicate = NSPredicate(format: "userID = %d", user.userid)
         do {
             savedFavoriteEntities = try coreDataManager.context.fetch(fetchRequest)
         } catch let error {
@@ -69,7 +69,6 @@ extension FavoritePostService {
             try coreDataManager.context.save()
             comletionHandler(true)
         } catch let error {
-            print("error : \(error.localizedDescription)")
             comletionHandler(false)
         }
     }

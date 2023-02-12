@@ -37,8 +37,10 @@ extension AppConstants {
         static let navigationTitle = "Post"
         static let filterAllPostSegmentTitle = "All Posts"
         static let filterFavoritePostSegmentTitle = "Favorite Posts"
-        static let emptyPostAlertTitle = "Message"
+        static let commonAlertTitle = "Message"
         static let emptyPostAlertMessage = "No post found for entered user id. Please enter a valid user id"
-        static let emptyPostButtonTitle = "Go Back"
+        static let alertGoBackButtonTitle = "Go Back"
+        static let errorPostAlertMessage = "An error occured while loading post from server. Please check your internet and try again"
+
     }
 }

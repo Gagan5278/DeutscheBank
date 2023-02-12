@@ -14,15 +14,15 @@ class PostListViewController: UIViewController {
     var postListCoordinator: Coordinator?
     private lazy var postFilterSegmentController: UISegmentedControl = {
         let sgmntCntl = UISegmentedControl(items: [
-            PostSegmentController.allPosts.segmentTitle,
-            PostSegmentController.favoritePosts.segmentTitle
+            PostsViewViewModel.PostSegmentControllerEnum.allPosts.segmentTitle,
+            PostsViewViewModel.PostSegmentControllerEnum.favoritePosts.segmentTitle
         ])
         sgmntCntl.addTarget(
             self,
             action: #selector(segmentedValueChanged(sender:)),
             for: .valueChanged
         )
-        sgmntCntl.selectedSegmentIndex = PostSegmentController.allPosts.rawValue
+        sgmntCntl.selectedSegmentIndex = PostsViewViewModel.PostSegmentControllerEnum.allPosts.rawValue
         return sgmntCntl
     }()
     
@@ -65,16 +65,22 @@ class PostListViewController: UIViewController {
                     self?.postTableView.reloadData()
                 case .fetchPostsDidSucceedWithEmptyList:
                     self?.showAlert(
-                        with: AppConstants.PostListScreenConstants.emptyPostAlertTitle,
+                        with: AppConstants.PostListScreenConstants.commonAlertTitle,
                         message: AppConstants.PostListScreenConstants.emptyPostAlertMessage
                     )
-                    
                 case .fetchPostsDidFail:
-                    break
-                case .toggleFavorite:
-                    break
+                    self?.showAlert(
+                        with: AppConstants.PostListScreenConstants.commonAlertTitle,
+                        message: AppConstants.PostListScreenConstants.errorPostAlertMessage
+                    )
+                case .reloadPost:
+                    self?.reloadPostTableView()
                 }
             }.store(in: &cancellables)
+    }
+    
+    private func reloadPostTableView() {
+        postTableView.reloadData()
     }
     
     private func setupSubViewsOnMainView() {
@@ -98,7 +104,7 @@ class PostListViewController: UIViewController {
         self.showAlertWith(
             title: title,
             message: message,
-            firstButtonTitle: AppConstants.PostListScreenConstants.emptyPostButtonTitle,
+            firstButtonTitle: AppConstants.PostListScreenConstants.alertGoBackButtonTitle,
             withFirstCallback: popToUserIDEntryScreen(action:)
         )
     }
@@ -109,7 +115,9 @@ class PostListViewController: UIViewController {
     
     // MARK: - Post filter on segment action
     @objc private func segmentedValueChanged(sender: UISegmentedControl) {
-        print("Selected Segment Index is : \(sender.selectedSegmentIndex)")
+        if let segmentSelected = PostsViewViewModel.PostSegmentControllerEnum(rawValue: sender.selectedSegmentIndex) {
+            input.send(.showFavoriteTypePost(segment: segmentSelected))
+        }
     }
     
     private func onFavoriteIconSelectionFor(_ postCell: PostTableViewCell) {
@@ -142,18 +150,3 @@ extension PostListViewController: UITableViewDataSource {
     }
 }
 
-extension PostListViewController {
-    enum PostSegmentController: Int  {
-        case allPosts
-        case favoritePosts
-        
-        var segmentTitle: String {
-            switch self {
-            case .allPosts:
-                return AppConstants.PostListScreenConstants.filterAllPostSegmentTitle
-            case .favoritePosts:
-                return AppConstants.PostListScreenConstants.filterFavoritePostSegmentTitle
-            }
-        }
-    }
-}

@@ -7,13 +7,15 @@
 
 import Foundation
 import Combine
+
 class PostsViewViewModel {
-    
     public private(set) var serviceRequest: NetworkRequestProtocol
     private let output: PassthroughSubject<RequestOutput, Never> = .init()
     private var cancellables = Set<AnyCancellable>()
     private let favoritePostService: FavoritePostService
-    private var posts: [PostViewModelItemProtocol] = []
+    @Published private var posts: [PostViewModelItemProtocol] = []
+    private var recievedRawPostsModel: [PostModel] = []
+    private var isFavoriteFilsterEnabled: Bool = false
     private var savedFavoritePostIDS: [Int] = []
     // MARK: - init
     init(request: NetworkRequestProtocol, user: LoginUserModel) {
@@ -26,13 +28,55 @@ class PostsViewViewModel {
     func transform(input: AnyPublisher<UserInput, Never>) -> AnyPublisher<RequestOutput, Never> {
         input.sink { [weak self] userEvent in
             switch userEvent {
-            case .showFavoriteTypePost(let isFavorite):
-                break
+            case .showFavoriteTypePost(let segment):
+                self?.updatePostTableOnFavoiteAndAllSegment(segment)
+                self?.output.send(.reloadPost)
             case .updateFavoriteStatusFor(let post):
-                self?.favoritePostService.updateEntity(for: post)
+                self?.updatePostfavoriteStatus(post)
+                self?.output.send(.reloadPost)
             }
         }.store(in: &cancellables)
         return output.eraseToAnyPublisher()
+    }
+    
+    var numberOfRowsInPostTableView: Int {
+        posts.count
+    }
+    
+    func getPost(at indexPath: IndexPath) -> PostViewModelItemProtocol {
+        posts[indexPath.row]
+    }
+}
+
+// MARK: - Private Section
+extension PostsViewViewModel {
+    
+    private func updatePostTableOnFavoiteAndAllSegment(_ segment: PostsViewViewModel.PostSegmentControllerEnum) {
+        switch segment {
+        case .allPosts:
+           createPostModelsFromPostRecieved(recievedRawPostsModel)
+        case .favoritePosts:
+            posts = posts.filter({$0.isFavoritePost})
+        }
+        self.isFavoriteFilsterEnabled = segment == .favoritePosts
+    }
+    
+    private func updatePostfavoriteStatus(_ post: PostViewModelItemProtocol) {
+        self.favoritePostService.updateEntity(for: post)
+        if let postIndex = self.posts.firstIndex(where: {$0.postID == post.postID}) {
+            let postItem = posts[postIndex]
+            posts[postIndex] = post.updatePostStatus(post:
+                                                        PostModel(
+                                                            userId: postItem.userID,
+                                                            id: postItem.postID,
+                                                            title: postItem.postTitle,
+                                                            body: postItem.postBody),
+                                                     isFavorite: !postItem.isFavoritePost
+            )
+            if isFavoriteFilsterEnabled {
+                posts = posts.filter ({ $0.isFavoritePost })
+            }
+        }
     }
     
     private func addFavoritePostSubscriber() {
@@ -51,39 +95,39 @@ class PostsViewViewModel {
                     model: [PostModel].self,
                     serviceMethod: .get
                 )
-
                 if postsRecived.isEmpty {
                     output.send(.fetchPostsDidSucceedWithEmptyList)
                 } else {
-                    if savedFavoritePostIDS.isEmpty {
-                        posts = postsRecived.map({
-                            PostViewModelItem(postModel: $0)
-                        })
-                    } else {
-                        posts = postsRecived.map({
-                            PostViewModelItem(postModel: $0, isFavorite: savedFavoritePostIDS.contains($0.id))
-                        })
-                    }
+                    recievedRawPostsModel = postsRecived
+                    createPostModelsFromPostRecieved(postsRecived)
                     output.send(.fetchPostsDidSucceed)
                 }
-            } catch let _ {
+            } catch {
                 output.send(.fetchPostsDidFail)
             }
         }
     }
     
-    var numberOfRowsInPostTableView: Int {
-        posts.count
-    }
-    
-    func getPost(at indexPath: IndexPath) -> PostViewModelItemProtocol {
-        posts[indexPath.row]
+    private func createPostModelsFromPostRecieved(_ postsRecived: [PostModel]) {
+        if savedFavoritePostIDS.isEmpty {
+            posts = postsRecived.map({
+                PostViewModelItem(postModel: $0)
+            })
+        } else {
+            posts = postsRecived.map({
+                PostViewModelItem(
+                    postModel: $0,
+                    isFavorite: savedFavoritePostIDS.contains($0.id)
+                )
+            })
+        }
     }
 }
 
+// MARK: - User Input and Request Output
 extension PostsViewViewModel {
     enum UserInput {
-        case showFavoriteTypePost(isFavorite: Bool)
+        case showFavoriteTypePost(segment: PostSegmentControllerEnum)
         case updateFavoriteStatusFor(post: PostViewModelItemProtocol)
     }
     
@@ -91,6 +135,20 @@ extension PostsViewViewModel {
         case fetchPostsDidFail
         case fetchPostsDidSucceed
         case fetchPostsDidSucceedWithEmptyList
-        case toggleFavorite
+        case reloadPost
+    }
+    
+    enum PostSegmentControllerEnum: Int  {
+        case allPosts
+        case favoritePosts
+        
+        var segmentTitle: String {
+            switch self {
+            case .allPosts:
+                return AppConstants.PostListScreenConstants.filterAllPostSegmentTitle
+            case .favoritePosts:
+                return AppConstants.PostListScreenConstants.filterFavoritePostSegmentTitle
+            }
+        }
     }
 }
