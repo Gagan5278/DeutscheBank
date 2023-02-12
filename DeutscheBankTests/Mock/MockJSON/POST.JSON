@@ -1,8 +1,19 @@
-//
-//  POST.JSON
-//  DeutscheBankTests
-//
-//  Created by Gagan Vishal  on 2023/02/12.
-//
-
-import Foundation
+[{
+        "userId": 1,
+        "id": 1,
+        "title": "Sample Title",
+        "body": "Sample Body user 1"
+    },
+    {
+        "userId": 2,
+        "id": 2,
+        "title": "Sample Title 2",
+        "body": "Sample Body user 2"
+    },
+    {
+        "userId": 3,
+        "id": 3,
+        "title": "Sample Title 3",
+        "body": "Sample Body user 3"
+    }
+]
