@@ -11,6 +11,7 @@ protocol Coordinator {
     var navigationController: UINavigationController {get set}
     func start()
     func pushToShowPostsFor(userID: Int)
+    func popToLastScreen()
 }
 
 class AppCoordinator: Coordinator {
@@ -19,21 +20,24 @@ class AppCoordinator: Coordinator {
     // MARK: - init
     init(navigationContoller: UINavigationController) {
         self.navigationController = navigationContoller
-        navigationController.view.backgroundColor = .white
-
     }
     
     func start() {
         let loginViewController = LoginViewController()
         loginViewController.loginCoordinator = self
-        loginViewController.view.backgroundColor = .white
+        loginViewController.view.backgroundColor = .appBackgroundColor
         navigationController.pushViewController(loginViewController, animated: true)
     }
     
     func pushToShowPostsFor(userID: Int) {
         let userModel = LoginUserModel(userid: userID)
         let postListViewController = PostListViewController(viewModel: PostsViewViewModel(request: NetworkRequest(), user: userModel))
-        postListViewController.view.backgroundColor = .white
-        self.navigationController.pushViewController(postListViewController, animated: true)
+        postListViewController.view.backgroundColor = .appBackgroundColor
+        postListViewController.postListCoordinator = self
+        navigationController.pushViewController(postListViewController, animated: true)
+    }
+    
+    func popToLastScreen() {
+        navigationController.popViewController(animated: true)
     }
 }

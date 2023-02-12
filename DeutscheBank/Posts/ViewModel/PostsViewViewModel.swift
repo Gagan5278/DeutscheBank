@@ -41,7 +41,12 @@ class PostsViewViewModel {
                 posts = postsRecived.map({
                     PostViewModelItem(postModel: $0)
                 })
-                output.send(.fetchPostsDidSucceed)
+                
+                if posts.isEmpty {
+                    output.send(.fetchPostsDidSucceedWithEmptyList)
+                } else {
+                    output.send(.fetchPostsDidSucceed)
+                }
             } catch let error {
                 print(error)
                 output.send(.fetchPostsDidFail)
@@ -66,6 +71,7 @@ extension PostsViewViewModel {
     enum RequestOutput {
         case fetchPostsDidFail
         case fetchPostsDidSucceed
+        case fetchPostsDidSucceedWithEmptyList
         case toggleFavorite
     }
 }

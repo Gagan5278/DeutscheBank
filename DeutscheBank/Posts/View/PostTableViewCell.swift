@@ -15,6 +15,7 @@ class PostTableViewCell: BaseTableViewCell<PostViewModelItemProtocol> {
         width: AppConstants.commonPaadingConstants*3,
         height: AppConstants.commonPaadingConstants*3
     )
+    
     private let titleLabel: UILabel = {
         let lbl = UILabel()
         lbl.font = .titleFont
@@ -85,5 +86,4 @@ class PostTableViewCell: BaseTableViewCell<PostViewModelItemProtocol> {
     @objc private func didTapFavoriteButton(sender: UIButton) {
         sender.isSelected = !sender.isSelected
     }
-    
 }

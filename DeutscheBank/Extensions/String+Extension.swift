@@ -6,6 +6,7 @@
 //
 
 import Foundation
+
 extension String {
     var integer: Int? {
         Int(self)

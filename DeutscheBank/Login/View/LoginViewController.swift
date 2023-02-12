@@ -18,6 +18,7 @@ class LoginViewController: UIViewController {
         let txtField = UITextField()
         txtField.borderStyle = .roundedRect
         txtField.keyboardType = .numberPad
+        txtField.placeholder = AppConstants.LoginScreenConstants.textFieldPlaceHolder
         txtField.addBorder()
         txtField.addToolbarButtonWith(title: AppConstants.LoginScreenConstants.textFieldToolbarButtonTitle, onPress: (
             target: self,
@@ -51,11 +52,17 @@ class LoginViewController: UIViewController {
     // MARK: - View Controller life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = AppConstants.LoginScreenConstants.navigationTitle
         addViewsOnMainView()
         addTextFieldSubscriber()
         addTapGestureToHideKeyboard()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        resetUserEntryStateOnViewWillDisappear()
+    }
+     
     // MARK: - TextField event subscriber/listner
     private func addTextFieldSubscriber() {
         userIDTextFieldSubscriber = userIDEntryTextField
@@ -121,6 +128,12 @@ class LoginViewController: UIViewController {
     // MARK: - Hide Keyboard
     @objc private func doneButtonAction() {
         userIDEntryTextField.resignFirstResponder()
+    }
+    
+    private func resetUserEntryStateOnViewWillDisappear() {
+        doneButtonAction()
+        userIDEntryTextField.text = ""
+        loginButton.isEnabled = false
     }
     
     // MARK: - Next Button Action

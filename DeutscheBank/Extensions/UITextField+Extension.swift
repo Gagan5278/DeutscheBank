@@ -21,7 +21,6 @@ extension UITextField {
     func addToolbarButtonWith(title: String,
                               onPress: (target: Any, action: Selector),
                               barStyle: UIBarStyle = .black) {
-        
         let toolbar: UIToolbar = UIToolbar()
         toolbar.barStyle = barStyle
         toolbar.items = [

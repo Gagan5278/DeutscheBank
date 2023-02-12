@@ -6,6 +6,7 @@
 //
 
 import Foundation
+
 protocol NetworkRequestProtocol {
     var headers: [String: String]? {get set}
     var bodyParameters: [String: String]? {get set}

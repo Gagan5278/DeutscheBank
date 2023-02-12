@@ -27,6 +27,8 @@ extension AppConstants {
     enum LoginScreenConstants {
         static let loginButtonTitle = "Login"
         static let textFieldToolbarButtonTitle = "Done"
+        static let textFieldPlaceHolder = "Please enter user id (1 to 10)"
+        static let navigationTitle = "User Login"
     }
 }
 
@@ -35,5 +37,8 @@ extension AppConstants {
         static let navigationTitle = "Post"
         static let filterAllPostSegmentTitle = "All Posts"
         static let filterFavoritePostSegmentTitle = "Favorite Posts"
+        static let emptyPostAlertTitle = "Message"
+        static let emptyPostAlertMessage = "No post found for entered user id. Please enter a valid user id"
+        static let emptyPostButtonTitle = "Go Back"
     }
 }

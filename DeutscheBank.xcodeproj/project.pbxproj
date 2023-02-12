@@ -16,6 +16,7 @@
 		5D4E807629985EF500D5745B /* PostViewViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4E807529985EF500D5745B /* PostViewViewModelTest.swift */; };
 		5D4E807829985F1300D5745B /* PostListViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4E807729985F1300D5745B /* PostListViewControllerTest.swift */; };
 		5D4E807A299863C300D5745B /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4E8079299863C300D5745B /* UIFont+Extension.swift */; };
+		5D4E807C2998708F00D5745B /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4E807B2998708F00D5745B /* UIViewController+Extension.swift */; };
 		5D59A66A2997CDDE007FA87C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D59A6692997CDDE007FA87C /* AppDelegate.swift */; };
 		5D59A66C2997CDDE007FA87C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D59A66B2997CDDE007FA87C /* SceneDelegate.swift */; };
 		5D59A66E2997CDDE007FA87C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D59A66D2997CDDE007FA87C /* LoginViewController.swift */; };
@@ -74,6 +75,7 @@
 		5D4E807529985EF500D5745B /* PostViewViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewViewModelTest.swift; sourceTree = "<group>"; };
 		5D4E807729985F1300D5745B /* PostListViewControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostListViewControllerTest.swift; sourceTree = "<group>"; };
 		5D4E8079299863C300D5745B /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
+		5D4E807B2998708F00D5745B /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		5D59A6662997CDDE007FA87C /* DeutscheBank.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DeutscheBank.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D59A6692997CDDE007FA87C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5D59A66B2997CDDE007FA87C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -266,6 +268,7 @@
 				5D59A6C6299809A0007FA87C /* HTTPURLResponse+Extension.swift */,
 				5D59A6CB29980CAB007FA87C /* Dictionary+Extension.swift */,
 				5D4E8079299863C300D5745B /* UIFont+Extension.swift */,
+				5D4E807B2998708F00D5745B /* UIViewController+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -493,6 +496,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D4E807C2998708F00D5745B /* UIViewController+Extension.swift in Sources */,
 				5D4E806D2998495F00D5745B /* PostListViewController.swift in Sources */,
 				5D59A6A62997D325007FA87C /* LoginUserModel.swift in Sources */,
 				5D59A6BA2997EC40007FA87C /* String+Extension.swift in Sources */,

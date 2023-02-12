@@ -18,6 +18,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     ) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
+        setupNavigationBarAppearance()
         let navController = UINavigationController()
         let coordinator = AppCoordinator(navigationContoller: navController)
         coordinator.start()
@@ -36,4 +37,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func sceneDidEnterBackground(_ scene: UIScene) {
         //(UIApplication.shared.delegate as? AppDelegate)?.saveContext()
     }
+    
+    // MARK: - Navigationbar appearance
+    private func setupNavigationBarAppearance() {
+        UINavigationBar.appearance().tintColor = .black
+        UINavigationBar.appearance().scrollEdgeAppearance = UINavigationBarAppearance()
+    }
+    
 }

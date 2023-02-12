@@ -11,7 +11,7 @@ import Combine
 class PostListViewController: UIViewController {
 
     private var postsViewModel: PostsViewViewModel!
-    
+    var postListCoordinator: Coordinator?
     private lazy var postFilterSegmentController: UISegmentedControl = {
         let sgmntCntl = UISegmentedControl(items: [
             PostSegmentController.allPosts.segmentTitle,
@@ -60,6 +60,12 @@ class PostListViewController: UIViewController {
         switch event {
         case .fetchPostsDidSucceed:
             self?.postTableView.reloadData()
+        case .fetchPostsDidSucceedWithEmptyList:
+            self?.showAlert(
+                with: AppConstants.PostListScreenConstants.emptyPostAlertTitle,
+                message: AppConstants.PostListScreenConstants.emptyPostAlertMessage
+            )
+            
         case .fetchPostsDidFail:
             break
         case .toggleFavorite:
@@ -82,8 +88,22 @@ class PostListViewController: UIViewController {
             bottom: self.view.safeAreaLayoutGuide.bottomAnchor,
             trailing: self.view.trailingAnchor
         )
-        
     }
+    
+    // MARK: - Display alert
+    private func showAlert(with title: String, message: String) {
+        self.showAlertWith(
+            title: title,
+            message: message,
+            firstButtonTitle: AppConstants.PostListScreenConstants.emptyPostButtonTitle,
+            withFirstCallback: popToUserIDEntryScreen(action:)
+        )
+    }
+    
+    private func popToUserIDEntryScreen(action: UIAlertAction?) {
+        postListCoordinator?.popToLastScreen()
+    }
+    
     // MARK: - Post filter on segment action
     @objc private func segmentedValueChanged(sender: UISegmentedControl) {
         print("Selected Segment Index is : \(sender.selectedSegmentIndex)")
