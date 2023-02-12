@@ -111,7 +111,6 @@ class PostListViewController: UIViewController {
             bottom: self.view.safeAreaLayoutGuide.bottomAnchor,
             trailing: self.view.trailingAnchor
         )
-        
         activityIndicator.centerInSuperview()
     }
     

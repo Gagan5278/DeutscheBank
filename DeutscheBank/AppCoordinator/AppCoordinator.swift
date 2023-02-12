@@ -11,6 +11,7 @@ protocol Coordinator {
     var navigationController: UINavigationController {get set}
     func start()
     func pushToShowPostsFor(userID: Int)
+    func pushToShowCommentScreen(for post: PostViewModelItemProtocol)
     func popToLastScreen()
 }
 
@@ -37,6 +38,10 @@ class AppCoordinator: Coordinator {
         navigationController.pushViewController(postListViewController, animated: true)
     }
     
+    func pushToShowCommentScreen(for post: PostViewModelItemProtocol) {
+        
+    }
+
     func popToLastScreen() {
         navigationController.popViewController(animated: true)
     }
