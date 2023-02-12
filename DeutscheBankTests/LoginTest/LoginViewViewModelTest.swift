@@ -12,34 +12,39 @@ import Combine
 final class LoginViewViewModelTest: XCTestCase {
 
     private var loginViewModel: LoginViewViewModel!
-    private var cancellables = Set<AnyCancellable>()
+    private var cancellables: AnyCancellable?
     override func setUp() {
         loginViewModel = LoginViewViewModel()
     }
 
     override func tearDown() {
         loginViewModel = nil
+        cancellables = nil
     }
 
     func testLoginViewModel_WhenValidUserNameEnetered_ShouldReturnTrue() {
         let value = "12"
-        let valuePublisher = CurrentValueSubject<String, Never>(value).eraseToAnyPublisher()
-        loginViewModel
+        
+        let valuePublisher = CurrentValueSubject<String, Never>(value)
+            .eraseToAnyPublisher()
+        
+        cancellables = loginViewModel
             .validateEnteredUserID(valuePublisher)
             .sink(receiveValue: {
                 XCTAssertEqual($0, true)
             })
-            .store(in: &cancellables)
     }
     
     func testLoginViewModel_WhenInvalidUserNameEnetered_ShouldReturnFalse() {
         let value = "xx"
-        let valuePublisher = CurrentValueSubject<String, Never>(value).eraseToAnyPublisher()
-        loginViewModel
+        
+        let valuePublisher = CurrentValueSubject<String, Never>(value)
+            .eraseToAnyPublisher()
+        
+        cancellables = loginViewModel
             .validateEnteredUserID(valuePublisher)
             .sink(receiveValue: {
                 XCTAssertEqual($0, false)
             })
-            .store(in: &cancellables)
     }
 }
