@@ -17,6 +17,8 @@
 		5D4E807829985F1300D5745B /* PostListViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4E807729985F1300D5745B /* PostListViewControllerTest.swift */; };
 		5D4E807A299863C300D5745B /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4E8079299863C300D5745B /* UIFont+Extension.swift */; };
 		5D4E807C2998708F00D5745B /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4E807B2998708F00D5745B /* UIViewController+Extension.swift */; };
+		5D4E807F29987BA400D5745B /* UIViewControllerExtensionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4E807E29987BA400D5745B /* UIViewControllerExtensionTest.swift */; };
+		5D4E808129987BB700D5745B /* StringExtensionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4E808029987BB700D5745B /* StringExtensionTest.swift */; };
 		5D59A66A2997CDDE007FA87C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D59A6692997CDDE007FA87C /* AppDelegate.swift */; };
 		5D59A66C2997CDDE007FA87C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D59A66B2997CDDE007FA87C /* SceneDelegate.swift */; };
 		5D59A66E2997CDDE007FA87C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D59A66D2997CDDE007FA87C /* LoginViewController.swift */; };
@@ -76,6 +78,8 @@
 		5D4E807729985F1300D5745B /* PostListViewControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostListViewControllerTest.swift; sourceTree = "<group>"; };
 		5D4E8079299863C300D5745B /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
 		5D4E807B2998708F00D5745B /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		5D4E807E29987BA400D5745B /* UIViewControllerExtensionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensionTest.swift; sourceTree = "<group>"; };
+		5D4E808029987BB700D5745B /* StringExtensionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensionTest.swift; sourceTree = "<group>"; };
 		5D59A6662997CDDE007FA87C /* DeutscheBank.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DeutscheBank.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D59A6692997CDDE007FA87C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5D59A66B2997CDDE007FA87C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -144,6 +148,13 @@
 			path = Utilities;
 			sourceTree = "<group>";
 		};
+		5D4E807D29987A2400D5745B /* Comments */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Comments;
+			sourceTree = "<group>";
+		};
 		5D59A65D2997CDDE007FA87C = {
 			isa = PBXGroup;
 			children = (
@@ -176,6 +187,7 @@
 				5D59A69E2997D002007FA87C /* AppCoordinator */,
 				5D59A6A12997D1D2007FA87C /* Login */,
 				5D59A6B52997E8C3007FA87C /* Posts */,
+				5D4E807D29987A2400D5745B /* Comments */,
 				5D59A6752997CDDF007FA87C /* Assets.xcassets */,
 				5D59A6772997CDDF007FA87C /* LaunchScreen.storyboard */,
 				5D59A67A2997CDDF007FA87C /* Info.plist */,
@@ -194,6 +206,8 @@
 				5D59A6CF2998104B007FA87C /* NetworkRequestTest.swift */,
 				5D4E807529985EF500D5745B /* PostViewViewModelTest.swift */,
 				5D4E807729985F1300D5745B /* PostListViewControllerTest.swift */,
+				5D4E807E29987BA400D5745B /* UIViewControllerExtensionTest.swift */,
+				5D4E808029987BB700D5745B /* StringExtensionTest.swift */,
 			);
 			path = DeutscheBankTests;
 			sourceTree = "<group>";
@@ -227,7 +241,6 @@
 		5D59A6A12997D1D2007FA87C /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				5D59A6A42997D30C007FA87C /* ViewModel */,
 				5D59A6A32997D2FF007FA87C /* Model */,
 				5D59A6A22997D2D5007FA87C /* View */,
 			);
@@ -248,13 +261,6 @@
 				5D59A6A52997D325007FA87C /* LoginUserModel.swift */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		5D59A6A42997D30C007FA87C /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		5D59A6A72997D3D4007FA87C /* Extensions */ = {
@@ -284,8 +290,8 @@
 		5D59A6B52997E8C3007FA87C /* Posts */ = {
 			isa = PBXGroup;
 			children = (
-				5D59A6B82997E8E5007FA87C /* ViewModel */,
 				5D59A6B72997E8DC007FA87C /* Model */,
+				5D59A6B82997E8E5007FA87C /* ViewModel */,
 				5D59A6B62997E8D5007FA87C /* View */,
 			);
 			path = Posts;
@@ -530,11 +536,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D4E808129987BB700D5745B /* StringExtensionTest.swift in Sources */,
 				5D4E807829985F1300D5745B /* PostListViewControllerTest.swift in Sources */,
 				5D59A6D5299810A8007FA87C /* MockNetworkRequest.swift in Sources */,
 				5D59A6B42997E892007FA87C /* LoginViewControllerTest.swift in Sources */,
 				5D4E807629985EF500D5745B /* PostViewViewModelTest.swift in Sources */,
 				5D59A6B22997E882007FA87C /* AppCoordinatorTest.swift in Sources */,
+				5D4E807F29987BA400D5745B /* UIViewControllerExtensionTest.swift in Sources */,
 				5D59A6D02998104B007FA87C /* NetworkRequestTest.swift in Sources */,
 				5D59A6D32998106D007FA87C /* MockServiceEndPoint.swift in Sources */,
 				5D59A6842997CDDF007FA87C /* DeutscheBankTests.swift in Sources */,
