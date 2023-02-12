@@ -24,7 +24,7 @@ class AppCoordinator: Coordinator {
     }
     
     func start() {
-        let loginViewController = LoginViewController()
+        let loginViewController = LoginViewController(viewModel: LoginViewViewModel())
         loginViewController.loginCoordinator = self
         loginViewController.view.backgroundColor = .appBackgroundColor
         navigationController.pushViewController(loginViewController, animated: true)

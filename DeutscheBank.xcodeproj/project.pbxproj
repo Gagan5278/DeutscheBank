@@ -13,6 +13,8 @@
 		5D054A1729993F9800CCF4F5 /* CoreDataStackInMemory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D054A1629993F9800CCF4F5 /* CoreDataStackInMemory.swift */; };
 		5D054A1929993FC300CCF4F5 /* SaveFavoriteCoreDataTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D054A1829993FC300CCF4F5 /* SaveFavoriteCoreDataTest.swift */; };
 		5D054A1B29996B2100CCF4F5 /* UINavigationControllerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D054A1A29996B2100CCF4F5 /* UINavigationControllerMock.swift */; };
+		5D054A1E2999A82500CCF4F5 /* LoginViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D054A1D2999A82500CCF4F5 /* LoginViewViewModel.swift */; };
+		5D054A212999AA7000CCF4F5 /* LoginViewViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D054A202999AA7000CCF4F5 /* LoginViewViewModelTest.swift */; };
 		5D4E80692998445300D5745B /* PostsViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4E80682998445300D5745B /* PostsViewViewModel.swift */; };
 		5D4E806B299845C800D5745B /* PostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4E806A299845C800D5745B /* PostModel.swift */; };
 		5D4E806D2998495F00D5745B /* PostListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4E806C2998495F00D5745B /* PostListViewController.swift */; };
@@ -81,6 +83,8 @@
 		5D054A1629993F9800CCF4F5 /* CoreDataStackInMemory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStackInMemory.swift; sourceTree = "<group>"; };
 		5D054A1829993FC300CCF4F5 /* SaveFavoriteCoreDataTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveFavoriteCoreDataTest.swift; sourceTree = "<group>"; };
 		5D054A1A29996B2100CCF4F5 /* UINavigationControllerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationControllerMock.swift; sourceTree = "<group>"; };
+		5D054A1D2999A82500CCF4F5 /* LoginViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewViewModel.swift; sourceTree = "<group>"; };
+		5D054A202999AA7000CCF4F5 /* LoginViewViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewViewModelTest.swift; sourceTree = "<group>"; };
 		5D4E80682998445300D5745B /* PostsViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsViewViewModel.swift; sourceTree = "<group>"; };
 		5D4E806A299845C800D5745B /* PostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostModel.swift; sourceTree = "<group>"; };
 		5D4E806C2998495F00D5745B /* PostListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostListViewController.swift; sourceTree = "<group>"; };
@@ -189,6 +193,22 @@
 			path = FavoritePostService;
 			sourceTree = "<group>";
 		};
+		5D054A1C2999A81400CCF4F5 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				5D054A1D2999A82500CCF4F5 /* LoginViewViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		5D054A1F2999AA5800CCF4F5 /* LoginTest */ = {
+			isa = PBXGroup;
+			children = (
+				5D054A202999AA7000CCF4F5 /* LoginViewViewModelTest.swift */,
+			);
+			path = LoginTest;
+			sourceTree = "<group>";
+		};
 		5D4E807029984D2F00D5745B /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
@@ -256,6 +276,7 @@
 		5D59A6822997CDDF007FA87C /* DeutscheBankTests */ = {
 			isa = PBXGroup;
 			children = (
+				5D054A1F2999AA5800CCF4F5 /* LoginTest */,
 				5D59A6D129981062007FA87C /* Mock */,
 				5D59A6832997CDDF007FA87C /* DeutscheBankTests.swift */,
 				5D59A6B12997E882007FA87C /* AppCoordinatorTest.swift */,
@@ -300,6 +321,7 @@
 		5D59A6A12997D1D2007FA87C /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				5D054A1C2999A81400CCF4F5 /* ViewModel */,
 				5D59A6A32997D2FF007FA87C /* Model */,
 				5D59A6A22997D2D5007FA87C /* View */,
 			);
@@ -572,6 +594,7 @@
 				5D054A132999315E00CCF4F5 /* FavoritePostService.swift in Sources */,
 				5D4E80692998445300D5745B /* PostsViewViewModel.swift in Sources */,
 				5D59A6AE2997DACF007FA87C /* AppConstants.swift in Sources */,
+				5D054A1E2999A82500CCF4F5 /* LoginViewViewModel.swift in Sources */,
 				5D59A6C7299809A0007FA87C /* HTTPURLResponse+Extension.swift in Sources */,
 				5D59A6CC29980CAB007FA87C /* Dictionary+Extension.swift in Sources */,
 				5D59A66E2997CDDE007FA87C /* LoginViewController.swift in Sources */,
@@ -614,6 +637,7 @@
 				5D59A6D32998106D007FA87C /* MockServiceEndPoint.swift in Sources */,
 				5D59A6842997CDDF007FA87C /* DeutscheBankTests.swift in Sources */,
 				5D054A1929993FC300CCF4F5 /* SaveFavoriteCoreDataTest.swift in Sources */,
+				5D054A212999AA7000CCF4F5 /* LoginViewViewModelTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

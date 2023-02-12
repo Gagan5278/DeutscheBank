@@ -13,6 +13,7 @@ class LoginViewController: UIViewController {
     private var userIDTextFieldSubscriber: AnyCancellable?
     private let userTextFieldHeight: CGFloat = AppConstants.commonPaadingConstants*4.4
     private let loginButtonHeight: CGFloat = AppConstants.commonPaadingConstants*4.4
+    private var loginViewModel: LoginViewViewModel!
 
     public private(set) lazy var userIDEntryTextField: UITextField = {
         let txtField = UITextField()
@@ -58,6 +59,11 @@ class LoginViewController: UIViewController {
         addTapGestureToHideKeyboard()
     }
     
+    convenience init(viewModel: LoginViewViewModel) {
+        self.init(nibName: nil, bundle: nil)
+        loginViewModel = viewModel
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         resetUserEntryStateOnViewWillDisappear()
@@ -65,10 +71,12 @@ class LoginViewController: UIViewController {
      
     // MARK: - TextField event subscriber/listner
     private func addTextFieldSubscriber() {
-        userIDTextFieldSubscriber = userIDEntryTextField
-            .textPublisher()
-            .map({ $0.integer != nil })
-            .assign(to: \.isEnabled, on: loginButton)
+        userIDTextFieldSubscriber = loginViewModel
+            .validateEnteredUserID(userIDEntryTextField.textPublisher())
+            .assign(
+                to: \.isEnabled,
+                on: loginButton
+            )
     }
     
     // MARK: - Add Views in main view

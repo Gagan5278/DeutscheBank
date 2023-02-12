@@ -10,11 +10,9 @@ import XCTest
 
 final class StringExtensionTest: XCTestCase {
 
-    override func setUp()  {
-    }
+    override func setUp() { }
 
-    override func tearDown()  {
-    }
+    override func tearDown() { }
 
     func testStringExtension_WhenValidIntegerInString_RetrunNotNil()  {
       let numberString = "123"
