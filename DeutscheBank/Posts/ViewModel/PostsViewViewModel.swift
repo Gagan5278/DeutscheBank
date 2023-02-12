@@ -10,26 +10,41 @@ import Combine
 class PostsViewViewModel {
     
     public private(set) var serviceRequest: NetworkRequestProtocol
-    @Published private var posts: [PostViewModelItemProtocol] = []
+    private let output: PassthroughSubject<RequestOutput, Never> = .init()
+    private var cancellables = Set<AnyCancellable>()
+    
+    private var posts: [PostViewModelItemProtocol] = []
     // MARK: - init
-    init(request: NetworkRequestProtocol, endPoint: ServiceEndPointProtocol, user: LoginUserModel) {
+    init(request: NetworkRequestProtocol, user: LoginUserModel) {
         serviceRequest = request
-        loadPostsFromServer(endPoint: endPoint, user: user)
+        loadPostsFromServerFor(user: user)
     }
     
-    private func loadPostsFromServer(endPoint: ServiceEndPointProtocol, user: LoginUserModel) {
+    func transform(input: AnyPublisher<UserInput, Never>) -> AnyPublisher<RequestOutput, Never> {
+        input.sink { [weak self] userEvent in
+            switch userEvent {
+            case .showFavoriteTypePost(let isFavorite):
+                break
+            }
+        }.store(in: &cancellables)
+        return output.eraseToAnyPublisher()
+    }
+    
+    private func loadPostsFromServerFor(user: LoginUserModel) {
         Task {
             do {
                 let postsRecived = try await serviceRequest.callService(
-                    with: endPoint,
+                    with: ServiceEndPoint.fetchPostsForUser(id: user.userid),
                     model: [PostModel].self,
                     serviceMethod: .get
                 )
                 posts = postsRecived.map({
                     PostViewModelItem(postModel: $0)
                 })
+                output.send(.fetchPostsDidSucceed)
             } catch let error {
-                
+                print(error)
+                output.send(.fetchPostsDidFail)
             }
         }
     }
@@ -49,7 +64,8 @@ extension PostsViewViewModel {
     }
     
     enum RequestOutput {
-        case fetchQuoteDidFail
-        case fetchQuoteDidSucceed
+        case fetchPostsDidFail
+        case fetchPostsDidSucceed
+        case toggleFavorite
     }
 }

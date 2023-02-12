@@ -26,6 +26,7 @@ extension UIView {
         }
         if let bottom = bottom {
             anchoredConstraints.bottom = bottomAnchor.constraint(equalTo: bottom, constant: -padding.bottom)
+            anchoredConstraints.bottom!.priority = UILayoutPriority(750)
         }
         if let trailing = trailing {
             anchoredConstraints.trailing = trailingAnchor.constraint(equalTo: trailing, constant: -padding.right)
@@ -44,22 +45,6 @@ extension UIView {
             anchoredConstraints.width, anchoredConstraints.height
         ].forEach { $0?.isActive = true }
         return anchoredConstraints
-    }
-    
-    func centerInSuperview(size: CGSize = .zero) {
-        translatesAutoresizingMaskIntoConstraints = false
-        if let superviewCenterXAnchor = superview?.centerXAnchor {
-            centerXAnchor.constraint(equalTo: superviewCenterXAnchor).isActive = true
-        }
-        if let superviewCenterYAnchor = superview?.centerYAnchor {
-            centerYAnchor.constraint(equalTo: superviewCenterYAnchor).isActive = true
-        }
-        if size.width != 0 {
-            widthAnchor.constraint(equalToConstant: size.width).isActive = true
-        }
-        if size.height != 0 {
-            heightAnchor.constraint(equalToConstant: size.height).isActive = true
-        }
     }
     
     func addViewInCenterVertically(with size: CGSize = .zero) {

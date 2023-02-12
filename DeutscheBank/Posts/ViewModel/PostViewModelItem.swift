@@ -26,7 +26,7 @@ struct PostViewModelItem: PostViewModelItemProtocol {
     }
     
     var userID: Int {
-        postModel.userID
+        postModel.userId
     }
     
     private let postModel: PostModel

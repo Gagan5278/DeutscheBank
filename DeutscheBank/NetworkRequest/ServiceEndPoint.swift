@@ -20,13 +20,13 @@ extension ServiceEndPointProtocol {
 
 enum ServiceEndPoint: ServiceEndPointProtocol {
     case fetchCommentsForPost(id: Int)
-    case fetchPosts
+    case fetchPostsForUser(id: Int)
     var requestURLString: String {
           switch self {
           case .fetchCommentsForPost(let id):
               return baseURLString
-          case .fetchPosts:
-              return baseURLString + "posts"
+          case .fetchPostsForUser(let userID):
+              return baseURLString + "posts?userId=\(userID)"
           }
       }
 

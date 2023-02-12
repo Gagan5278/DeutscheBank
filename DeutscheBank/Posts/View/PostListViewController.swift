@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 class PostListViewController: UIViewController {
 
@@ -21,22 +22,29 @@ class PostListViewController: UIViewController {
             action: #selector(segmentedValueChanged(sender:)),
             for: .valueChanged
         )
+        sgmntCntl.selectedSegmentIndex = PostSegmentController.allPosts.rawValue
         return sgmntCntl
     }()
     
     private lazy var postTableView: UITableView = {
         let tblView = UITableView()
         tblView.dataSource = self
-        tblView.estimatedRowHeight = 100
+        tblView.delegate = self
+        tblView.estimatedRowHeight = AppConstants.commonPaadingConstants*10
         tblView.rowHeight = UITableView.automaticDimension
         tblView.register(PostTableViewCell.self, forCellReuseIdentifier: PostTableViewCell.postCellIdentifier)
         return tblView
     }()
     
+    private let input: PassthroughSubject<PostsViewViewModel.UserInput, Never> = .init()
+    private var cancellables = Set<AnyCancellable>()
+    
     // MARK: - View Controller life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = AppConstants.PostListScreenConstants.navigationTitle
+        setupSubViewsOnMainView()
+        bindViewModel()
     }
     
     convenience init(viewModel: PostsViewViewModel) {
@@ -44,15 +52,47 @@ class PostListViewController: UIViewController {
         postsViewModel = viewModel
     }
     
+    private func bindViewModel() {
+      let output = postsViewModel.transform(input: input.eraseToAnyPublisher())
+      output
+        .receive(on: DispatchQueue.main)
+        .sink { [weak self] event in
+        switch event {
+        case .fetchPostsDidSucceed:
+            self?.postTableView.reloadData()
+        case .fetchPostsDidFail:
+            break
+        case .toggleFavorite:
+            break
+        }
+      }.store(in: &cancellables)
+    }
+    
     private func setupSubViewsOnMainView() {
         self.view.addSubviews(postFilterSegmentController, postTableView)
-        postFilterSegmentController.anchor(top: self.view.topAnchor, leading: self.view.leadingAnchor, bottom: nil, trailing: self.view.trailingAnchor)
-        postTableView.anchor(top: postFilterSegmentController.bottomAnchor, leading: self.view.leadingAnchor, bottom: self.view.safeAreaLayoutGuide.bottomAnchor, trailing: self.view.trailingAnchor)
+        postFilterSegmentController.anchor(
+            top: self.view.safeAreaLayoutGuide.topAnchor,
+            leading: self.view.leadingAnchor,
+            bottom: nil,
+            trailing: self.view.trailingAnchor
+        )
+        postTableView.anchor(
+            top: postFilterSegmentController.bottomAnchor,
+            leading: self.view.leadingAnchor,
+            bottom: self.view.safeAreaLayoutGuide.bottomAnchor,
+            trailing: self.view.trailingAnchor
+        )
         
     }
     // MARK: - Post filter on segment action
     @objc private func segmentedValueChanged(sender: UISegmentedControl) {
         print("Selected Segment Index is : \(sender.selectedSegmentIndex)")
+    }
+}
+
+extension PostListViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: false)
     }
 }
 
@@ -72,7 +112,7 @@ extension PostListViewController: UITableViewDataSource {
 }
 
 extension PostListViewController {
-    enum PostSegmentController  {
+    enum PostSegmentController: Int  {
         case allPosts
         case favoritePosts
         
