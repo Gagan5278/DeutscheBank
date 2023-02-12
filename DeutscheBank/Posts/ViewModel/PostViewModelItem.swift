@@ -19,9 +19,13 @@ protocol PostViewModelItemProtocol {
     var postTitle: String {get}
     var postBody: String {get}
     var userID: Int {get}
+    var postID: Int {get}
+    var isFavoritePost: Bool {get set}
 }
 
 struct PostViewModelItem: PostViewModelItemProtocol {
+    var isFavoritePost: Bool = false
+    
     var postTitle: String {
         postModel.title
     }
@@ -29,13 +33,18 @@ struct PostViewModelItem: PostViewModelItemProtocol {
     var postBody: String {
         postModel.body
     }
+    
+    var postID: Int {
+        postModel.id
+    }
 
     var userID: Int {
         postModel.userId
     }
     
     private let postModel: PostModel
-    init(postModel: PostModel) {
+    init(postModel: PostModel, isFavorite: Bool = false) {
         self.postModel = postModel
+        isFavoritePost = isFavorite
     }
 }

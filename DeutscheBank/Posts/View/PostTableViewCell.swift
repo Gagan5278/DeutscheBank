@@ -113,6 +113,7 @@ class PostTableViewCell: BaseTableViewCell<PostViewModelItemProtocol> {
     private func setPostTitleAndBody() {
         postTitleLabel.text = item.postTitle
         postBodyLabel.text = item.postBody
+        favoriteButton.isSelected = item.isFavoritePost
     }
     
     

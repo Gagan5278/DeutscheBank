@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5D054A0F29992E9C00CCF4F5 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D054A0E29992E9C00CCF4F5 /* CoreDataManager.swift */; };
+		5D054A132999315E00CCF4F5 /* FavoritePostService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D054A122999315E00CCF4F5 /* FavoritePostService.swift */; };
+		5D054A152999382500CCF4F5 /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D054A142999382500CCF4F5 /* Array+Extension.swift */; };
+		5D054A1729993F9800CCF4F5 /* CoreDataStackInMemory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D054A1629993F9800CCF4F5 /* CoreDataStackInMemory.swift */; };
+		5D054A1929993FC300CCF4F5 /* SaveFavoriteCoreDataTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D054A1829993FC300CCF4F5 /* SaveFavoriteCoreDataTest.swift */; };
 		5D4E80692998445300D5745B /* PostsViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4E80682998445300D5745B /* PostsViewViewModel.swift */; };
 		5D4E806B299845C800D5745B /* PostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4E806A299845C800D5745B /* PostModel.swift */; };
 		5D4E806D2998495F00D5745B /* PostListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4E806C2998495F00D5745B /* PostListViewController.swift */; };
@@ -69,6 +74,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5D054A0E29992E9C00CCF4F5 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		5D054A122999315E00CCF4F5 /* FavoritePostService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePostService.swift; sourceTree = "<group>"; };
+		5D054A142999382500CCF4F5 /* Array+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
+		5D054A1629993F9800CCF4F5 /* CoreDataStackInMemory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStackInMemory.swift; sourceTree = "<group>"; };
+		5D054A1829993FC300CCF4F5 /* SaveFavoriteCoreDataTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveFavoriteCoreDataTest.swift; sourceTree = "<group>"; };
 		5D4E80682998445300D5745B /* PostsViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsViewViewModel.swift; sourceTree = "<group>"; };
 		5D4E806A299845C800D5745B /* PostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostModel.swift; sourceTree = "<group>"; };
 		5D4E806C2998495F00D5745B /* PostListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostListViewController.swift; sourceTree = "<group>"; };
@@ -142,6 +152,41 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5D054A0C29992E7F00CCF4F5 /* APIManager */ = {
+			isa = PBXGroup;
+			children = (
+				5D59A6BC29980865007FA87C /* APIManager.swift */,
+				5D59A6BE299808C3007FA87C /* HTTPServiceMethod.swift */,
+				5D59A6C42998095C007FA87C /* APIManagerError.swift */,
+			);
+			path = APIManager;
+			sourceTree = "<group>";
+		};
+		5D054A0D29992E9000CCF4F5 /* CoreDataManager */ = {
+			isa = PBXGroup;
+			children = (
+				5D054A0E29992E9C00CCF4F5 /* CoreDataManager.swift */,
+			);
+			path = CoreDataManager;
+			sourceTree = "<group>";
+		};
+		5D054A1029992FE600CCF4F5 /* NetworkRequest */ = {
+			isa = PBXGroup;
+			children = (
+				5D59A6C929980C68007FA87C /* NetworkRequest.swift */,
+				5D59A6CD29980D20007FA87C /* ServiceEndPoint.swift */,
+			);
+			path = NetworkRequest;
+			sourceTree = "<group>";
+		};
+		5D054A1129992FFC00CCF4F5 /* FavoritePostService */ = {
+			isa = PBXGroup;
+			children = (
+				5D054A122999315E00CCF4F5 /* FavoritePostService.swift */,
+			);
+			path = FavoritePostService;
+			sourceTree = "<group>";
+		};
 		5D4E807029984D2F00D5745B /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
@@ -189,10 +234,10 @@
 			isa = PBXGroup;
 			children = (
 				5D4E807029984D2F00D5745B /* Utilities */,
-				5D59A6BB29980852007FA87C /* Manager */,
 				5D59A6AC2997DAB7007FA87C /* Constants */,
 				5D59A6A72997D3D4007FA87C /* Extensions */,
-				5D59A6C829980BD9007FA87C /* NetworkRequest */,
+				5D59A6BB29980852007FA87C /* Managers */,
+				5D59A6C829980BD9007FA87C /* Services */,
 				5D59A69C2997CECA007FA87C /* AppDelegate */,
 				5D59A69E2997D002007FA87C /* AppCoordinator */,
 				5D59A6A12997D1D2007FA87C /* Login */,
@@ -218,6 +263,8 @@
 				5D4E807729985F1300D5745B /* PostListViewControllerTest.swift */,
 				5D4E807E29987BA400D5745B /* UIViewControllerExtensionTest.swift */,
 				5D4E808029987BB700D5745B /* StringExtensionTest.swift */,
+				5D054A1629993F9800CCF4F5 /* CoreDataStackInMemory.swift */,
+				5D054A1829993FC300CCF4F5 /* SaveFavoriteCoreDataTest.swift */,
 			);
 			path = DeutscheBankTests;
 			sourceTree = "<group>";
@@ -285,6 +332,7 @@
 				5D59A6CB29980CAB007FA87C /* Dictionary+Extension.swift */,
 				5D4E8079299863C300D5745B /* UIFont+Extension.swift */,
 				5D4E807B2998708F00D5745B /* UIViewController+Extension.swift */,
+				5D054A142999382500CCF4F5 /* Array+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -333,23 +381,22 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
-		5D59A6BB29980852007FA87C /* Manager */ = {
+		5D59A6BB29980852007FA87C /* Managers */ = {
 			isa = PBXGroup;
 			children = (
-				5D59A6BC29980865007FA87C /* APIManager.swift */,
-				5D59A6BE299808C3007FA87C /* HTTPServiceMethod.swift */,
-				5D59A6C42998095C007FA87C /* APIManagerError.swift */,
+				5D054A0D29992E9000CCF4F5 /* CoreDataManager */,
+				5D054A0C29992E7F00CCF4F5 /* APIManager */,
 			);
-			path = Manager;
+			path = Managers;
 			sourceTree = "<group>";
 		};
-		5D59A6C829980BD9007FA87C /* NetworkRequest */ = {
+		5D59A6C829980BD9007FA87C /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				5D59A6C929980C68007FA87C /* NetworkRequest.swift */,
-				5D59A6CD29980D20007FA87C /* ServiceEndPoint.swift */,
+				5D054A1129992FFC00CCF4F5 /* FavoritePostService */,
+				5D054A1029992FE600CCF4F5 /* NetworkRequest */,
 			);
-			path = NetworkRequest;
+			path = Services;
 			sourceTree = "<group>";
 		};
 		5D59A6D129981062007FA87C /* Mock */ = {
@@ -519,6 +566,7 @@
 				5D59A6A62997D325007FA87C /* LoginUserModel.swift in Sources */,
 				5D59A6BA2997EC40007FA87C /* String+Extension.swift in Sources */,
 				5D59A6B02997E1A8007FA87C /* Color+Extension.swift in Sources */,
+				5D054A132999315E00CCF4F5 /* FavoritePostService.swift in Sources */,
 				5D4E80692998445300D5745B /* PostsViewViewModel.swift in Sources */,
 				5D59A6AE2997DACF007FA87C /* AppConstants.swift in Sources */,
 				5D59A6C7299809A0007FA87C /* HTTPURLResponse+Extension.swift in Sources */,
@@ -534,12 +582,14 @@
 				5D59A6BF299808C3007FA87C /* HTTPServiceMethod.swift in Sources */,
 				5D4E807229984D3700D5745B /* BaseTableViewCell.swift in Sources */,
 				5D4E807429984D7500D5745B /* PostTableViewCell.swift in Sources */,
+				5D054A152999382500CCF4F5 /* Array+Extension.swift in Sources */,
 				5D4E806F29984A1800D5745B /* PostViewModelItem.swift in Sources */,
 				5D59A6A02997D045007FA87C /* AppCoordinator.swift in Sources */,
 				5D59A6C3299808EE007FA87C /* URLRequest+Extension.swift in Sources */,
 				5D59A6742997CDDE007FA87C /* DeutscheBank.xcdatamodeld in Sources */,
 				5D59A66C2997CDDE007FA87C /* SceneDelegate.swift in Sources */,
 				5D59A6BD29980865007FA87C /* APIManager.swift in Sources */,
+				5D054A0F29992E9C00CCF4F5 /* CoreDataManager.swift in Sources */,
 				5D59A6CA29980C68007FA87C /* NetworkRequest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -550,6 +600,7 @@
 			files = (
 				5D4E808129987BB700D5745B /* StringExtensionTest.swift in Sources */,
 				5D4E807829985F1300D5745B /* PostListViewControllerTest.swift in Sources */,
+				5D054A1729993F9800CCF4F5 /* CoreDataStackInMemory.swift in Sources */,
 				5D59A6D5299810A8007FA87C /* MockNetworkRequest.swift in Sources */,
 				5D59A6B42997E892007FA87C /* LoginViewControllerTest.swift in Sources */,
 				5D4E807629985EF500D5745B /* PostViewViewModelTest.swift in Sources */,
@@ -558,6 +609,7 @@
 				5D59A6D02998104B007FA87C /* NetworkRequestTest.swift in Sources */,
 				5D59A6D32998106D007FA87C /* MockServiceEndPoint.swift in Sources */,
 				5D59A6842997CDDF007FA87C /* DeutscheBankTests.swift in Sources */,
+				5D054A1929993FC300CCF4F5 /* SaveFavoriteCoreDataTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

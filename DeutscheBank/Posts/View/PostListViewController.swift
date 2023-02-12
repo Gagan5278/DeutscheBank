@@ -113,12 +113,13 @@ class PostListViewController: UIViewController {
     }
     
     private func onFavoriteIconSelectionFor(_ postCell: PostTableViewCell) {
-        postCell.favoriteSelectionCompletionHandler = { selectedPost in
-            
+        postCell.favoriteSelectionCompletionHandler = { [weak self] selectedPost in
+            self?.input.send(.updateFavoriteStatusFor(post: selectedPost))
         }
     }
 }
 
+// MARK: - UITableViewDelegate
 extension PostListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)

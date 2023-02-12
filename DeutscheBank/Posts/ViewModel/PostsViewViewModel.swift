@@ -12,11 +12,14 @@ class PostsViewViewModel {
     public private(set) var serviceRequest: NetworkRequestProtocol
     private let output: PassthroughSubject<RequestOutput, Never> = .init()
     private var cancellables = Set<AnyCancellable>()
-    
+    private let favoritePostService: FavoritePostService
     private var posts: [PostViewModelItemProtocol] = []
+    private var savedFavoritePostIDS: [Int] = []
     // MARK: - init
     init(request: NetworkRequestProtocol, user: LoginUserModel) {
         serviceRequest = request
+        favoritePostService = FavoritePostService(user: user)
+        addFavoritePostSubscriber()
         loadPostsFromServerFor(user: user)
     }
     
@@ -25,9 +28,19 @@ class PostsViewViewModel {
             switch userEvent {
             case .showFavoriteTypePost(let isFavorite):
                 break
+            case .updateFavoriteStatusFor(let post):
+                self?.favoritePostService.updateEntity(for: post)
             }
         }.store(in: &cancellables)
         return output.eraseToAnyPublisher()
+    }
+    
+    private func addFavoritePostSubscriber() {
+        favoritePostService.$savedFavoriteEntities
+            .sink { [weak self] savedPosts in
+                self?.savedFavoritePostIDS =  savedPosts.map { Int($0.postID) }
+            }
+            .store(in: &cancellables)
     }
     
     private func loadPostsFromServerFor(user: LoginUserModel) {
@@ -38,13 +51,19 @@ class PostsViewViewModel {
                     model: [PostModel].self,
                     serviceMethod: .get
                 )
-                posts = postsRecived.map({
-                    PostViewModelItem(postModel: $0)
-                })
-                
-                if posts.isEmpty {
+
+                if postsRecived.isEmpty {
                     output.send(.fetchPostsDidSucceedWithEmptyList)
                 } else {
+                    if savedFavoritePostIDS.isEmpty {
+                        posts = postsRecived.map({
+                            PostViewModelItem(postModel: $0)
+                        })
+                    } else {
+                        posts = postsRecived.map({
+                            PostViewModelItem(postModel: $0, isFavorite: savedFavoritePostIDS.contains($0.id))
+                        })
+                    }
                     output.send(.fetchPostsDidSucceed)
                 }
             } catch let _ {
@@ -65,6 +84,7 @@ class PostsViewViewModel {
 extension PostsViewViewModel {
     enum UserInput {
         case showFavoriteTypePost(isFavorite: Bool)
+        case updateFavoriteStatusFor(post: PostViewModelItemProtocol)
     }
     
     enum RequestOutput {
