@@ -17,6 +17,7 @@ import Foundation
 
 protocol PostViewModelItemProtocol {
     var postTitle: String {get}
+    var postBody: String {get}
     var userID: Int {get}
 }
 
@@ -25,6 +26,10 @@ struct PostViewModelItem: PostViewModelItemProtocol {
         postModel.title
     }
     
+    var postBody: String {
+        postModel.body
+    }
+
     var userID: Int {
         postModel.userId
     }

@@ -10,16 +10,25 @@ import UIKit
 class PostTableViewCell: BaseTableViewCell<PostViewModelItemProtocol> {
     
     static let postCellIdentifier: String = "postCellIdentifier"
+    var favoriteSelectionCompletionHandler: ((PostViewModelItemProtocol) -> Void)?
     
     private let favoriteButtonSize = CGSize(
         width: AppConstants.commonPaadingConstants*3,
         height: AppConstants.commonPaadingConstants*3
     )
     
-    private let titleLabel: UILabel = {
+    private let postTitleLabel: UILabel = {
         let lbl = UILabel()
         lbl.font = .titleFont
         lbl.textColor = .appPrimaryColor
+        lbl.numberOfLines = 0
+        return lbl
+    }()
+    
+    private let postBodyLabel: UILabel = {
+        let lbl = UILabel()
+        lbl.font = .subTitleFont
+        lbl.textColor = .appSecondaryColor
         lbl.numberOfLines = 0
         return lbl
     }()
@@ -49,9 +58,18 @@ class PostTableViewCell: BaseTableViewCell<PostViewModelItemProtocol> {
       
     // MARK: - Conetnt View UI Seup
     private func addViewsOnContentViewAndSetupConstraints() {
-        contentView.addSubviews(titleLabel, favoriteButton)
+        let stackView = createVerticalStackHolderForPostTitleAndBody()
+        contentView.addSubviews(stackView, favoriteButton)
         favoriteButtonConstraintSetup()
-        titleLabelConstraintSetup()
+        postTitleAndBodyHolderVerticalStackViewConstraintSetup(stackView)
+    }
+    
+    private func createVerticalStackHolderForPostTitleAndBody() -> UIStackView {
+        let stackView = UIStackView(arrangedSubviews: [postTitleLabel, postBodyLabel])
+        stackView.axis = .vertical
+        stackView.spacing = AppConstants.commonPaadingConstants
+        stackView.distribution =  .fill
+        return stackView
     }
     
     private func favoriteButtonConstraintSetup() {
@@ -71,8 +89,8 @@ class PostTableViewCell: BaseTableViewCell<PostViewModelItemProtocol> {
         favoriteButton.addViewInCenterVertically()
     }
     
-    private func titleLabelConstraintSetup() {
-        return titleLabel.anchor(
+    private func postTitleAndBodyHolderVerticalStackViewConstraintSetup(_ stackView: UIStackView) {
+         stackView.anchor(
             top: contentView.topAnchor,
             leading: contentView.leadingAnchor,
             bottom: contentView.bottomAnchor,
@@ -88,12 +106,19 @@ class PostTableViewCell: BaseTableViewCell<PostViewModelItemProtocol> {
     
     override var item: PostViewModelItemProtocol! {
         didSet {
-            titleLabel.text = item.postTitle
+            setPostTitleAndBody()
         }
     }
+    
+    private func setPostTitleAndBody() {
+        postTitleLabel.text = item.postTitle
+        postBodyLabel.text = item.postBody
+    }
+    
     
     // MARK: - Favorite button action
     @objc private func didTapFavoriteButton(sender: UIButton) {
         sender.isSelected = !sender.isSelected
+        favoriteSelectionCompletionHandler?(item)
     }
 }
