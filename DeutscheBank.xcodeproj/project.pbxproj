@@ -19,6 +19,7 @@
 		5D4E807C2998708F00D5745B /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4E807B2998708F00D5745B /* UIViewController+Extension.swift */; };
 		5D4E807F29987BA400D5745B /* UIViewControllerExtensionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4E807E29987BA400D5745B /* UIViewControllerExtensionTest.swift */; };
 		5D4E808129987BB700D5745B /* StringExtensionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4E808029987BB700D5745B /* StringExtensionTest.swift */; };
+		5D4E808429987C2700D5745B /* POST.JSON in Resources */ = {isa = PBXBuildFile; fileRef = 5D4E808329987C2700D5745B /* POST.JSON */; };
 		5D59A66A2997CDDE007FA87C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D59A6692997CDDE007FA87C /* AppDelegate.swift */; };
 		5D59A66C2997CDDE007FA87C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D59A66B2997CDDE007FA87C /* SceneDelegate.swift */; };
 		5D59A66E2997CDDE007FA87C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D59A66D2997CDDE007FA87C /* LoginViewController.swift */; };
@@ -80,6 +81,7 @@
 		5D4E807B2998708F00D5745B /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		5D4E807E29987BA400D5745B /* UIViewControllerExtensionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensionTest.swift; sourceTree = "<group>"; };
 		5D4E808029987BB700D5745B /* StringExtensionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensionTest.swift; sourceTree = "<group>"; };
+		5D4E808329987C2700D5745B /* POST.JSON */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = POST.JSON; sourceTree = "<group>"; };
 		5D59A6662997CDDE007FA87C /* DeutscheBank.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DeutscheBank.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D59A6692997CDDE007FA87C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5D59A66B2997CDDE007FA87C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -153,6 +155,14 @@
 			children = (
 			);
 			path = Comments;
+			sourceTree = "<group>";
+		};
+		5D4E808229987C0D00D5745B /* MockJSON */ = {
+			isa = PBXGroup;
+			children = (
+				5D4E808329987C2700D5745B /* POST.JSON */,
+			);
+			path = MockJSON;
 			sourceTree = "<group>";
 		};
 		5D59A65D2997CDDE007FA87C = {
@@ -345,6 +355,7 @@
 		5D59A6D129981062007FA87C /* Mock */ = {
 			isa = PBXGroup;
 			children = (
+				5D4E808229987C0D00D5745B /* MockJSON */,
 				5D59A6D22998106D007FA87C /* MockServiceEndPoint.swift */,
 				5D59A6D4299810A8007FA87C /* MockNetworkRequest.swift */,
 			);
@@ -465,6 +476,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D4E808429987C2700D5745B /* POST.JSON in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
