@@ -39,6 +39,13 @@ class PostListViewController: UIViewController {
         return tblView
     }()
     
+    private let activityIndicator: UIActivityIndicatorView = {
+        let actView  = UIActivityIndicatorView()
+        actView.hidesWhenStopped = true
+        actView.startAnimating()
+        return actView
+    }()
+    
     private let input: PassthroughSubject<PostsViewViewModel.UserInput, Never> = .init()
     private var cancellables = Set<AnyCancellable>()
     
@@ -62,13 +69,15 @@ class PostListViewController: UIViewController {
             .sink { [weak self] event in
                 switch event {
                 case .fetchPostsDidSucceed:
-                    self?.postTableView.reloadData()
+                    self?.reloadPostTableView()
                 case .fetchPostsDidSucceedWithEmptyList:
+                    self?.stopActivityIndicatorAnimation()
                     self?.showAlert(
                         with: AppConstants.PostListScreenConstants.commonAlertTitle,
                         message: AppConstants.PostListScreenConstants.emptyPostAlertMessage
                     )
                 case .fetchPostsDidFail:
+                    self?.stopActivityIndicatorAnimation()
                     self?.showAlert(
                         with: AppConstants.PostListScreenConstants.commonAlertTitle,
                         message: AppConstants.PostListScreenConstants.errorPostAlertMessage
@@ -79,12 +88,17 @@ class PostListViewController: UIViewController {
             }.store(in: &cancellables)
     }
     
+    private func stopActivityIndicatorAnimation() {
+        activityIndicator.stopAnimating()
+    }
+    
     private func reloadPostTableView() {
+        stopActivityIndicatorAnimation()
         postTableView.reloadData()
     }
     
     private func setupSubViewsOnMainView() {
-        self.view.addSubviews(postFilterSegmentController, postTableView)
+        self.view.addSubviews(postFilterSegmentController, postTableView, activityIndicator)
         postFilterSegmentController.anchor(
             top: self.view.safeAreaLayoutGuide.topAnchor,
             leading: self.view.leadingAnchor,
@@ -97,6 +111,8 @@ class PostListViewController: UIViewController {
             bottom: self.view.safeAreaLayoutGuide.bottomAnchor,
             trailing: self.view.trailingAnchor
         )
+        
+        activityIndicator.centerInSuperview()
     }
     
     // MARK: - Display alert
