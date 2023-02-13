@@ -146,6 +146,7 @@ class PostListViewController: UIViewController {
 extension PostListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
+        postListCoordinator?.pushToShowCommentScreen(for: postsViewModel.getPost(at: indexPath))
     }
 }
 

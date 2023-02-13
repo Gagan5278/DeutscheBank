@@ -9,7 +9,10 @@ import Foundation
 import Combine
 
 class LoginViewViewModel {
-     
+    
+    // MARK: - init
+    init() {}
+    
     func validateEnteredUserID(_ userID: AnyPublisher<String, Never>) -> AnyPublisher<Bool, Never> {
         userID
         .map({ $0.integer != nil })

@@ -39,7 +39,13 @@ class AppCoordinator: Coordinator {
     }
     
     func pushToShowCommentScreen(for post: PostViewModelItemProtocol) {
-        
+        let commentController = CommentsViewController(viewModel:
+                                                        CommentsViewViewModel(
+                                                            request: NetworkRequest(),
+                                                            post: post))
+        commentController.view.backgroundColor = .appBackgroundColor
+        navigationController.pushViewController(commentController, animated: true)
+
     }
 
     func popToLastScreen() {
