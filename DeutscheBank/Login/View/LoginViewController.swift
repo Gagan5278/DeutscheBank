@@ -11,8 +11,8 @@ class LoginViewController: UIViewController {
     
     var loginCoordinator: Coordinator?
     private var userIDTextFieldSubscriber: AnyCancellable?
-    private let userTextFieldHeight: CGFloat = AppConstants.commonPaadingConstants*4.4
-    private let loginButtonHeight: CGFloat = AppConstants.commonPaadingConstants*4.4
+    private let userTextFieldHeight: CGFloat = AppConstants.commonPadingConstants*4.4
+    private let loginButtonHeight: CGFloat = AppConstants.commonPadingConstants*4.4
     private var loginViewModel: LoginViewViewModel!
 
     public private(set) lazy var userIDEntryTextField: UITextField = {
@@ -94,9 +94,9 @@ class LoginViewController: UIViewController {
             trailing: self.view.trailingAnchor,
             padding: UIEdgeInsets(
                 top: 0,
-                left: AppConstants.commonPaadingConstants,
+                left: AppConstants.commonPadingConstants,
                 bottom: 0,
-                right: AppConstants.commonPaadingConstants
+                right: AppConstants.commonPadingConstants
             ),
             size: CGSize(
                 width: 0,
@@ -113,10 +113,10 @@ class LoginViewController: UIViewController {
             bottom: nil,
             trailing: self.view.trailingAnchor,
             padding: UIEdgeInsets(
-                top: 2*AppConstants.commonPaadingConstants,
-                left: AppConstants.commonPaadingConstants,
+                top: 2*AppConstants.commonPadingConstants,
+                left: AppConstants.commonPadingConstants,
                 bottom: 0,
-                right: AppConstants.commonPaadingConstants
+                right: AppConstants.commonPadingConstants
             ),
             size: CGSize(
                 width: 0,

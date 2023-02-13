@@ -13,8 +13,8 @@ class PostTableViewCell: BaseTableViewCell<PostViewModelItemProtocol> {
     var favoriteSelectionCompletionHandler: ((PostViewModelItemProtocol) -> Void)?
     
     private let favoriteButtonSize = CGSize(
-        width: AppConstants.commonPaadingConstants*4,
-        height: AppConstants.commonPaadingConstants*4
+        width: AppConstants.commonPadingConstants*4,
+        height: AppConstants.commonPadingConstants*4
     )
     
     private lazy var favoriteButton: UIButton = {
@@ -56,9 +56,9 @@ class PostTableViewCell: BaseTableViewCell<PostViewModelItemProtocol> {
             trailing: contentView.trailingAnchor,
             padding: UIEdgeInsets(
                 top: 0,
-                left: AppConstants.commonPaadingConstants,
+                left: AppConstants.commonPadingConstants,
                 bottom: 0,
-                right: AppConstants.commonPaadingConstants
+                right: AppConstants.commonPadingConstants
             ),
             size: favoriteButtonSize
         )
@@ -72,29 +72,29 @@ class PostTableViewCell: BaseTableViewCell<PostViewModelItemProtocol> {
             bottom: contentView.bottomAnchor,
             trailing: favoriteButton.leadingAnchor,
             padding: UIEdgeInsets(
-                top: AppConstants.commonPaadingConstants,
-                left: AppConstants.commonPaadingConstants,
-                bottom: AppConstants.commonPaadingConstants,
+                top: AppConstants.commonPadingConstants,
+                left: AppConstants.commonPadingConstants,
+                bottom: AppConstants.commonPadingConstants,
                 right: 0
             )
         )
     }
     
-    override var item: PostViewModelItemProtocol! {
+    override var cellItem: PostViewModelItemProtocol! {
         didSet {
             setPostTitleAndBody()
         }
     }
     
     private func setPostTitleAndBody() {
-        setup(title: item.postTitle, body: item.postBody)
-        favoriteButton.isSelected = item.isFavoritePost
+        setup(title: cellItem.postTitle, body: cellItem.postBody)
+        favoriteButton.isSelected = cellItem.isFavoritePost
     }
     
     
     // MARK: - Favorite button action
     @objc private func didTapFavoriteButton(sender: UIButton) {
         sender.isSelected = !sender.isSelected
-        favoriteSelectionCompletionHandler?(item)
+        favoriteSelectionCompletionHandler?(cellItem)
     }
 }

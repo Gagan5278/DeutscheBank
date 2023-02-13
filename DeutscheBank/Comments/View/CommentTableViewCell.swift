@@ -10,6 +10,7 @@ import UIKit
 class CommentTableViewCell: BaseTableViewCell<CommentsViewViewModelItemProtocol> {
 
     static let commentCellIdentifier = "commentCellIdentifier"
+    
     // MARK: - View Life cycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -20,29 +21,29 @@ class CommentTableViewCell: BaseTableViewCell<CommentsViewViewModelItemProtocol>
         super.init(coder: coder)
     }
 
-    override var item: CommentsViewViewModelItemProtocol! {
+    override var cellItem: CommentsViewViewModelItemProtocol! {
         didSet {
             setCommenterNameAndCommentBody()
         }
     }
     
     // MARK: - Contraint setup for vertical stack view
-    private func verticalStackViewConstraintSetup() -> AnchoredConstraints {
-        return verticalStackView.anchor(
+    private func verticalStackViewConstraintSetup()  {
+        contentView.addSubview(verticalStackView)
+        verticalStackView.anchor(
             top: contentView.topAnchor,
             leading: contentView.leadingAnchor,
             bottom: contentView.bottomAnchor,
             trailing: contentView.trailingAnchor,
             padding: UIEdgeInsets(
-                top: AppConstants.commonPaadingConstants,
-                left: AppConstants.commonPaadingConstants,
-                bottom: AppConstants.commonPaadingConstants,
-                right: AppConstants.commonPaadingConstants)
+                top: AppConstants.commonPadingConstants,
+                left: AppConstants.commonPadingConstants,
+                bottom: AppConstants.commonPadingConstants,
+                right: AppConstants.commonPadingConstants)
         )
     }
     
     private func setCommenterNameAndCommentBody() {
-        setup(title: item.commenterName, body: item.comment)
+        setup(title: cellItem.commenterName, body: cellItem.comment)
     }
-    
 }

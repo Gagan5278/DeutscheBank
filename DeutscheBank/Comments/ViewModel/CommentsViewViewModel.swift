@@ -37,6 +37,15 @@ class CommentsViewViewModel {
             }
         }
     }
+    
+    var numberOfRowsInCommentTableView: Int {
+        comments.count
+    }
+    
+    func getPostComment(at indexPath: IndexPath) -> CommentsViewViewModelItemProtocol {
+        comments[indexPath.row]
+    }
+    
 }
 
 // MARK: - Private section

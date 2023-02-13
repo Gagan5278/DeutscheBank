@@ -30,7 +30,7 @@ class PostListViewController: BaseViewController {
         let tblView = UITableView()
         tblView.dataSource = self
         tblView.delegate = self
-        tblView.estimatedRowHeight = AppConstants.commonPaadingConstants*10
+        tblView.estimatedRowHeight = AppConstants.commonPadingConstants*10
         tblView.rowHeight = UITableView.automaticDimension
         tblView.register(
             PostTableViewCell.self,
@@ -65,13 +65,11 @@ class PostListViewController: BaseViewController {
                 case .fetchPostsDidSucceed:
                     self?.reloadPostTableView()
                 case .fetchPostsDidSucceedWithEmptyList:
-                    self?.stopActivityIndicatorAnimation()
                     self?.showAlert(
                         with: AppConstants.PostListScreenConstants.commonAlertTitle,
                         message: AppConstants.PostListScreenConstants.emptyPostAlertMessage
                     )
                 case .fetchPostsDidFail:
-                    self?.stopActivityIndicatorAnimation()
                     self?.showAlert(
                         with: AppConstants.PostListScreenConstants.commonAlertTitle,
                         message: AppConstants.PostListScreenConstants.errorPostAlertMessage
@@ -79,11 +77,11 @@ class PostListViewController: BaseViewController {
                 case .reloadPost:
                     self?.reloadPostTableView()
                 }
+                self?.stopActivityIndicatorAnimation()
             }.store(in: &cancellables)
     }
         
     private func reloadPostTableView() {
-        stopActivityIndicatorAnimation()
         postTableView.reloadData()
     }
     
@@ -149,7 +147,7 @@ extension PostListViewController: UITableViewDataSource {
         guard let postCell = tableView.dequeueReusableCell(withIdentifier: PostTableViewCell.postCellIdentifier, for: indexPath) as? PostTableViewCell else {
             return UITableViewCell()
         }
-        postCell.item = postsViewModel.getPost(at: indexPath)
+        postCell.cellItem = postsViewModel.getPost(at: indexPath)
         onFavoriteIconSelectionFor(postCell)
         return postCell
     }

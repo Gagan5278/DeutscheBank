@@ -9,7 +9,6 @@ import UIKit
 
 class BaseTableViewCell<U: Any>: UITableViewCell {
     
-    var item: U!
     private let titleLabel: UILabel = {
         let lbl = UILabel()
         lbl.font = .titleFont
@@ -29,10 +28,13 @@ class BaseTableViewCell<U: Any>: UITableViewCell {
     public private(set) var verticalStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
-        stackView.spacing = AppConstants.commonPaadingConstants
+        stackView.spacing = AppConstants.commonPadingConstants
         stackView.distribution =  .fill
         return stackView
     }()
+    
+    var cellItem: U!
+
     // MARK: - View Life cycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

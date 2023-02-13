@@ -8,7 +8,7 @@
 import Foundation
 
 enum AppConstants {
-    static let commonPaadingConstants: CGFloat = 10
+    static let commonPadingConstants: CGFloat = 10
 }
 
 extension AppConstants {
@@ -47,5 +47,9 @@ extension AppConstants {
 extension AppConstants {
     enum CommentListScreenConstants {
         static let navigationTitle = "Comments"
+        static let emptyPostAlertMessage = "No comment found for selected post. Please try another post."
+        static let alertButtonTitle = "OK"
+        static let alertTitle = "Message"
+        static let errorCommentAlertMessage = "An error occured while loading comment from server for selected post. Please check your internet and try again"
     }
 }
