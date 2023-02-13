@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum APIManagerError: Error {
+enum APIManagerError: Error, Equatable {
     case conversionFailedToHTTPURLResponse
     case serilizationFailed
     case urlError(statusCode: Int)

@@ -62,8 +62,12 @@ final class LoginViewControllerTest: XCTestCase {
         let valuePublisher = CurrentValueSubject<String, Never>(value)
             .eraseToAnyPublisher()
         // When
-        cancellables = loginViewModel.validateEnteredUserID(valuePublisher)
-            .assign(to: \.isEnabled, on: loginViewController.loginButton)
+        cancellables = loginViewModel
+            .validateEnteredUserID(valuePublisher)
+            .assign(
+                to: \.isEnabled,
+                on: loginViewController.loginButton
+            )
         //Then
         XCTAssertTrue(loginViewController.loginButton.isEnabled)
     }
@@ -73,8 +77,12 @@ final class LoginViewControllerTest: XCTestCase {
         let value = "12"
         let valuePublisher = CurrentValueSubject<String, Never>(value)
             .eraseToAnyPublisher()
-        cancellables = loginViewModel.validateEnteredUserID(valuePublisher)
-            .assign(to: \.isEnabled, on: loginViewController.loginButton)
+        cancellables = loginViewModel
+            .validateEnteredUserID(valuePublisher)
+            .assign(
+                to: \.isEnabled,
+                on: loginViewController.loginButton
+            )
         XCTAssertTrue(loginViewController.loginButton.isEnabled)
         // When
         loginViewController.loginButton.sendActions(for: .touchUpInside)

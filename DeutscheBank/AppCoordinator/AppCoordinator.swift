@@ -32,7 +32,13 @@ class AppCoordinator: Coordinator {
     
     func pushToShowPostsFor(userID: Int) {
         let userModel = LoginUserModel(userid: userID)
-        let postListViewController = PostListViewController(viewModel: PostsViewViewModel(request: NetworkRequest(), user: userModel))
+        let postListViewController = PostListViewController(
+            viewModel: PostsViewViewModel(
+                request: NetworkRequest(),
+                user: userModel,
+                codeDataManager: CoreDataManager()
+            )
+        )
         postListViewController.view.backgroundColor = .appBackgroundColor
         postListViewController.postListCoordinator = self
         navigationController.pushViewController(postListViewController, animated: true)

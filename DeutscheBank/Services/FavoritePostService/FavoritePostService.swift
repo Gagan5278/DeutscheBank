@@ -11,11 +11,11 @@ import Combine
 
 class FavoritePostService {
     @Published var savedFavoriteEntities: [FavoritePostEntity] = []
-    private let coreDataManager: CoreDataManager
+    private let coreDataManager: CoreDataManagerProtocol
     
     // MARK: init
-    init(user: LoginUserModel) {
-        coreDataManager = CoreDataManager()
+    init(user: LoginUserModel, manager: CoreDataManagerProtocol) {
+        coreDataManager = manager
         fetchFavoritePostFor(user: user)
     }
 }
@@ -37,7 +37,7 @@ extension FavoritePostService {
         let fetchRequest = NSFetchRequest<FavoritePostEntity>(entityName: coreDataManager.favoriteEntityName)
         fetchRequest.predicate = NSPredicate(format: "userID = %d", user.userid)
         do {
-            savedFavoriteEntities = try coreDataManager.context.fetch(fetchRequest)
+            savedFavoriteEntities = try coreDataManager.viewContext.fetch(fetchRequest)
         } catch let error {
             print(error.localizedDescription)
         }
@@ -45,7 +45,7 @@ extension FavoritePostService {
     
     // MARK: - add into Favorite Entity
     private func add(model: PostViewModelItemProtocol) {
-        let entity = FavoritePostEntity(context: coreDataManager.context)
+        let entity = FavoritePostEntity(context: coreDataManager.viewContext)
         entity.postID = Int16(model.postID)
         entity.userID = Int16(model.userID)
         entity.postTitle = model.postTitle
@@ -57,7 +57,7 @@ extension FavoritePostService {
     
     // MARK: - Delete
     private func delete(entity: FavoritePostEntity) {
-        coreDataManager.context.delete(entity)
+        coreDataManager.viewContext.delete(entity)
         saveEntity(comletionHandler: {isSuccess in
             savedFavoriteEntities.remove(element: entity)
         })
@@ -66,7 +66,7 @@ extension FavoritePostService {
     // MARK: - Save entity
     private func saveEntity(comletionHandler: (Bool) -> Void) {
         do {
-            try coreDataManager.context.save()
+            try coreDataManager.viewContext.save()
             comletionHandler(true)
         } catch {
             comletionHandler(false)

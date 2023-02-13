@@ -18,12 +18,15 @@ class PostsViewViewModel {
     private var isFavoriteFilsterEnabled: Bool = false
     private var savedFavoritePostIDS: [Int] = []
     // MARK: - init
-    init(request: NetworkRequestProtocol, user: LoginUserModel) {
-        serviceRequest = request
-        favoritePostService = FavoritePostService(user: user)
-        addFavoritePostSubscriber()
-        loadPostsFromServerFor(user: user)
-    }
+    init(
+        request: NetworkRequestProtocol,
+        user: LoginUserModel,
+        codeDataManager: CoreDataManagerProtocol) {
+            serviceRequest = request
+            favoritePostService = FavoritePostService(user: user, manager: codeDataManager)
+            addFavoritePostSubscriber()
+            loadPostsFromServerFor(user: user)
+        }
     
     func transform(input: AnyPublisher<UserInput, Never>) -> AnyPublisher<RequestOutput, Never> {
         input.sink { [weak self] userEvent in
@@ -54,7 +57,7 @@ extension PostsViewViewModel {
     private func updatePostTableOnFavoiteAndAllSegment(_ segment: PostsViewViewModel.PostSegmentControllerEnum) {
         switch segment {
         case .allPosts:
-           createPostModelsFromPostRecieved(recievedRawPostsModel)
+            createPostModelsFromPostRecieved(recievedRawPostsModel)
         case .favoritePosts:
             posts = posts.filter({$0.isFavoritePost})
         }

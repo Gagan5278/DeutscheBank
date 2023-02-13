@@ -8,11 +8,16 @@
 import Foundation
 import CoreData
 
-class CoreDataManager {
+protocol CoreDataManagerProtocol {
+    var favoriteEntityName: String { get }
+    var viewContext: NSManagedObjectContext { get }
+}
+
+class CoreDataManager: CoreDataManagerProtocol {
     private let persistantContainer: NSPersistentContainer
     private let persistantContainerName: String = "DeutscheBank"
     private let entityName: String = "FavoritePostEntity"
-    public private(set) lazy var context: NSManagedObjectContext = {
+    private lazy var context: NSManagedObjectContext = {
          persistantContainer.viewContext
     }()
     
@@ -28,5 +33,9 @@ class CoreDataManager {
     
     var favoriteEntityName: String {
         entityName
+    }
+    
+    var viewContext: NSManagedObjectContext {
+        context
     }
 }

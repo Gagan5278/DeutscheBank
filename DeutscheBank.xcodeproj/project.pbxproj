@@ -31,7 +31,6 @@
 		5D4E807C2998708F00D5745B /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4E807B2998708F00D5745B /* UIViewController+Extension.swift */; };
 		5D4E807F29987BA400D5745B /* UIViewControllerExtensionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4E807E29987BA400D5745B /* UIViewControllerExtensionTest.swift */; };
 		5D4E808129987BB700D5745B /* StringExtensionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4E808029987BB700D5745B /* StringExtensionTest.swift */; };
-		5D4E808429987C2700D5745B /* POST.JSON in Resources */ = {isa = PBXBuildFile; fileRef = 5D4E808329987C2700D5745B /* POST.JSON */; };
 		5D59A66A2997CDDE007FA87C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D59A6692997CDDE007FA87C /* AppDelegate.swift */; };
 		5D59A66C2997CDDE007FA87C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D59A66B2997CDDE007FA87C /* SceneDelegate.swift */; };
 		5D59A66E2997CDDE007FA87C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D59A66D2997CDDE007FA87C /* LoginViewController.swift */; };
@@ -59,10 +58,14 @@
 		5D59A6CE29980D20007FA87C /* ServiceEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D59A6CD29980D20007FA87C /* ServiceEndPoint.swift */; };
 		5D59A6D02998104B007FA87C /* NetworkRequestTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D59A6CF2998104B007FA87C /* NetworkRequestTest.swift */; };
 		5D59A6D32998106D007FA87C /* MockServiceEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D59A6D22998106D007FA87C /* MockServiceEndPoint.swift */; };
-		5D59A6D5299810A8007FA87C /* MockNetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D59A6D4299810A8007FA87C /* MockNetworkRequest.swift */; };
+		5D59A6D5299810A8007FA87C /* MockNetworkRequestFailureTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D59A6D4299810A8007FA87C /* MockNetworkRequestFailureTest.swift */; };
 		5DF0FC49299A6C7000D2ED02 /* CommentsViewViewModelItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF0FC48299A6C7000D2ED02 /* CommentsViewViewModelItem.swift */; };
 		5DF0FC4B299A722D00D2ED02 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF0FC4A299A722D00D2ED02 /* BaseViewController.swift */; };
 		5DF0FC4D299A748300D2ED02 /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF0FC4C299A748300D2ED02 /* CommentTableViewCell.swift */; };
+		5DF0FC4F299A990200D2ED02 /* MockNetworkRequestSuccessTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF0FC4E299A990200D2ED02 /* MockNetworkRequestSuccessTest.swift */; };
+		5DF0FC51299A9D8900D2ED02 /* JSONLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF0FC50299A9D8900D2ED02 /* JSONLoader.swift */; };
+		5DF0FC52299AA03300D2ED02 /* Posts.json in Resources */ = {isa = PBXBuildFile; fileRef = 5D4E808329987C2700D5745B /* Posts.json */; };
+		5DF0FC54299AAC2B00D2ED02 /* MockNetworkRequestSuccessWithEmptyModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF0FC53299AAC2B00D2ED02 /* MockNetworkRequestSuccessWithEmptyModelTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,7 +110,7 @@
 		5D4E807B2998708F00D5745B /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		5D4E807E29987BA400D5745B /* UIViewControllerExtensionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensionTest.swift; sourceTree = "<group>"; };
 		5D4E808029987BB700D5745B /* StringExtensionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensionTest.swift; sourceTree = "<group>"; };
-		5D4E808329987C2700D5745B /* POST.JSON */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = POST.JSON; sourceTree = "<group>"; };
+		5D4E808329987C2700D5745B /* Posts.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Posts.json; sourceTree = "<group>"; };
 		5D59A6662997CDDE007FA87C /* DeutscheBank.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DeutscheBank.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D59A6692997CDDE007FA87C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5D59A66B2997CDDE007FA87C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -139,10 +142,13 @@
 		5D59A6CD29980D20007FA87C /* ServiceEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceEndPoint.swift; sourceTree = "<group>"; };
 		5D59A6CF2998104B007FA87C /* NetworkRequestTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequestTest.swift; sourceTree = "<group>"; };
 		5D59A6D22998106D007FA87C /* MockServiceEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockServiceEndPoint.swift; sourceTree = "<group>"; };
-		5D59A6D4299810A8007FA87C /* MockNetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetworkRequest.swift; sourceTree = "<group>"; };
+		5D59A6D4299810A8007FA87C /* MockNetworkRequestFailureTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetworkRequestFailureTest.swift; sourceTree = "<group>"; };
 		5DF0FC48299A6C7000D2ED02 /* CommentsViewViewModelItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsViewViewModelItem.swift; sourceTree = "<group>"; };
 		5DF0FC4A299A722D00D2ED02 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		5DF0FC4C299A748300D2ED02 /* CommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
+		5DF0FC4E299A990200D2ED02 /* MockNetworkRequestSuccessTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetworkRequestSuccessTest.swift; sourceTree = "<group>"; };
+		5DF0FC50299A9D8900D2ED02 /* JSONLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONLoader.swift; sourceTree = "<group>"; };
+		5DF0FC53299AAC2B00D2ED02 /* MockNetworkRequestSuccessWithEmptyModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetworkRequestSuccessWithEmptyModelTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -270,7 +276,7 @@
 		5D4E808229987C0D00D5745B /* MockJSON */ = {
 			isa = PBXGroup;
 			children = (
-				5D4E808329987C2700D5745B /* POST.JSON */,
+				5D4E808329987C2700D5745B /* Posts.json */,
 			);
 			path = MockJSON;
 			sourceTree = "<group>";
@@ -330,6 +336,7 @@
 				5D4E808029987BB700D5745B /* StringExtensionTest.swift */,
 				5D054A1629993F9800CCF4F5 /* CoreDataStackInMemory.swift */,
 				5D054A1829993FC300CCF4F5 /* SaveFavoriteCoreDataTest.swift */,
+				5DF0FC50299A9D8900D2ED02 /* JSONLoader.swift */,
 			);
 			path = DeutscheBankTests;
 			sourceTree = "<group>";
@@ -470,8 +477,10 @@
 			children = (
 				5D4E808229987C0D00D5745B /* MockJSON */,
 				5D59A6D22998106D007FA87C /* MockServiceEndPoint.swift */,
-				5D59A6D4299810A8007FA87C /* MockNetworkRequest.swift */,
+				5DF0FC4E299A990200D2ED02 /* MockNetworkRequestSuccessTest.swift */,
+				5D59A6D4299810A8007FA87C /* MockNetworkRequestFailureTest.swift */,
 				5D054A1A29996B2100CCF4F5 /* UINavigationControllerMock.swift */,
+				5DF0FC53299AAC2B00D2ED02 /* MockNetworkRequestSuccessWithEmptyModelTest.swift */,
 			);
 			path = Mock;
 			sourceTree = "<group>";
@@ -590,7 +599,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5D4E808429987C2700D5745B /* POST.JSON in Resources */,
+				5DF0FC52299AA03300D2ED02 /* Posts.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -675,14 +684,17 @@
 				5D4E808129987BB700D5745B /* StringExtensionTest.swift in Sources */,
 				5D4E807829985F1300D5745B /* PostListViewControllerTest.swift in Sources */,
 				5D054A1729993F9800CCF4F5 /* CoreDataStackInMemory.swift in Sources */,
-				5D59A6D5299810A8007FA87C /* MockNetworkRequest.swift in Sources */,
+				5D59A6D5299810A8007FA87C /* MockNetworkRequestFailureTest.swift in Sources */,
+				5DF0FC54299AAC2B00D2ED02 /* MockNetworkRequestSuccessWithEmptyModelTest.swift in Sources */,
 				5D4E807629985EF500D5745B /* PostViewViewModelTest.swift in Sources */,
 				5D59A6B22997E882007FA87C /* AppCoordinatorTest.swift in Sources */,
 				5D4E807F29987BA400D5745B /* UIViewControllerExtensionTest.swift in Sources */,
 				5D054A1B29996B2100CCF4F5 /* UINavigationControllerMock.swift in Sources */,
 				5D59A6D02998104B007FA87C /* NetworkRequestTest.swift in Sources */,
 				5D59A6D32998106D007FA87C /* MockServiceEndPoint.swift in Sources */,
+				5DF0FC4F299A990200D2ED02 /* MockNetworkRequestSuccessTest.swift in Sources */,
 				5D59A6842997CDDF007FA87C /* DeutscheBankTests.swift in Sources */,
+				5DF0FC51299A9D8900D2ED02 /* JSONLoader.swift in Sources */,
 				5D054A232999AD1600CCF4F5 /* LoginViewControllerTest.swift in Sources */,
 				5D054A1929993FC300CCF4F5 /* SaveFavoriteCoreDataTest.swift in Sources */,
 				5D054A212999AA7000CCF4F5 /* LoginViewViewModelTest.swift in Sources */,

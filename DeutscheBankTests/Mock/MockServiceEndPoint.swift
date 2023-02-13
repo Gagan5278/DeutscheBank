@@ -7,3 +7,9 @@
 
 import Foundation
 @testable import DeutscheBank
+
+enum MockServiceEndPoint: ServiceEndPointProtocol {
+    case fetchCommentsForPost(id: Int)
+    case fetchPostsForUser(id: Int)
+    var requestURLString: String { "https://some.fake.url" }
+}
