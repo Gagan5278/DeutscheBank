@@ -41,6 +41,11 @@ extension AppConstants {
         static let emptyPostAlertMessage = "No post found for entered user id. Please enter a valid user id"
         static let alertGoBackButtonTitle = "Go Back"
         static let errorPostAlertMessage = "An error occured while loading post from server. Please check your internet and try again"
+    }
+}
 
+extension AppConstants {
+    enum CommentListScreenConstants {
+        static let navigationTitle = "Comments"
     }
 }

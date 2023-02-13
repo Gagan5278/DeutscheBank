@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 class PostsViewViewModel {
-    public private(set) var serviceRequest: NetworkRequestProtocol
+    private let serviceRequest: NetworkRequestProtocol
     private let output: PassthroughSubject<RequestOutput, Never> = .init()
     private var cancellables = Set<AnyCancellable>()
     private let favoritePostService: FavoritePostService

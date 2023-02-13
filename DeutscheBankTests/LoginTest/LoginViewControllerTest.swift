@@ -29,7 +29,7 @@ final class LoginViewControllerTest: XCTestCase {
         XCTAssertNotNil(loginViewController.view)
     }
 
-    func testLoginViewController_WhenLoaded_NavigationControllerIsNotNil() {
+    func testLoginViewController_WhenLoaded_NavigationControllerTitleIsNotNil() {
         XCTAssertNotNil(loginViewController.navigationItem.title)
     }
     
@@ -42,7 +42,7 @@ final class LoginViewControllerTest: XCTestCase {
         if (arrSelectors?.count ?? 0) > 0 {
             selector = arrSelectors?[0]
         }
-        XCTAssert((selector == "nextButtonActionWithSender:"))
+        XCTAssert(selector == "nextButtonActionWithSender:")
     }
     
     func testLoginViewController_WhenTextFieldIsEmpty_LoginButtonIsNotEnabled() {
