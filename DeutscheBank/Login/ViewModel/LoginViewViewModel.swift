@@ -15,6 +15,7 @@ class LoginViewViewModel {
     
     func validateEnteredUserID(_ userID: AnyPublisher<String, Never>) -> AnyPublisher<Bool, Never> {
         userID
+        .print()
         .map({ $0.integer != nil })
         .eraseToAnyPublisher()
     }
