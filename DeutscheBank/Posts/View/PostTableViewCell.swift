@@ -17,22 +17,6 @@ class PostTableViewCell: BaseTableViewCell<PostViewModelItemProtocol> {
         height: AppConstants.commonPaadingConstants*4
     )
     
-    private let postTitleLabel: UILabel = {
-        let lbl = UILabel()
-        lbl.font = .titleFont
-        lbl.textColor = .appPrimaryColor
-        lbl.numberOfLines = 0
-        return lbl
-    }()
-    
-    private let postBodyLabel: UILabel = {
-        let lbl = UILabel()
-        lbl.font = .subTitleFont
-        lbl.textColor = .appSecondaryColor
-        lbl.numberOfLines = 0
-        return lbl
-    }()
-    
     private lazy var favoriteButton: UIButton = {
         let btn = UIButton()
         btn.setImage(UIImage(systemName: "star.fill"), for: .selected)
@@ -59,18 +43,9 @@ class PostTableViewCell: BaseTableViewCell<PostViewModelItemProtocol> {
       
     // MARK: - Conetnt View UI Seup
     private func addViewsOnContentViewAndSetupConstraints() {
-        let stackView = createVerticalStackHolderForPostTitleAndBody()
-        contentView.addSubviews(stackView, favoriteButton)
+        contentView.addSubviews(verticalStackView, favoriteButton)
         favoriteButtonConstraintSetup()
-        postTitleAndBodyHolderVerticalStackViewConstraintSetup(stackView)
-    }
-    
-    private func createVerticalStackHolderForPostTitleAndBody() -> UIStackView {
-        let stackView = UIStackView(arrangedSubviews: [postTitleLabel, postBodyLabel])
-        stackView.axis = .vertical
-        stackView.spacing = AppConstants.commonPaadingConstants
-        stackView.distribution =  .fill
-        return stackView
+        postTitleAndBodyHolderVerticalStackViewConstraintSetup(verticalStackView)
     }
     
     private func favoriteButtonConstraintSetup() {
@@ -112,8 +87,7 @@ class PostTableViewCell: BaseTableViewCell<PostViewModelItemProtocol> {
     }
     
     private func setPostTitleAndBody() {
-        postTitleLabel.text = item.postTitle
-        postBodyLabel.text = item.postBody
+        setup(title: item.postTitle, body: item.postBody)
         favoriteButton.isSelected = item.isFavoritePost
     }
     

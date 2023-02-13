@@ -61,6 +61,8 @@
 		5D59A6D32998106D007FA87C /* MockServiceEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D59A6D22998106D007FA87C /* MockServiceEndPoint.swift */; };
 		5D59A6D5299810A8007FA87C /* MockNetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D59A6D4299810A8007FA87C /* MockNetworkRequest.swift */; };
 		5DF0FC49299A6C7000D2ED02 /* CommentsViewViewModelItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF0FC48299A6C7000D2ED02 /* CommentsViewViewModelItem.swift */; };
+		5DF0FC4B299A722D00D2ED02 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF0FC4A299A722D00D2ED02 /* BaseViewController.swift */; };
+		5DF0FC4D299A748300D2ED02 /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF0FC4C299A748300D2ED02 /* CommentTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -139,6 +141,8 @@
 		5D59A6D22998106D007FA87C /* MockServiceEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockServiceEndPoint.swift; sourceTree = "<group>"; };
 		5D59A6D4299810A8007FA87C /* MockNetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetworkRequest.swift; sourceTree = "<group>"; };
 		5DF0FC48299A6C7000D2ED02 /* CommentsViewViewModelItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsViewViewModelItem.swift; sourceTree = "<group>"; };
+		5DF0FC4A299A722D00D2ED02 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		5DF0FC4C299A748300D2ED02 /* CommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -239,6 +243,7 @@
 			isa = PBXGroup;
 			children = (
 				5D054A2B2999B41700CCF4F5 /* CommentsViewController.swift */,
+				5DF0FC4C299A748300D2ED02 /* CommentTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -247,6 +252,7 @@
 			isa = PBXGroup;
 			children = (
 				5D4E807129984D3700D5745B /* BaseTableViewCell.swift */,
+				5DF0FC4A299A722D00D2ED02 /* BaseViewController.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -627,6 +633,7 @@
 				5D4E806D2998495F00D5745B /* PostListViewController.swift in Sources */,
 				5D59A6A62997D325007FA87C /* LoginUserModel.swift in Sources */,
 				5D054A282999B3F600CCF4F5 /* CommentsViewViewModel.swift in Sources */,
+				5DF0FC4B299A722D00D2ED02 /* BaseViewController.swift in Sources */,
 				5D59A6BA2997EC40007FA87C /* String+Extension.swift in Sources */,
 				5D59A6B02997E1A8007FA87C /* Color+Extension.swift in Sources */,
 				5D054A132999315E00CCF4F5 /* FavoritePostService.swift in Sources */,
@@ -657,6 +664,7 @@
 				5D59A6BD29980865007FA87C /* APIManager.swift in Sources */,
 				5D054A0F29992E9C00CCF4F5 /* CoreDataManager.swift in Sources */,
 				5D59A6CA29980C68007FA87C /* NetworkRequest.swift in Sources */,
+				5DF0FC4D299A748300D2ED02 /* CommentTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

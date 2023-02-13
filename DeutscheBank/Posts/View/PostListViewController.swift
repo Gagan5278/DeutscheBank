@@ -8,7 +8,7 @@
 import UIKit
 import Combine
 
-class PostListViewController: UIViewController {
+class PostListViewController: BaseViewController {
     
     private var postsViewModel: PostsViewViewModel!
     var postListCoordinator: Coordinator?
@@ -38,14 +38,7 @@ class PostListViewController: UIViewController {
         )
         return tblView
     }()
-    
-    private let activityIndicator: UIActivityIndicatorView = {
-        let actView  = UIActivityIndicatorView()
-        actView.hidesWhenStopped = true
-        actView.startAnimating()
-        return actView
-    }()
-    
+        
     private let input: PassthroughSubject<PostsViewViewModel.UserInput, Never> = .init()
     private var cancellables = Set<AnyCancellable>()
     
@@ -55,6 +48,7 @@ class PostListViewController: UIViewController {
         self.title = AppConstants.PostListScreenConstants.navigationTitle
         setupSubViewsOnMainView()
         bindViewModel()
+        startActivityIndicatorAnimation()
     }
     
     convenience init(viewModel: PostsViewViewModel) {
@@ -87,18 +81,14 @@ class PostListViewController: UIViewController {
                 }
             }.store(in: &cancellables)
     }
-    
-    private func stopActivityIndicatorAnimation() {
-        activityIndicator.stopAnimating()
-    }
-    
+        
     private func reloadPostTableView() {
         stopActivityIndicatorAnimation()
         postTableView.reloadData()
     }
     
     private func setupSubViewsOnMainView() {
-        self.view.addSubviews(postFilterSegmentController, postTableView, activityIndicator)
+        self.view.addSubviews(postFilterSegmentController, postTableView)
         postFilterSegmentController.anchor(
             top: self.view.safeAreaLayoutGuide.topAnchor,
             leading: self.view.leadingAnchor,
@@ -111,7 +101,6 @@ class PostListViewController: UIViewController {
             bottom: self.view.safeAreaLayoutGuide.bottomAnchor,
             trailing: self.view.trailingAnchor
         )
-        activityIndicator.centerInSuperview()
     }
     
     // MARK: - Display alert

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CommentsViewController: UIViewController {
+class CommentsViewController: BaseViewController {
 
     private var commentViewModel: CommentsViewViewModel!
     // MARK: - View Controller life cycle
@@ -20,5 +20,4 @@ class CommentsViewController: UIViewController {
         self.init(nibName: nil, bundle: nil)
         commentViewModel = viewModel
     }
- 
 }
