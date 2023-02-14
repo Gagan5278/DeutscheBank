@@ -13,34 +13,38 @@ final class LoginViewControllerTest: XCTestCase {
     private var cancellables: AnyCancellable?
 
     private var loginViewModel: LoginViewViewModel!
-    private var loginViewController: LoginViewController!
+    private var sutloginViewController: LoginViewController!
     private var mockNavigationController: UINavigationControllerMock!
 
     override func setUp() {
         loginViewModel = LoginViewViewModel()
-        loginViewController = LoginViewController(viewModel: loginViewModel)
-        loginViewController.loadViewIfNeeded()
-        loginViewController.viewDidLoad()
-        mockNavigationController = UINavigationControllerMock(rootViewController: loginViewController)
+        sutloginViewController = LoginViewController(viewModel: loginViewModel)
+        sutloginViewController.loadViewIfNeeded()
+        sutloginViewController.viewDidLoad()
+        mockNavigationController = UINavigationControllerMock(rootViewController: sutloginViewController)
     }
 
     override func tearDown() {
         loginViewModel = nil
-        loginViewController = nil
+        sutloginViewController = nil
     }
 
     func testLoginViewController_WhenLoaded_ViewIsNotNil() {
-        XCTAssertNotNil(loginViewController.view)
+        XCTAssertNotNil(sutloginViewController.view)
     }
 
     func testLoginViewController_WhenLoaded_NavigationControllerTitleIsNotNil() {
-        XCTAssertNotNil(loginViewController.navigationItem.title)
+        XCTAssertNotNil(sutloginViewController.navigationItem.title)
+    }
+    
+    func testLoginViewController_ViewLoaded_NavigationTitleShouldBeTitleOfPostListController() {
+        XCTAssertNotNil(sutloginViewController.title == AppConstants.LoginScreenConstants.navigationTitle, "Navigation title is wrong")
     }
     
     func testLoginViewController_WhenViewLoaded_LoginButtonHasASelector() {
         //GIVEN
-        let arrSelectors = loginViewController.loginButton.actions(
-            forTarget: loginViewController,
+        let arrSelectors = sutloginViewController.loginButton.actions(
+            forTarget: sutloginViewController,
             forControlEvent: .touchUpInside
         )
         // When
@@ -53,7 +57,7 @@ final class LoginViewControllerTest: XCTestCase {
     }
     
     func testLoginViewController_WhenTextFieldIsEmpty_LoginButtonIsNotEnabled() {
-        XCTAssertFalse(loginViewController.loginButton.isEnabled)
+        XCTAssertFalse(sutloginViewController.loginButton.isEnabled)
     }
     
     func testLoginViewController_WhenTextFieldIsNotEmptyWithValidUserIDInput_LoginButtonIsEnabled() {
@@ -66,10 +70,10 @@ final class LoginViewControllerTest: XCTestCase {
             .validateEnteredUserID(valuePublisher)
             .assign(
                 to: \.isEnabled,
-                on: loginViewController.loginButton
+                on: sutloginViewController.loginButton
             )
         //Then
-        XCTAssertTrue(loginViewController.loginButton.isEnabled)
+        XCTAssertTrue(sutloginViewController.loginButton.isEnabled)
     }
     
     func testLoginViewController_WhenLoginButtonIsEnabled_ButtonTouchUpInsidePushToPostListScreen() {
@@ -81,11 +85,11 @@ final class LoginViewControllerTest: XCTestCase {
             .validateEnteredUserID(valuePublisher)
             .assign(
                 to: \.isEnabled,
-                on: loginViewController.loginButton
+                on: sutloginViewController.loginButton
             )
-        XCTAssertTrue(loginViewController.loginButton.isEnabled)
+        XCTAssertTrue(sutloginViewController.loginButton.isEnabled)
         // When
-        loginViewController.loginButton.sendActions(for: .touchUpInside)
+        sutloginViewController.loginButton.sendActions(for: .touchUpInside)
         //Then
         XCTAssertTrue(mockNavigationController.pushViewControllerCalled)
     }

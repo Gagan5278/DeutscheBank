@@ -10,12 +10,12 @@ import XCTest
 
 final class NetworkRequestTest: XCTestCase {
     
-    var mockNetworkRequestFailureTest: MockNetworkRequestFailureTest!
-    var mockNetworkRequestSuccessTest: MockNetworkRequestSuccessTest!
+    var mockNetworkRequestFailureTest: MockNetworkRequestPostFailure!
+    var mockNetworkRequestSuccessTest: MockNetworkRequestPostSuccess!
     
     override func setUp() {
-        mockNetworkRequestFailureTest = MockNetworkRequestFailureTest()
-        mockNetworkRequestSuccessTest = MockNetworkRequestSuccessTest()
+        mockNetworkRequestFailureTest = MockNetworkRequestPostFailure()
+        mockNetworkRequestSuccessTest = MockNetworkRequestPostSuccess()
     }
     
     override func tearDown() {

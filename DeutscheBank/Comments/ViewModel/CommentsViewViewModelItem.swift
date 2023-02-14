@@ -11,6 +11,7 @@ protocol CommentsViewViewModelItemProtocol {
     var commenterEmail: String { get }
     var commenterName: String { get }
     var comment: String { get }
+    var postId: Int { get }
 }
 
 struct CommentsViewViewModelItem: CommentsViewViewModelItemProtocol {
@@ -26,6 +27,10 @@ struct CommentsViewViewModelItem: CommentsViewViewModelItemProtocol {
         commentModel.body.capitalizeFirstLetterOfSentence
     }
         
+    var postId: Int {
+        commentModel.postId
+    }
+    
     let commentModel: CommentModel
     
     // MARK: - init

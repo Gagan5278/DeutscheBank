@@ -33,10 +33,8 @@ class PostsViewViewModel {
             switch userEvent {
             case .showFavoriteTypePost(let segment):
                 self?.updatePostTableOnFavoiteAndAllSegment(segment)
-                self?.requestOutput.send(.reloadPost)
             case .updateFavoriteStatusFor(let post):
                 self?.updatePostfavoriteStatus(post)
-                self?.requestOutput.send(.reloadPost)
             }
         }.store(in: &cancellables)
         return requestOutput.eraseToAnyPublisher()
@@ -62,6 +60,7 @@ extension PostsViewViewModel {
             posts = posts.filter({$0.isFavoritePost})
         }
         self.isFavoriteFilsterEnabled = segment == .favoritePosts
+        requestOutput.send(.reloadPost)
     }
     
     private func updatePostfavoriteStatus(_ post: PostViewModelItemProtocol) {
@@ -79,6 +78,7 @@ extension PostsViewViewModel {
             if isFavoriteFilsterEnabled {
                 posts = posts.filter ({ $0.isFavoritePost })
             }
+            self.requestOutput.send(.reloadPost)
         }
     }
     

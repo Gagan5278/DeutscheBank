@@ -10,7 +10,7 @@ import Combine
 
 class CommentsViewController: BaseViewController {
 
-    private lazy var commentTableView: UITableView = {
+    public private(set) lazy var commentTableView: UITableView = {
         let tblView = UITableView()
         tblView.dataSource = self
         tblView.delegate = self
@@ -25,7 +25,7 @@ class CommentsViewController: BaseViewController {
         
     private var commentSubscriber: AnyCancellable?
 
-    private var commentViewModel: CommentsViewViewModel!
+    public private(set) var commentViewModel: CommentsViewViewModel!
     // MARK: - View Controller life cycle
     override func viewDidLoad() {
         super.viewDidLoad()

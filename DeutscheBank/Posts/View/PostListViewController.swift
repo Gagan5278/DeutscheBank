@@ -10,7 +10,7 @@ import Combine
 
 class PostListViewController: BaseViewController {
     
-    private var postsViewModel: PostsViewViewModel!
+   public private(set) var postsViewModel: PostsViewViewModel!
     var postListCoordinator: Coordinator?
     private lazy var postFilterSegmentController: UISegmentedControl = {
         let sgmntCntl = UISegmentedControl(items: [
@@ -26,7 +26,7 @@ class PostListViewController: BaseViewController {
         return sgmntCntl
     }()
     
-    private lazy var postTableView: UITableView = {
+    public private(set) lazy var postTableView: UITableView = {
         let tblView = UITableView()
         tblView.dataSource = self
         tblView.delegate = self

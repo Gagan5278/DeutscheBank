@@ -8,7 +8,7 @@
 import Foundation
 @testable import DeutscheBank
 
-class MockNetworkRequestSuccessTest: NetworkRequestProtocol {
+class MockNetworkRequestPostSuccess: NetworkRequestProtocol {
     var headers: [String : String]?
     var bodyParameters: [String : String]?
     private let postsModel: [PostModel]  = JSONLoader.load("Posts.json")

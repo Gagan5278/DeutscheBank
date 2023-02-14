@@ -19,24 +19,8 @@ final class InMemoryCoreDataSaveFavoriteTest: XCTestCase {
         coreDataStackInMemory = nil
     }
 
-    
     func testCoreDataStackInMemory_SaveAnObject() {
         XCTAssertNotNil(coreDataStackInMemory.viewContext)
-    }
-    
-    func testSerahcAndCreateObjectIfNotExistWithIdentifier() {
-     
-    }
-    
-    func testinsertNewObjectInContext()
-    {
- 
-    }
-    
-    
-    //MARK:- Test Model equality
-    func testSavedModelEqaulity() {
-
     }
     
 }

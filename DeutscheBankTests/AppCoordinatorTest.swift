@@ -15,10 +15,4 @@ final class AppCoordinatorTest: XCTestCase {
 
     override func tearDownWithError() throws {
     }
-
-    func testExample() throws {
-
-    }
-
-
 }

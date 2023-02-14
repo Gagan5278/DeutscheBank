@@ -24,4 +24,10 @@ final class StringExtensionTest: XCTestCase {
       XCTAssertNil(numberString.integer)
     }
 
+    func testStringExtensionForCapitalizingCharacter_WhenLowerCaseStringPassed_ShouldReturnUpperCaseTrue() {
+        let demoString = "sample test string goes here"
+        let modifiedString = demoString.capitalizeFirstLetterOfSentence
+        let firstCharacter = String(modifiedString.first!)
+        XCTAssertTrue((firstCharacter == firstCharacter.uppercased()) && (firstCharacter != firstCharacter.lowercased()))
+    }
 }
