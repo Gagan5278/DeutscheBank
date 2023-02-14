@@ -16,15 +16,21 @@ class CommentsViewController: BaseViewController {
         tblView.delegate = self
         tblView.estimatedRowHeight = AppConstants.commonPadingConstants*10
         tblView.rowHeight = UITableView.automaticDimension
+        let tableHeaderView = CommentsTableHeaderView(frame: .zero)
+        tableHeaderView.translatesAutoresizingMaskIntoConstraints = false
+        tblView.tableHeaderView = tableHeaderView
+        tableHeaderView.widthAnchor.constraint(equalToConstant: self.view.frame.width).isActive = true
         tblView.register(
             CommentTableViewCell.self,
             forCellReuseIdentifier: CommentTableViewCell.commentCellIdentifier
         )
+        tblView.register(CommentsTableSectionHeaderView.self,
+                         forHeaderFooterViewReuseIdentifier: CommentsTableSectionHeaderView.commentsTableSectionHeaderViewIdentifier)
         return tblView
     }()
         
     private var commentSubscriber: AnyCancellable?
-
+    private let tableSectionHeight: CGFloat = AppConstants.commonPadingConstants*5
     public private(set) var commentViewModel: CommentsViewViewModel!
     
     // MARK: - View Controller life cycle
@@ -38,6 +44,14 @@ class CommentsViewController: BaseViewController {
     convenience init(viewModel: CommentsViewViewModel) {
         self.init(nibName: nil, bundle: nil)
         commentViewModel = viewModel
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        if let headerView = commentTableView.tableHeaderView as? CommentsTableHeaderView {
+            headerView.setHeader(title: commentViewModel.selectedPostTitle, message: commentViewModel.selectedPostBody, isFavoritePost: commentViewModel.isFavoritePost)
+        }
+        commentTableView.sizeHeaderToFit()
     }
     
     // MARK: - ViewModel Bidnding/Listner
@@ -89,7 +103,19 @@ extension CommentsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: CommentsTableSectionHeaderView.commentsTableSectionHeaderViewIdentifier) as? CommentsTableSectionHeaderView {
+            return header
+        }
+        return nil
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        tableSectionHeight
+    }
 }
+
 // MARK: - UITableViewDataSource
 extension CommentsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

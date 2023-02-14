@@ -9,25 +9,9 @@ import UIKit
 
 class BaseTableViewCell<U: Any>: UITableViewCell {
     
-    private let titleLabel: UILabel = {
-        let lbl = UILabel()
-        lbl.font = .titleFont
-        lbl.textColor = .appPrimaryColor
-        lbl.numberOfLines = 0
-        return lbl
-    }()
-    
-    private let bodyLabel: UILabel = {
-        let lbl = UILabel()
-        lbl.font = .subTitleFont
-        lbl.textColor = .appSecondaryColor
-        lbl.numberOfLines = 0
-        return lbl
-    }()
-    
-    public private(set) lazy var verticalStackView: VerticalStackView = {
-        let stackView = VerticalStackView(views: titleLabel, bodyLabel)
-        return stackView
+    public private(set) lazy var infoView: CommonTitleAndSubTitleInfoView = {
+        let view = CommonTitleAndSubTitleInfoView()
+        return view
     }()
     
     var cellItem: U!
@@ -42,8 +26,7 @@ class BaseTableViewCell<U: Any>: UITableViewCell {
     }
     
     func setup(title: String, body: String) {
-        titleLabel.text = title
-        bodyLabel.text = body
+        infoView.set(title: title, body: body)
     }
 }
 

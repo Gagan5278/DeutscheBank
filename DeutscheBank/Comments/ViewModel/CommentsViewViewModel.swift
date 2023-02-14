@@ -12,9 +12,11 @@ class CommentsViewViewModel {
     
     public private(set) var commentOutput: PassthroughSubject<CommentOutput, Never> = .init()
     private var comments: [CommentsViewViewModelItemProtocol] = []
-    let commentServiceRequest: NetworkRequestProtocol
+    private let commentServiceRequest: NetworkRequestProtocol
+    private let selectedPost: PostViewModelItemProtocol
     init(request: NetworkRequestProtocol, post: PostViewModelItemProtocol) {
         commentServiceRequest = request
+        selectedPost = post
         loadCommentssFromServerFor(post: post)
     }
     
@@ -46,6 +48,17 @@ class CommentsViewViewModel {
         comments[indexPath.row]
     }
     
+    var isFavoritePost: Bool {
+        selectedPost.isFavoritePost
+    }
+    
+    var selectedPostTitle: String {
+        selectedPost.postTitle
+    }
+    
+    var selectedPostBody: String {
+        selectedPost.postBody
+    }
 }
 
 // MARK: - Private section

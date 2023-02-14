@@ -29,8 +29,8 @@ class CommentTableViewCell: BaseTableViewCell<CommentsViewViewModelItemProtocol>
     
     // MARK: - Contraint setup for vertical stack view
     private func verticalStackViewConstraintSetup()  {
-        contentView.addSubview(verticalStackView)
-        verticalStackView.anchor(
+        contentView.addSubview(infoView)
+        infoView.anchor(
             top: contentView.topAnchor,
             leading: contentView.leadingAnchor,
             bottom: contentView.bottomAnchor,

@@ -64,6 +64,10 @@
 		5D5B18E9299BEAE700549750 /* MockNetworkRequestCommentsFailure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5B18E8299BEAE700549750 /* MockNetworkRequestCommentsFailure.swift */; };
 		5D5B18EB299BF10D00549750 /* CommentsViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5B18EA299BF10D00549750 /* CommentsViewControllerTest.swift */; };
 		5D5B18EF299BF71C00549750 /* VerticalStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5B18EE299BF71C00549750 /* VerticalStackView.swift */; };
+		5D5B18F1299BFB6C00549750 /* CommentsTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5B18F0299BFB6C00549750 /* CommentsTableHeaderView.swift */; };
+		5D5B18F3299BFC4D00549750 /* CommonTitleAndSubTitleInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5B18F2299BFC4D00549750 /* CommonTitleAndSubTitleInfoView.swift */; };
+		5D5B18F5299C02CD00549750 /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5B18F4299C02CD00549750 /* UITableView+Extension.swift */; };
+		5D5B18F7299C38D000549750 /* CommentsTableSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5B18F6299C38D000549750 /* CommentsTableSectionHeaderView.swift */; };
 		5DF0FC49299A6C7000D2ED02 /* CommentsViewViewModelItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF0FC48299A6C7000D2ED02 /* CommentsViewViewModelItem.swift */; };
 		5DF0FC4B299A722D00D2ED02 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF0FC4A299A722D00D2ED02 /* BaseViewController.swift */; };
 		5DF0FC4D299A748300D2ED02 /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF0FC4C299A748300D2ED02 /* CommentTableViewCell.swift */; };
@@ -153,6 +157,10 @@
 		5D5B18E8299BEAE700549750 /* MockNetworkRequestCommentsFailure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetworkRequestCommentsFailure.swift; sourceTree = "<group>"; };
 		5D5B18EA299BF10D00549750 /* CommentsViewControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsViewControllerTest.swift; sourceTree = "<group>"; };
 		5D5B18EE299BF71C00549750 /* VerticalStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerticalStackView.swift; sourceTree = "<group>"; };
+		5D5B18F0299BFB6C00549750 /* CommentsTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsTableHeaderView.swift; sourceTree = "<group>"; };
+		5D5B18F2299BFC4D00549750 /* CommonTitleAndSubTitleInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonTitleAndSubTitleInfoView.swift; sourceTree = "<group>"; };
+		5D5B18F4299C02CD00549750 /* UITableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
+		5D5B18F6299C38D000549750 /* CommentsTableSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsTableSectionHeaderView.swift; sourceTree = "<group>"; };
 		5DF0FC48299A6C7000D2ED02 /* CommentsViewViewModelItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsViewViewModelItem.swift; sourceTree = "<group>"; };
 		5DF0FC4A299A722D00D2ED02 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		5DF0FC4C299A748300D2ED02 /* CommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
@@ -260,6 +268,8 @@
 			children = (
 				5D054A2B2999B41700CCF4F5 /* CommentsViewController.swift */,
 				5DF0FC4C299A748300D2ED02 /* CommentTableViewCell.swift */,
+				5D5B18F0299BFB6C00549750 /* CommentsTableHeaderView.swift */,
+				5D5B18F6299C38D000549750 /* CommentsTableSectionHeaderView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -270,6 +280,7 @@
 				5D4E807129984D3700D5745B /* BaseTableViewCell.swift */,
 				5DF0FC4A299A722D00D2ED02 /* BaseViewController.swift */,
 				5D5B18EE299BF71C00549750 /* VerticalStackView.swift */,
+				5D5B18F2299BFC4D00549750 /* CommonTitleAndSubTitleInfoView.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -416,6 +427,7 @@
 				5D4E8079299863C300D5745B /* UIFont+Extension.swift */,
 				5D4E807B2998708F00D5745B /* UIViewController+Extension.swift */,
 				5D054A142999382500CCF4F5 /* Array+Extension.swift */,
+				5D5B18F4299C02CD00549750 /* UITableView+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -679,6 +691,7 @@
 			files = (
 				5D4E807C2998708F00D5745B /* UIViewController+Extension.swift in Sources */,
 				5DF0FC49299A6C7000D2ED02 /* CommentsViewViewModelItem.swift in Sources */,
+				5D5B18F5299C02CD00549750 /* UITableView+Extension.swift in Sources */,
 				5D4E806D2998495F00D5745B /* PostListViewController.swift in Sources */,
 				5D59A6A62997D325007FA87C /* LoginUserModel.swift in Sources */,
 				5D054A282999B3F600CCF4F5 /* CommentsViewViewModel.swift in Sources */,
@@ -688,11 +701,13 @@
 				5D054A132999315E00CCF4F5 /* FavoritePostService.swift in Sources */,
 				5D054A2A2999B40200CCF4F5 /* CommentModel.swift in Sources */,
 				5D4E80692998445300D5745B /* PostsViewViewModel.swift in Sources */,
+				5D5B18F7299C38D000549750 /* CommentsTableSectionHeaderView.swift in Sources */,
 				5D59A6AE2997DACF007FA87C /* AppConstants.swift in Sources */,
 				5D054A1E2999A82500CCF4F5 /* LoginViewViewModel.swift in Sources */,
 				5D59A6C7299809A0007FA87C /* HTTPURLResponse+Extension.swift in Sources */,
 				5D59A6CC29980CAB007FA87C /* Dictionary+Extension.swift in Sources */,
 				5D59A66E2997CDDE007FA87C /* LoginViewController.swift in Sources */,
+				5D5B18F3299BFC4D00549750 /* CommonTitleAndSubTitleInfoView.swift in Sources */,
 				5D59A6AB2997D5FE007FA87C /* UIView+Extension.swift in Sources */,
 				5D4E807A299863C300D5745B /* UIFont+Extension.swift in Sources */,
 				5D59A6C52998095C007FA87C /* APIManagerError.swift in Sources */,
@@ -706,6 +721,7 @@
 				5D4E807429984D7500D5745B /* PostTableViewCell.swift in Sources */,
 				5D054A152999382500CCF4F5 /* Array+Extension.swift in Sources */,
 				5D4E806F29984A1800D5745B /* PostViewModelItem.swift in Sources */,
+				5D5B18F1299BFB6C00549750 /* CommentsTableHeaderView.swift in Sources */,
 				5D59A6A02997D045007FA87C /* AppCoordinator.swift in Sources */,
 				5D59A6C3299808EE007FA87C /* URLRequest+Extension.swift in Sources */,
 				5D5B18EF299BF71C00549750 /* VerticalStackView.swift in Sources */,

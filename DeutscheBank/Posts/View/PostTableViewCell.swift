@@ -43,9 +43,9 @@ class PostTableViewCell: BaseTableViewCell<PostViewModelItemProtocol> {
       
     // MARK: - Conetnt View UI Seup
     private func addViewsOnContentViewAndSetupConstraints() {
-        contentView.addSubviews(verticalStackView, favoriteButton)
+        contentView.addSubviews(infoView, favoriteButton)
         favoriteButtonConstraintSetup()
-        postTitleAndBodyHolderVerticalStackViewConstraintSetup(verticalStackView)
+        postTitleAndBodyHolderVerticalStackViewConstraintSetup(infoView)
     }
     
     private func favoriteButtonConstraintSetup() {
@@ -65,8 +65,8 @@ class PostTableViewCell: BaseTableViewCell<PostViewModelItemProtocol> {
         favoriteButton.addViewInCenterVertically()
     }
     
-    private func postTitleAndBodyHolderVerticalStackViewConstraintSetup(_ stackView: UIStackView) {
-         stackView.anchor(
+    private func postTitleAndBodyHolderVerticalStackViewConstraintSetup(_ infoView: UIView) {
+        infoView.anchor(
             top: contentView.topAnchor,
             leading: contentView.leadingAnchor,
             bottom: contentView.bottomAnchor,
