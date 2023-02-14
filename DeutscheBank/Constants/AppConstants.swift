@@ -51,5 +51,6 @@ extension AppConstants {
         static let alertButtonTitle = "OK"
         static let alertTitle = "Message"
         static let errorCommentAlertMessage = "An error occured while loading comment from server for selected post. Please check your internet and try again"
+        static let commentSetionHeaderTitle = "Post Comments"
     }
 }

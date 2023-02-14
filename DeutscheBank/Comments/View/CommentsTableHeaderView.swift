@@ -23,6 +23,7 @@ class CommentsTableHeaderView: UIView {
         let stkView = UIStackView(arrangedSubviews: [infoView, favoriteIcon])
         return stkView
     }()
+    
     //MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)

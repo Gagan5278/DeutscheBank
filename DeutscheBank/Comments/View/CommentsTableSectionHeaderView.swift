@@ -15,8 +15,9 @@ class CommentsTableSectionHeaderView: UITableViewHeaderFooterView {
         let lbl = UILabel()
         lbl.font = .headerFont
         lbl.textColor = .appPrimaryColor
-        lbl.text = "Post Comments"
+        lbl.text = AppConstants.CommentListScreenConstants.commentSetionHeaderTitle
         lbl.backgroundColor = .systemGray5
+        lbl.textAlignment = .center
         return lbl
     }()
         
