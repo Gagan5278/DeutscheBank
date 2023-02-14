@@ -29,5 +29,4 @@ enum ServiceEndPoint: ServiceEndPointProtocol {
               return baseURLString + "posts?userId=\(userID)"
           }
       }
-
 }

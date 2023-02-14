@@ -26,6 +26,7 @@ class CommentsViewController: BaseViewController {
     private var commentSubscriber: AnyCancellable?
 
     public private(set) var commentViewModel: CommentsViewViewModel!
+    
     // MARK: - View Controller life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +40,7 @@ class CommentsViewController: BaseViewController {
         commentViewModel = viewModel
     }
     
+    // MARK: - ViewModel Bidnding/Listner
     private func bindViewModel() {
         commentSubscriber = commentViewModel
             .commentOutput
@@ -82,6 +84,7 @@ class CommentsViewController: BaseViewController {
     }
 }
 
+// MARK: - UITableViewDelegate
 extension CommentsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)

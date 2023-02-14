@@ -17,6 +17,7 @@ class PostsViewViewModel {
     private var recievedRawPostsModel: [PostModel] = []
     private var isFavoriteFilsterEnabled: Bool = false
     private var savedFavoritePostIDS: [Int] = []
+    
     // MARK: - init
     init(
         request: NetworkRequestProtocol,

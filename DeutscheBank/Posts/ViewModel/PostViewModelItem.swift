@@ -14,7 +14,6 @@ import Foundation
    Here we can get 'fullName' by adding business logic in this file.
  */
 
-
 protocol PostViewModelItemProtocol {
     var postTitle: String {get}
     var postBody: String {get}
@@ -44,6 +43,7 @@ struct PostViewModelItem: PostViewModelItemProtocol {
     }
     
     private let postModel: PostModel
+    // MARK: - init
     init(postModel: PostModel, isFavorite: Bool = false) {
         self.postModel = postModel
         isFavoritePost = isFavorite

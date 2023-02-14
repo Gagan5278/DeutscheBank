@@ -91,7 +91,6 @@ class PostTableViewCell: BaseTableViewCell<PostViewModelItemProtocol> {
         favoriteButton.isSelected = cellItem.isFavoritePost
     }
     
-    
     // MARK: - Favorite button action
     @objc private func didTapFavoriteButton(sender: UIButton) {
         sender.isSelected = !sender.isSelected
