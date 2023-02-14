@@ -25,11 +25,7 @@ class LoginViewController: UIViewController {
             target: self,
             action: #selector(doneButtonAction))
         )
-        // add a tap Gesture Recognizer
-        self.view.addGestureRecognizer(UITapGestureRecognizer(
-            target: self,
-            action: #selector(doneButtonAction))
-        )
+        txtField.heightAnchor.constraint(equalToConstant: userTextFieldHeight).isActive = true
         return txtField
     }()
     
@@ -46,8 +42,14 @@ class LoginViewController: UIViewController {
             action: #selector(nextButtonAction),
             for: .touchUpInside
         )
+        btn.heightAnchor.constraint(equalToConstant: loginButtonHeight).isActive = true
         btn.isEnabled = false
         return btn
+    }()
+    
+    private lazy var verticalStackView: VerticalStackView = {
+        let stackView = VerticalStackView(views: userIDEntryTextField, loginButton)
+        return stackView
     }()
     
     // MARK: - View Controller life cycle
@@ -81,48 +83,22 @@ class LoginViewController: UIViewController {
     
     // MARK: - Add Views in main view
     private func addViewsOnMainView() {
-        self.view.addSubviews(userIDEntryTextField, loginButton)
-        userIDTextFieldConstraintSetup()
-        loginButtonConstraintSetup()
+        self.view.addSubviews(verticalStackView)
+        verticalStackViewConstraintSetup()
     }
     
-    private func userIDTextFieldConstraintSetup() {
-        userIDEntryTextField.anchor(
+    private func verticalStackViewConstraintSetup() {
+        verticalStackView.anchor(
             top: nil,
             leading: self.view.leadingAnchor,
-            bottom: nil,
-            trailing: self.view.trailingAnchor,
+            bottom: nil, trailing: self.view.trailingAnchor,
             padding: UIEdgeInsets(
                 top: 0,
                 left: AppConstants.commonPadingConstants,
                 bottom: 0,
-                right: AppConstants.commonPadingConstants
-            ),
-            size: CGSize(
-                width: 0,
-                height: userTextFieldHeight
-            )
+                right: AppConstants.commonPadingConstants)
         )
-        userIDEntryTextField.addViewInCenterVertically()
-    }
-
-    private func loginButtonConstraintSetup() {
-         loginButton.anchor(
-            top: userIDEntryTextField.bottomAnchor,
-            leading: self.view.leadingAnchor,
-            bottom: nil,
-            trailing: self.view.trailingAnchor,
-            padding: UIEdgeInsets(
-                top: 2*AppConstants.commonPadingConstants,
-                left: AppConstants.commonPadingConstants,
-                bottom: 0,
-                right: AppConstants.commonPadingConstants
-            ),
-            size: CGSize(
-                width: 0,
-                height: loginButtonHeight
-            )
-        )
+        verticalStackView.centerInSuperview()
     }
     
     private func addTapGestureToHideKeyboard() {

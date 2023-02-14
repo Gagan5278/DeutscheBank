@@ -13,6 +13,7 @@ final class LoginViewViewModelTest: XCTestCase {
 
     private var loginViewModel: LoginViewViewModel!
     private var cancellables: AnyCancellable?
+    
     override func setUp() {
         loginViewModel = LoginViewViewModel()
     }
@@ -23,11 +24,12 @@ final class LoginViewViewModelTest: XCTestCase {
     }
 
     func testLoginViewModel_WhenValidUserNameEnetered_ShouldReturnTrue() {
+        // Given
         let value = "12"
-        
+        // When
         let valuePublisher = CurrentValueSubject<String, Never>(value)
             .eraseToAnyPublisher()
-        
+        // Then
         cancellables = loginViewModel
             .validateEnteredUserID(valuePublisher)
             .sink(receiveValue: {
@@ -36,11 +38,12 @@ final class LoginViewViewModelTest: XCTestCase {
     }
     
     func testLoginViewModel_WhenInvalidUserNameEnetered_ShouldReturnFalse() {
+        // Given
         let value = "xx"
-        
+        // When
         let valuePublisher = CurrentValueSubject<String, Never>(value)
             .eraseToAnyPublisher()
-        
+        // Then
         cancellables = loginViewModel
             .validateEnteredUserID(valuePublisher)
             .sink(receiveValue: {

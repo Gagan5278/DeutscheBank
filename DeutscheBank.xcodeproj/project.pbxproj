@@ -63,6 +63,7 @@
 		5D5B18E7299BE48D00549750 /* Comments.json in Resources */ = {isa = PBXBuildFile; fileRef = 5D5B18E6299BE48D00549750 /* Comments.json */; };
 		5D5B18E9299BEAE700549750 /* MockNetworkRequestCommentsFailure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5B18E8299BEAE700549750 /* MockNetworkRequestCommentsFailure.swift */; };
 		5D5B18EB299BF10D00549750 /* CommentsViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5B18EA299BF10D00549750 /* CommentsViewControllerTest.swift */; };
+		5D5B18EF299BF71C00549750 /* VerticalStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5B18EE299BF71C00549750 /* VerticalStackView.swift */; };
 		5DF0FC49299A6C7000D2ED02 /* CommentsViewViewModelItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF0FC48299A6C7000D2ED02 /* CommentsViewViewModelItem.swift */; };
 		5DF0FC4B299A722D00D2ED02 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF0FC4A299A722D00D2ED02 /* BaseViewController.swift */; };
 		5DF0FC4D299A748300D2ED02 /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF0FC4C299A748300D2ED02 /* CommentTableViewCell.swift */; };
@@ -151,6 +152,7 @@
 		5D5B18E6299BE48D00549750 /* Comments.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Comments.json; sourceTree = "<group>"; };
 		5D5B18E8299BEAE700549750 /* MockNetworkRequestCommentsFailure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetworkRequestCommentsFailure.swift; sourceTree = "<group>"; };
 		5D5B18EA299BF10D00549750 /* CommentsViewControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsViewControllerTest.swift; sourceTree = "<group>"; };
+		5D5B18EE299BF71C00549750 /* VerticalStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerticalStackView.swift; sourceTree = "<group>"; };
 		5DF0FC48299A6C7000D2ED02 /* CommentsViewViewModelItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsViewViewModelItem.swift; sourceTree = "<group>"; };
 		5DF0FC4A299A722D00D2ED02 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		5DF0FC4C299A748300D2ED02 /* CommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
@@ -267,6 +269,7 @@
 			children = (
 				5D4E807129984D3700D5745B /* BaseTableViewCell.swift */,
 				5DF0FC4A299A722D00D2ED02 /* BaseViewController.swift */,
+				5D5B18EE299BF71C00549750 /* VerticalStackView.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -705,6 +708,7 @@
 				5D4E806F29984A1800D5745B /* PostViewModelItem.swift in Sources */,
 				5D59A6A02997D045007FA87C /* AppCoordinator.swift in Sources */,
 				5D59A6C3299808EE007FA87C /* URLRequest+Extension.swift in Sources */,
+				5D5B18EF299BF71C00549750 /* VerticalStackView.swift in Sources */,
 				5D59A6742997CDDE007FA87C /* DeutscheBank.xcdatamodeld in Sources */,
 				5D59A66C2997CDDE007FA87C /* SceneDelegate.swift in Sources */,
 				5D59A6BD29980865007FA87C /* APIManager.swift in Sources */,

@@ -25,11 +25,8 @@ class BaseTableViewCell<U: Any>: UITableViewCell {
         return lbl
     }()
     
-    public private(set) var verticalStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .vertical
-        stackView.spacing = AppConstants.commonPadingConstants
-        stackView.distribution =  .fill
+    public private(set) lazy var verticalStackView: VerticalStackView = {
+        let stackView = VerticalStackView(views: titleLabel, bodyLabel)
         return stackView
     }()
     
@@ -38,16 +35,10 @@ class BaseTableViewCell<U: Any>: UITableViewCell {
     // MARK: - View Life cycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        addTitleAndBodyLabelInVerticalStacView()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-    }
-    
-    private func addTitleAndBodyLabelInVerticalStacView() {
-        verticalStackView.addArrangedSubview(titleLabel)
-        verticalStackView.addArrangedSubview(bodyLabel)
     }
     
     func setup(title: String, body: String) {
