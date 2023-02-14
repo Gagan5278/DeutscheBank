@@ -8,6 +8,7 @@
 import Foundation
 import CoreData
 @testable import DeutscheBank
+
 class CoreDataStackInMemory: CoreDataManagerProtocol  {
     var favoriteEntityName: String {
         "FavoritePostEntity"

@@ -10,10 +10,10 @@ import Combine
 
 class PostsViewViewModel {
     private let serviceRequest: NetworkRequestProtocol
-    private let output: PassthroughSubject<RequestOutput, Never> = .init()
+    public private(set) var requestOutput: PassthroughSubject<RequestOutput, Never> = .init()
     private var cancellables = Set<AnyCancellable>()
-    private let favoritePostService: FavoritePostService
-    @Published private var posts: [PostViewModelItemProtocol] = []
+    public private(set) var favoritePostService: FavoritePostService
+    private var posts: [PostViewModelItemProtocol] = []
     private var recievedRawPostsModel: [PostModel] = []
     private var isFavoriteFilsterEnabled: Bool = false
     private var savedFavoritePostIDS: [Int] = []
@@ -33,13 +33,13 @@ class PostsViewViewModel {
             switch userEvent {
             case .showFavoriteTypePost(let segment):
                 self?.updatePostTableOnFavoiteAndAllSegment(segment)
-                self?.output.send(.reloadPost)
+                self?.requestOutput.send(.reloadPost)
             case .updateFavoriteStatusFor(let post):
                 self?.updatePostfavoriteStatus(post)
-                self?.output.send(.reloadPost)
+                self?.requestOutput.send(.reloadPost)
             }
         }.store(in: &cancellables)
-        return output.eraseToAnyPublisher()
+        return requestOutput.eraseToAnyPublisher()
     }
     
     var numberOfRowsInPostTableView: Int {
@@ -99,14 +99,14 @@ extension PostsViewViewModel {
                     serviceMethod: .get
                 )
                 if postsRecived.isEmpty {
-                    output.send(.fetchPostsDidSucceedWithEmptyList)
+                    requestOutput.send(.fetchPostsDidSucceedWithEmptyList)
                 } else {
                     recievedRawPostsModel = postsRecived
                     createPostModelsFromPostRecieved(postsRecived)
-                    output.send(.fetchPostsDidSucceed)
+                    requestOutput.send(.fetchPostsDidSucceed)
                 }
             } catch {
-                output.send(.fetchPostsDidFail)
+                requestOutput.send(.fetchPostsDidFail)
             }
         }
     }
