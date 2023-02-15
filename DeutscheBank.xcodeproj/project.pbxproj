@@ -68,6 +68,8 @@
 		5D5B18F3299BFC4D00549750 /* CommonTitleAndSubTitleInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5B18F2299BFC4D00549750 /* CommonTitleAndSubTitleInfoView.swift */; };
 		5D5B18F5299C02CD00549750 /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5B18F4299C02CD00549750 /* UITableView+Extension.swift */; };
 		5D5B18F7299C38D000549750 /* CommentsTableSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5B18F6299C38D000549750 /* CommentsTableSectionHeaderView.swift */; };
+		5D5DFD6E299D5297000FA71A /* HTTPURLResponseExtensionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5DFD6D299D5297000FA71A /* HTTPURLResponseExtensionTest.swift */; };
+		5D5DFD70299D557F000FA71A /* DictionaryExtensionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5DFD6F299D557F000FA71A /* DictionaryExtensionTest.swift */; };
 		5DF0FC49299A6C7000D2ED02 /* CommentsViewViewModelItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF0FC48299A6C7000D2ED02 /* CommentsViewViewModelItem.swift */; };
 		5DF0FC4B299A722D00D2ED02 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF0FC4A299A722D00D2ED02 /* BaseViewController.swift */; };
 		5DF0FC4D299A748300D2ED02 /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF0FC4C299A748300D2ED02 /* CommentTableViewCell.swift */; };
@@ -161,6 +163,8 @@
 		5D5B18F2299BFC4D00549750 /* CommonTitleAndSubTitleInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonTitleAndSubTitleInfoView.swift; sourceTree = "<group>"; };
 		5D5B18F4299C02CD00549750 /* UITableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
 		5D5B18F6299C38D000549750 /* CommentsTableSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsTableSectionHeaderView.swift; sourceTree = "<group>"; };
+		5D5DFD6D299D5297000FA71A /* HTTPURLResponseExtensionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPURLResponseExtensionTest.swift; sourceTree = "<group>"; };
+		5D5DFD6F299D557F000FA71A /* DictionaryExtensionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryExtensionTest.swift; sourceTree = "<group>"; };
 		5DF0FC48299A6C7000D2ED02 /* CommentsViewViewModelItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsViewViewModelItem.swift; sourceTree = "<group>"; };
 		5DF0FC4A299A722D00D2ED02 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		5DF0FC4C299A748300D2ED02 /* CommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
@@ -358,6 +362,8 @@
 				5D4E807E29987BA400D5745B /* UIViewControllerExtensionTest.swift */,
 				5D4E808029987BB700D5745B /* StringExtensionTest.swift */,
 				5D054A1829993FC300CCF4F5 /* InMemoryCoreDataSaveFavoriteTest.swift */,
+				5D5DFD6D299D5297000FA71A /* HTTPURLResponseExtensionTest.swift */,
+				5D5DFD6F299D557F000FA71A /* DictionaryExtensionTest.swift */,
 			);
 			path = DeutscheBankTests;
 			sourceTree = "<group>";
@@ -752,8 +758,10 @@
 				5D59A6D02998104B007FA87C /* NetworkRequestTest.swift in Sources */,
 				5D52CF87299AFAF100127AC3 /* PostViewViewModelTest.swift in Sources */,
 				5D59A6D32998106D007FA87C /* MockServiceEndPoint.swift in Sources */,
+				5D5DFD6E299D5297000FA71A /* HTTPURLResponseExtensionTest.swift in Sources */,
 				5DF0FC4F299A990200D2ED02 /* MockNetworkRequestPostSuccess.swift in Sources */,
 				5D5B18E3299BE3BE00549750 /* CommentsViewViewModelTest.swift in Sources */,
+				5D5DFD70299D557F000FA71A /* DictionaryExtensionTest.swift in Sources */,
 				5DF0FC51299A9D8900D2ED02 /* JSONLoader.swift in Sources */,
 				5D054A232999AD1600CCF4F5 /* LoginViewControllerTest.swift in Sources */,
 				5D054A1929993FC300CCF4F5 /* InMemoryCoreDataSaveFavoriteTest.swift in Sources */,

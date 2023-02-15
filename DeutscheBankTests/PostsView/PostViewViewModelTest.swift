@@ -109,7 +109,6 @@ final class PostViewViewModelTest: XCTestCase {
             .sink { [weak self] req in
             XCTAssertTrue(req == .reloadPost)
             XCTAssertTrue(self?.sutPostViewModel.numberOfRowsInPostTableView == 0)
-//            expectation.fulfill()
         }
         .store(in: &cancellable)
         //when
