@@ -10,26 +10,27 @@ import Combine
 @testable import DeutscheBank
 
 final class CommentsViewViewModelTest: XCTestCase {
-
+    
     private var sutCommentsViewViewModel: CommentsViewViewModel!
     private var cancellable = Set<AnyCancellable>()
-    private var mockPostViewModelItem: PostViewModelItemProtocol!
-    private let mockRequest: MockNetworkRequestCommentsSuccess = MockNetworkRequestCommentsSuccess()
-
-    override func setUp() {
+    private var mockPostViewModelItem: PostViewModelItemProtocol = {
         let mockModels: [PostModel] = JSONLoader.load("Posts.json")
-        mockPostViewModelItem = PostViewModelItem(postModel: mockModels.first!)
+        return PostViewModelItem(postModel: mockModels.first!)
+    }()
+    private let mockRequest: MockNetworkRequestCommentsSuccess = MockNetworkRequestCommentsSuccess()
+    
+    override func setUp() {
         sutCommentsViewViewModel = CommentsViewViewModel(
             request: mockRequest,
             post: mockPostViewModelItem
         )
     }
-
+    
     override func tearDown() {
         sutCommentsViewViewModel = nil
         cancellable = []
     }
-
+    
     func testCommentsViewViewModel_WhenCommentsLoaded_NumberOfRowsSouldBeMoreThanZero()  {
         sutCommentsViewViewModel.commentOutput
             .sink { output in
@@ -50,11 +51,12 @@ final class CommentsViewViewModelTest: XCTestCase {
     }
     
     func testCommentsViewViewModel_WhenCommentsLoadingFailed_ShouldReturnDidFailToFetchComments()  {
-        let comments = CommentsViewViewModel(
+        sutCommentsViewViewModel = nil
+        sutCommentsViewViewModel = CommentsViewViewModel(
             request: MockNetworkRequestCommentsFailure(),
             post: mockPostViewModelItem
         )
-        comments.commentOutput
+        sutCommentsViewViewModel.commentOutput
             .sink { output  in
                 XCTAssertTrue(output == .didFailToFetchComments)
             }

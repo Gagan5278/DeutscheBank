@@ -9,7 +9,6 @@ import Combine
 @testable import DeutscheBank
 
 final class PostViewViewModelTest: XCTestCase {
-    let userInput: PassthroughSubject<PostsViewViewModel.UserInput, Never> = .init()
 
     private var cancellable = Set<AnyCancellable>()
     private let mockUser = LoginUserModel(userid: 1)
@@ -39,13 +38,14 @@ final class PostViewViewModelTest: XCTestCase {
     
     func testPostsViewViewModel_WhenPostModelLoadingFailed_ShouldReturnFetchPostsDidFail() {
         //Given
-        let failedPostViewModel =  PostsViewViewModel(
+        sutPostViewModel = nil
+        sutPostViewModel =  PostsViewViewModel(
             request: MockNetworkRequestPostFailure(),
             user: mockUser,
             codeDataManager: coreDataManager
         )
         // When
-      failedPostViewModel.requestOutput
+        sutPostViewModel.requestOutput
             .receive(on: RunLoop.main)
             .sink { output in
                 // Then
@@ -56,13 +56,14 @@ final class PostViewViewModelTest: XCTestCase {
     
     func testPostsViewViewModel_WhenPostModelLoadingFailed_ShouldReturnFetchPostsDidSucceedWithEmptyList() {
         //Given
-        let emptyPostViewModel =  PostsViewViewModel(
+        sutPostViewModel = nil
+        sutPostViewModel =  PostsViewViewModel(
             request: MockNetworkRequestPostSuccessWithEmptyModel(),
             user: mockUser,
             codeDataManager: coreDataManager
         )
         // When
-       emptyPostViewModel.requestOutput
+        sutPostViewModel.requestOutput
             .receive(on: RunLoop.main)
             .sink { output in
                 // Then
@@ -83,6 +84,7 @@ final class PostViewViewModelTest: XCTestCase {
     
     func testPostsViewViewModel_WhenPostModelLoadedUpdatePostStatusToFavorite_ShouldHaveFavoriteTrue() {
        // Given
+        let userInput: PassthroughSubject<PostsViewViewModel.UserInput, Never> = .init()
         let postViewModel = sutPostViewModel!
         let postModel: [PostModel]  = JSONLoader.load("Posts.json")
         let _ = postViewModel.transform(input: userInput.eraseToAnyPublisher())
@@ -90,11 +92,27 @@ final class PostViewViewModelTest: XCTestCase {
         postViewModel.requestOutput
             .sink { req in
             XCTAssertTrue(req == .reloadPost)
-                let post = postViewModel.getPost(at: IndexPath(row: 0, section: 0))
+            let post = postViewModel.getPost(at: IndexPath(row: 0, section: 0))
             XCTAssertTrue(post.isFavoritePost)
         }
         .store(in: &cancellable)
         //when
         userInput.send(.updateFavoriteStatusFor(post: PostViewModelItem(postModel: postModel.first!)))
+    }
+    
+    func testPostsViewViewModel_WhenPostModelLoadedUpdatePostStatusToFavorite_favoritePosts() {
+        let userInput: CurrentValueSubject<PostsViewViewModel.UserInput, Never> = .init(.showFavoriteTypePost(segment: .favoritePosts))
+       // Given
+        let _ = sutPostViewModel.transform(input: userInput.eraseToAnyPublisher())
+        // Then
+        sutPostViewModel.requestOutput
+            .sink { [weak self] req in
+            XCTAssertTrue(req == .reloadPost)
+            XCTAssertTrue(self?.sutPostViewModel.numberOfRowsInPostTableView == 0)
+//            expectation.fulfill()
+        }
+        .store(in: &cancellable)
+        //when
+        userInput.send(.showFavoriteTypePost(segment: .favoritePosts))
     }
 }

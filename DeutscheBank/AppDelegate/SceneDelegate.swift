@@ -38,7 +38,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     // MARK: - Navigationbar appearance
     private func setupNavigationBarAppearance() {
-        UINavigationBar.appearance().tintColor = .black
+        UINavigationBar.appearance().tintColor = .appPrimaryColor
         UINavigationBar.appearance().scrollEdgeAppearance = UINavigationBarAppearance()
     }
 }

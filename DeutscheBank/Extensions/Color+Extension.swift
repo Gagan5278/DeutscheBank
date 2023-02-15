@@ -8,7 +8,7 @@
 import UIKit
 
 extension UIColor {
-    static let appPrimaryColor = UIColor.black.withAlphaComponent(0.9)
-    static let appSecondaryColor = UIColor.darkGray
+    static let appPrimaryColor = UIColor(named: "AppPrimaryColor")!
+    static let appSecondaryColor =  UIColor(named: "AppSecondaryColor")!
     static let appBackgroundColor = UIColor.systemGray6
 }

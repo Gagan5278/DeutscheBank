@@ -96,7 +96,7 @@ class PostListViewController: BaseViewController {
         postTableView.anchor(
             top: postFilterSegmentController.bottomAnchor,
             leading: self.view.leadingAnchor,
-            bottom: self.view.safeAreaLayoutGuide.bottomAnchor,
+            bottom: self.view.bottomAnchor,
             trailing: self.view.trailingAnchor
         )
     }
