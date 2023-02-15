@@ -21,7 +21,6 @@ class PostTableViewCell: BaseTableViewCell<PostViewModelItemProtocol> {
         let btn = UIButton()
         btn.setImage(UIImage(systemName: "star.fill"), for: .selected)
         btn.setImage(UIImage(systemName: "star"), for: .normal)
-        btn.setContentHuggingPriority(UILayoutPriority(1000), for: .horizontal)
         btn.addTarget(
             self,
             action: #selector(didTapFavoriteButton),

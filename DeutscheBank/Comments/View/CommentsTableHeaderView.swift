@@ -15,7 +15,7 @@ class CommentsTableHeaderView: UIView {
         let imgView = UIImageView()
         imgView.image = UIImage(systemName: "star.fill")
         imgView.contentMode = .scaleAspectFit
-        imgView.widthAnchor.constraint(equalToConstant: AppConstants.commonPadingConstants*3).isActive = true
+        imgView.widthAnchor.constraint(equalToConstant: AppConstants.commonPadingConstants*2.5).isActive = true
         return imgView
     }()
 

@@ -19,8 +19,7 @@ final class InMemoryCoreDataSaveFavoriteTest: XCTestCase {
         coreDataStackInMemory = nil
     }
 
-    func testCoreDataStackInMemory_SaveAnObject() {
+    func testCoreDataStackInMemory_ViewContextIsNotNil() {
         XCTAssertNotNil(coreDataStackInMemory.viewContext)
     }
-    
 }

@@ -41,11 +41,7 @@ class CommonTitleAndSubTitleInfoView: UIView {
     
     private func verticalStackViewSetup() {
         addSubview(verticalStackView)
-        verticalStackView.anchor(
-            top: topAnchor,
-            leading: leadingAnchor,
-            bottom: bottomAnchor,
-            trailing: trailingAnchor)
+        verticalStackView.fillSuperview()
     }
     
     func set(title: String, body: String) {

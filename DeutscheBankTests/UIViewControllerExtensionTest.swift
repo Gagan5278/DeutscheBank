@@ -56,5 +56,4 @@ private class TestViewController: UIViewController {
            withFirstCallback: nil,
           withSecondCallback: nil)
    }
-    private func firstButtonAction(action: UIAlertAction) { }
 }

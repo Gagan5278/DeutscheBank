@@ -13,7 +13,7 @@ enum AppConstants {
 
 extension AppConstants {
     enum APIRequest {
-        static let baseURL = "https://jsonplaceholder.typicode.com/"
+        static let baseURL = "https://jsonplaceholder.typicode.com/"  // Can be injected in PLIST or UserDefinedSetting as per envoirnment after having different target in the app e.g. DEV, STAGE, PROD
     }
     enum APIError {
         static let somethingWentWrongResponse = "An error occured while calling service."
@@ -34,7 +34,7 @@ extension AppConstants {
 
 extension AppConstants {
     enum PostListScreenConstants {
-        static let navigationTitle = "Post"
+        static let navigationTitle = "My Posts"
         static let filterAllPostSegmentTitle = "All Posts"
         static let filterFavoritePostSegmentTitle = "Favorite Posts"
         static let commonAlertTitle = "Message"

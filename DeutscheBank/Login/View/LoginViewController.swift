@@ -102,7 +102,6 @@ class LoginViewController: UIViewController {
     }
     
     private func addTapGestureToHideKeyboard() {
-        // add a tap Gesture Recognizer
         self.view.addGestureRecognizer(UITapGestureRecognizer(
             target: self,
             action: #selector(doneButtonAction))

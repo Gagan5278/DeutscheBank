@@ -9,7 +9,7 @@ import UIKit
 import Combine
 
 class CommentsViewController: BaseViewController {
-
+    
     public private(set) lazy var commentTableView: UITableView = {
         let tblView = UITableView()
         tblView.dataSource = self
@@ -24,11 +24,13 @@ class CommentsViewController: BaseViewController {
             CommentTableViewCell.self,
             forCellReuseIdentifier: CommentTableViewCell.commentCellIdentifier
         )
-        tblView.register(CommentsTableSectionHeaderView.self,
-                         forHeaderFooterViewReuseIdentifier: CommentsTableSectionHeaderView.commentsTableSectionHeaderViewIdentifier)
+        tblView.register(
+            CommentsTableSectionHeaderView.self,
+            forHeaderFooterViewReuseIdentifier: CommentsTableSectionHeaderView.commentsTableSectionHeaderViewIdentifier
+        )
         return tblView
     }()
-        
+    
     private var commentSubscriber: AnyCancellable?
     private let tableSectionHeight: CGFloat = AppConstants.commonPadingConstants*5
     public private(set) var commentViewModel: CommentsViewViewModel!
@@ -80,12 +82,7 @@ class CommentsViewController: BaseViewController {
     
     private func commentsTableViewSetup() {
         self.view.addSubview(commentTableView)
-        commentTableView.anchor(
-            top: self.view.safeAreaLayoutGuide.topAnchor,
-            leading: self.view.leadingAnchor,
-            bottom: self.view.bottomAnchor,
-            trailing: self.view.trailingAnchor
-        )
+        commentTableView.fillSuperview()
     }
     
     // MARK: - Display alert

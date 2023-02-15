@@ -34,14 +34,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     func sceneWillEnterForeground(_ scene: UIScene) { }
     
-    func sceneDidEnterBackground(_ scene: UIScene) {
-        //(UIApplication.shared.delegate as? AppDelegate)?.saveContext()
-    }
+    func sceneDidEnterBackground(_ scene: UIScene) { }
     
     // MARK: - Navigationbar appearance
     private func setupNavigationBarAppearance() {
         UINavigationBar.appearance().tintColor = .black
         UINavigationBar.appearance().scrollEdgeAppearance = UINavigationBarAppearance()
     }
-    
 }

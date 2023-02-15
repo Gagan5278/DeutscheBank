@@ -288,9 +288,9 @@
 		5D4E807D29987A2400D5745B /* Comments */ = {
 			isa = PBXGroup;
 			children = (
-				5D054A262999B3E700CCF4F5 /* View */,
 				5D054A252999B3DA00CCF4F5 /* Model */,
 				5D054A242999B3D200CCF4F5 /* ViewModel */,
+				5D054A262999B3E700CCF4F5 /* View */,
 			);
 			path = Comments;
 			sourceTree = "<group>";
@@ -391,8 +391,8 @@
 		5D59A6A12997D1D2007FA87C /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				5D054A1C2999A81400CCF4F5 /* ViewModel */,
 				5D59A6A32997D2FF007FA87C /* Model */,
+				5D054A1C2999A81400CCF4F5 /* ViewModel */,
 				5D59A6A22997D2D5007FA87C /* View */,
 			);
 			path = Login;
