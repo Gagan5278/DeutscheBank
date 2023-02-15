@@ -14,12 +14,11 @@ final class CommentsViewViewModelTest: XCTestCase {
     private var sutCommentsViewViewModel: CommentsViewViewModel!
     private var cancellable = Set<AnyCancellable>()
     private var mockPostViewModelItem: PostViewModelItemProtocol!
-    private var mockRequest: MockNetworkRequestCommentsSuccess!
+    private let mockRequest: MockNetworkRequestCommentsSuccess = MockNetworkRequestCommentsSuccess()
 
     override func setUp() {
         let mockModels: [PostModel] = JSONLoader.load("Posts.json")
         mockPostViewModelItem = PostViewModelItem(postModel: mockModels.first!)
-        mockRequest = MockNetworkRequestCommentsSuccess()
         sutCommentsViewViewModel = CommentsViewViewModel(
             request: mockRequest,
             post: mockPostViewModelItem
@@ -27,28 +26,25 @@ final class CommentsViewViewModelTest: XCTestCase {
     }
 
     override func tearDown() {
-        mockPostViewModelItem = nil
-        mockRequest = nil
         sutCommentsViewViewModel = nil
+        cancellable = []
     }
 
     func testCommentsViewViewModel_WhenCommentsLoaded_NumberOfRowsSouldBeMoreThanZero()  {
-        let comments = sutCommentsViewViewModel!
-        comments.commentOutput
+        sutCommentsViewViewModel.commentOutput
             .sink { output in
                 XCTAssertTrue(output == .fetchCommentsDidSucceed)
-                XCTAssertTrue(comments.numberOfRowsInCommentTableView > 0)
+                XCTAssertTrue(self.sutCommentsViewViewModel.numberOfRowsInCommentTableView > 0)
             }
             .store(in: &cancellable)
     }
     
     func testCommentsViewViewModel_WhenCommentsLoaded_GetPostCommentHasSamePostID()  {
-        let comments = sutCommentsViewViewModel!
-        comments.commentOutput
+        sutCommentsViewViewModel.commentOutput
             .sink { [weak self] output in
                 guard let self = self else { return }
                 XCTAssertTrue(output == .fetchCommentsDidSucceed)
-                XCTAssertTrue(comments.getPostComment(at: IndexPath(row: 0, section: 0)).postId == self.mockPostViewModelItem.postID)
+                XCTAssertTrue(self.sutCommentsViewViewModel.getPostComment(at: IndexPath(row: 0, section: 0)).postId == self.mockPostViewModelItem.postID)
             }
             .store(in: &cancellable)
     }

@@ -25,15 +25,14 @@ final class PostViewViewModelTest: XCTestCase {
     
     override func tearDown() {
         sutPostViewModel = nil
+        cancellable = []
     }
     
     func testPostsViewViewModel_WhenPostModelLoaded_NumberOfRowsSouldBeMoreThanZero()  {
-        let postViewModel = sutPostViewModel!
-        postViewModel.requestOutput
-//            .receive(on: RunLoop.main)
+        sutPostViewModel.requestOutput
             .sink { [weak self] output in
                 XCTAssertTrue(output == .fetchPostsDidSucceed)
-                XCTAssertTrue(postViewModel.numberOfRowsInPostTableView > 0)
+                XCTAssertTrue((self?.sutPostViewModel.numberOfRowsInPostTableView)! > 0)
             }
             .store(in: &cancellable)
     }
@@ -73,12 +72,9 @@ final class PostViewViewModelTest: XCTestCase {
     }
     
     func testPostsViewViewModel_WhenPostModelLoaded_GetPostAtGivenIndexPathMustHaveEqualPostID() {
-        let postViewModel = sutPostViewModel!
-        postViewModel.requestOutput
-            .receive(on: RunLoop.main)
+        sutPostViewModel.requestOutput
             .sink {  output in
-            print(output == .reloadPost)
-            let post = postViewModel.getPost(at: IndexPath(row: 0, section: 0))
+                let post = self.sutPostViewModel.getPost(at: IndexPath(row: 0, section: 0))
             let postModel: [PostModel] = JSONLoader.load("Posts.json")
                 XCTAssertTrue(post.postID == postModel[0].id)
         }
@@ -94,7 +90,7 @@ final class PostViewViewModelTest: XCTestCase {
         postViewModel.requestOutput
             .sink { req in
             XCTAssertTrue(req == .reloadPost)
-            let post = postViewModel.getPost(at: IndexPath(row: 0, section: 0))
+                let post = postViewModel.getPost(at: IndexPath(row: 0, section: 0))
             XCTAssertTrue(post.isFavoritePost)
         }
         .store(in: &cancellable)
