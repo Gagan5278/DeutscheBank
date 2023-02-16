@@ -34,4 +34,3 @@ class NetworkReachability {
         return (isReachable && !needsConnection)
     }
 }
-

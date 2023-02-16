@@ -8,7 +8,6 @@
 import UIKit
 
 class CommentsTableSectionHeaderView: UITableViewHeaderFooterView {
-    
     static let commentsTableSectionHeaderViewIdentifier = "CommentsTableSectionHeaderViewdentifier"
     
     let sectionHeaderTitleLable: UILabel = {

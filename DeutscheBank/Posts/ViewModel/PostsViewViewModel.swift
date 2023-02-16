@@ -172,10 +172,9 @@ extension PostsViewViewModel {
         case favoriteLocalPosts
     }
     
-    enum PostSegmentControllerEnum: Int  {
+    enum PostSegmentControllerEnum: Int {
         case allPosts
         case favoritePosts
-        
         var segmentTitle: String {
             switch self {
             case .allPosts:

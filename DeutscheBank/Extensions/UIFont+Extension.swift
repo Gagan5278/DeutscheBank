@@ -12,4 +12,3 @@ extension UIFont {
     static let titleFont = UIFont.systemFont(ofSize: 18)
     static let subTitleFont = UIFont.systemFont(ofSize: 16)
 }
-

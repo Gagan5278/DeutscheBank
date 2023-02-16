@@ -10,7 +10,6 @@ import Combine
 @testable import DeutscheBank
 
 final class CommentsViewViewModelTest: XCTestCase {
-    
     private var sutCommentsViewViewModel: CommentsViewViewModel!
     private var cancellable = Set<AnyCancellable>()
     private var mockPostViewModelItem: PostViewModelItemProtocol = {

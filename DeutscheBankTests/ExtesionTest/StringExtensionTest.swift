@@ -14,12 +14,12 @@ final class StringExtensionTest: XCTestCase {
     
     override func tearDown() { }
     
-    func testStringExtension_WhenValidIntegerInString_RetrunNotNil()  {
+    func testStringExtension_WhenValidIntegerInString_RetrunNotNil() {
         let numberString = "123"
         XCTAssertNotNil(numberString.integer)
     }
     
-    func testStringExtension_WhenInvalidIntegerInString_RetrunNil()  {
+    func testStringExtension_WhenInvalidIntegerInString_RetrunNil() {
         let numberString = "Hi123"
         XCTAssertNil(numberString.integer)
     }
@@ -28,6 +28,6 @@ final class StringExtensionTest: XCTestCase {
         let demoString = "sample test string goes here"
         let modifiedString = demoString.capitalizeFirstLetterOfSentence
         let firstCharacter = String(modifiedString.first!)
-        XCTAssertTrue((firstCharacter == firstCharacter.uppercased()) && (firstCharacter != firstCharacter.lowercased()))
+        XCTAssertTrue(( firstCharacter == firstCharacter.uppercased() ) && ( firstCharacter != firstCharacter.lowercased() ))
     }
 }

@@ -27,4 +27,3 @@ class BaseTableViewCell<U: Any>: UITableViewCell {
         infoView.set(title: title, body: body)
     }
 }
-

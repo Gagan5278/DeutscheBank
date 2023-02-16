@@ -9,11 +9,9 @@ import XCTest
 @testable import DeutscheBank
 
 final class CommentsViewControllerTest: XCTestCase {
-    
     private var sutCommentsViewController: CommentsViewController!
     private var mockPostViewModelItem: PostViewModelItemProtocol!
     private var mockRequest: MockNetworkRequestCommentsSuccess!
-    
     override func setUp() {
         mockRequest = MockNetworkRequestCommentsSuccess()
         let mockModels: [PostModel] = JSONLoader.load("Posts.json")
@@ -67,20 +65,29 @@ final class CommentsViewControllerTest: XCTestCase {
     }
     
     func testCommentsViewController_ViewHasBeenLoaded_TableViewCellHasReuseIdentifier() {
-        let cell = sutCommentsViewController.tableView(sutCommentsViewController.commentTableView, cellForRowAt: IndexPath(row: 0, section: 0)) as? CommentTableViewCell
+        let cell = sutCommentsViewController.tableView(
+            sutCommentsViewController.commentTableView,
+            cellForRowAt: IndexPath(row: 0, section: 0)
+        ) as? CommentTableViewCell
         let actualReuseIdentifer = cell?.reuseIdentifier
         let expectedReuseIdentifier = CommentTableViewCell.commentCellIdentifier
         XCTAssertEqual(actualReuseIdentifer, expectedReuseIdentifier)
     }
     
     func testCommentsViewController_PostsHasBeenLoaded_NumberOfRowsInUICollectionViewIsGreaterThanZero() {
-        let postCount =  sutCommentsViewController.commentTableView.dataSource?.tableView(sutCommentsViewController.commentTableView, numberOfRowsInSection: 0)
+        let postCount =  sutCommentsViewController.commentTableView.dataSource?.tableView(
+            sutCommentsViewController.commentTableView,
+            numberOfRowsInSection: 0
+        )
         XCTAssertTrue(postCount != 0)
     }
     
     func testCommentsViewController_PostsHasBeenLoaded_CellForItemAtIndexPathIsNotNil() {
         let indexPath = IndexPath(item: 0, section: 0)
-        let commentCell = sutCommentsViewController.commentTableView.dataSource?.tableView(sutCommentsViewController.commentTableView, cellForRowAt: indexPath) as! CommentTableViewCell
+        let commentCell = sutCommentsViewController.commentTableView.dataSource?.tableView(
+            sutCommentsViewController.commentTableView,
+            cellForRowAt: indexPath
+        ) as! CommentTableViewCell
         XCTAssertNotNil(commentCell)
     }
 }

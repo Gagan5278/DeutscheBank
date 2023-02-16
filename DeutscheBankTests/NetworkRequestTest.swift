@@ -9,7 +9,6 @@ import XCTest
 @testable import DeutscheBank
 
 final class NetworkRequestTest: XCTestCase {
-    
     var mockNetworkRequestFailureTest: MockNetworkRequestPostFailure!
     var mockNetworkRequestSuccessTest: MockNetworkRequestPostSuccess!
     

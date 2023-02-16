@@ -14,7 +14,7 @@ final class HTTPURLResponseExtensionTest: XCTestCase {
     
     override func tearDown() { }
     
-    func testHTTPURLResponseChecker_WhenValidResponseSupplied_ShouldBeTrueInTryBlock()  {
+    func testHTTPURLResponseChecker_WhenValidResponseSupplied_ShouldBeTrueInTryBlock() {
         let urlResponse = HTTPURLResponse(url: URL(string: "https://google.com/")!, statusCode: 244, httpVersion: nil, headerFields: nil)
         do {
             try urlResponse!.statusCodeChecker()
@@ -24,8 +24,13 @@ final class HTTPURLResponseExtensionTest: XCTestCase {
         }
     }
     
-    func testHTTPURLResponseChecker_WhenInValidResponseSupplied_ShouldBeTrueInCatchBlock()  {
-        let urlResponse = HTTPURLResponse(url: URL(string: "https://google.com/")!, statusCode: 344, httpVersion: nil, headerFields: nil)
+    func testHTTPURLResponseChecker_WhenInValidResponseSupplied_ShouldBeTrueInCatchBlock() {
+        let urlResponse = HTTPURLResponse(
+            url: URL(string: "https://google.com/")!,
+            statusCode: 344,
+            httpVersion: nil,
+            headerFields: nil
+        )
         do {
             try urlResponse!.statusCodeChecker()
             XCTFail("Should fail due to bad status code")

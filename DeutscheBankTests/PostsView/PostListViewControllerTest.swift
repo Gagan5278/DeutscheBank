@@ -18,13 +18,17 @@ final class PostListViewControllerTest: XCTestCase {
     override func setUp() {
         coreDataManager = CoreDataStackInMemory()
         request = MockNetworkRequestPostSuccess()
-        sutPostListViewController = PostListViewController(viewModel: PostsViewViewModel(request: request, user: mockUser, codeDataManager: coreDataManager))
+        sutPostListViewController = PostListViewController(viewModel: PostsViewViewModel(
+            request: request,
+            user: mockUser,
+            codeDataManager: coreDataManager)
+        )
         mockNavigationController = UINavigationControllerMock(rootViewController: sutPostListViewController)
         sutPostListViewController.loadViewIfNeeded()
         sutPostListViewController.viewDidLoad()
     }
     
-    override func tearDown()  {
+    override func tearDown() {
         coreDataManager = nil
         request = nil
         sutPostListViewController = nil
@@ -64,7 +68,10 @@ final class PostListViewControllerTest: XCTestCase {
     
     func testPostListViewController_ViewHasBeenLoaded_TableViewCellHasReuseIdentifier() {
         sutPostListViewController.startLoadingPostFromServerForLoggedInUser()
-        let cell = sutPostListViewController.tableView(sutPostListViewController.postTableView, cellForRowAt: IndexPath(row: 0, section: 0)) as? PostTableViewCell
+        let cell = sutPostListViewController.tableView(
+            sutPostListViewController.postTableView,
+            cellForRowAt: IndexPath(row: 0, section: 0)
+        ) as? PostTableViewCell
         let actualReuseIdentifer = cell?.reuseIdentifier
         let expectedReuseIdentifier = PostTableViewCell.postCellIdentifier
         XCTAssertEqual(actualReuseIdentifer, expectedReuseIdentifier)
@@ -73,7 +80,9 @@ final class PostListViewControllerTest: XCTestCase {
     func testPostListViewController_PostsHasBeenLoaded_NumberOfRowsInUICollectionViewIsGreaterThanZero() {
         sutPostListViewController.startLoadingPostFromServerForLoggedInUser()
         
-        let postCount =  sutPostListViewController.postTableView.dataSource?.tableView(sutPostListViewController.postTableView, numberOfRowsInSection: 0)
+        let postCount =  sutPostListViewController.postTableView.dataSource?.tableView(
+            sutPostListViewController.postTableView,
+            numberOfRowsInSection: 0)
         XCTAssertTrue(postCount != 0)
     }
     
@@ -81,12 +90,18 @@ final class PostListViewControllerTest: XCTestCase {
         sutPostListViewController.startLoadingPostFromServerForLoggedInUser()
         _ = XCTWaiter.wait(for: [expectation(description: "Wait for n seconds")], timeout: 2.0)
         let indexPath = IndexPath(item: 0, section: 0)
-        let cell = sutPostListViewController.postTableView.dataSource?.tableView(sutPostListViewController.postTableView, cellForRowAt: indexPath) as! PostTableViewCell
+        let cell = sutPostListViewController.postTableView.dataSource?.tableView(
+            sutPostListViewController.postTableView,
+            cellForRowAt: indexPath
+        ) as! PostTableViewCell
         XCTAssertEqual(sutPostListViewController.postsViewModel.getPost(at: indexPath).postID, cell.cellItem.postID)
     }
     
     func testPostListViewController_PostsHasBeenLoadedDidSelectRowAtOfUITableViewViewCell_NavigateToCommentScreen() {
-        sutPostListViewController.tableView(sutPostListViewController.postTableView, didSelectRowAt: IndexPath(row: 0, section: 0))
+        sutPostListViewController.tableView(
+            sutPostListViewController.postTableView,
+            didSelectRowAt: IndexPath(row: 0, section: 0)
+        )
         XCTAssertTrue(mockNavigationController.pushViewControllerCalled)
     }
 }

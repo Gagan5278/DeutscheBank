@@ -50,26 +50,30 @@ extension FavoritePostService {
         entity.userID = Int16(model.userID)
         entity.postTitle = model.postTitle
         entity.postBody = model.postBody
-        saveEntity(comletionHandler: {isSuccess in
-            savedFavoriteEntities.append(entity)
+        saveEntity(completionHandler: { isSuccess in
+            if isSuccess {
+                savedFavoriteEntities.append(entity)
+            }
         })
     }
     
     // MARK: - Delete
     private func delete(entity: FavoritePostEntity) {
         coreDataManager.viewContext.delete(entity)
-        saveEntity(comletionHandler: {isSuccess in
-            savedFavoriteEntities.remove(element: entity)
+        saveEntity(completionHandler: { isSuccess in
+            if isSuccess {
+                savedFavoriteEntities.remove(element: entity)
+            }
         })
     }
     
     // MARK: - Save entity
-    private func saveEntity(comletionHandler: (Bool) -> Void) {
+    private func saveEntity(completionHandler: (Bool) -> Void) {
         do {
             try coreDataManager.viewContext.save()
-            comletionHandler(true)
+            completionHandler(true)
         } catch {
-            comletionHandler(false)
+            completionHandler(false)
         }
     }
 }

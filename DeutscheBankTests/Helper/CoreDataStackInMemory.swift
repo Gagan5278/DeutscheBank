@@ -23,16 +23,16 @@ class CoreDataStackInMemory: CoreDataManagerProtocol  {
     init() {
         persistantContainer = {
             let container = NSPersistentContainer(name: "DeutscheBank")
-            //Create NSPersistentStoreDescription
+            // Create NSPersistentStoreDescription
             let persistentDecsription = NSPersistentStoreDescription()
-            //set memory type
+            // Set memory type
             persistentDecsription.type = NSInMemoryStoreType
-            //set description to NSPersistentContainer
+            // Set description to NSPersistentContainer
             container.persistentStoreDescriptions = [persistentDecsription]
-            //load container
-            container.loadPersistentStores { (description, error) in
-                if let _ = error {
-                    fatalError("Something went wrong")
+            // Load container
+            container.loadPersistentStores {(_, error) in
+                if let error = error {
+                    fatalError("Something went wrong \(error.localizedDescription)")
                 }
             }
             return container

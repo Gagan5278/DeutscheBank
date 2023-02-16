@@ -8,7 +8,6 @@
 import UIKit
 
 class CommentsTableHeaderView: UIView {
-    
     private let infoView = CommonTitleAndSubTitleInfoView()
     
     private let favoriteIcon: UIImageView = {
@@ -24,7 +23,7 @@ class CommentsTableHeaderView: UIView {
         return stkView
     }()
     
-    //MARK: - Init
+    // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
         addOnMainView()

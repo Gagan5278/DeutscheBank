@@ -193,4 +193,3 @@ extension PostListViewController: UITableViewDataSource {
         return postCell
     }
 }
-

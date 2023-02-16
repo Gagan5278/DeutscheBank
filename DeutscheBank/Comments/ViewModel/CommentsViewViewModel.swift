@@ -30,7 +30,7 @@ class CommentsViewViewModel {
         }
     }
     
-    func readCommentsFromRecieved(task: Task<[CommentModel]?, Error>) async throws  {
+    func readCommentsFromRecieved(task: Task<[CommentModel]?, Error>) async throws {
         if let commentsRecieved = try? await task.value {
             if commentsRecieved.isEmpty {
                 commentRequestOutput.send(.fetchCommentssDidSucceedWithEmptyList)
@@ -74,7 +74,7 @@ class CommentsViewViewModel {
 // MARK: - Private section
 extension CommentsViewViewModel {
     private func createCommetModelsFromRecieved(rawComments: [CommentModel]) {
-        comments = rawComments.map ({ CommentsViewViewModelItem(comment: $0) })
+        comments = rawComments.map({ CommentsViewViewModelItem(comment: $0) })
     }
 }
 

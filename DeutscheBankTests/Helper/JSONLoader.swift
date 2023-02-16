@@ -9,7 +9,6 @@ import Foundation
 @testable import DeutscheBank
 
 class JSONLoader {
-    
     static func load<T: Codable>(_ filename: String) -> T {
         let data: Data
         guard let file = Bundle(for: Self.self).url(forResource: filename, withExtension: nil)

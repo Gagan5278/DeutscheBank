@@ -10,17 +10,17 @@ import XCTest
 
 final class DictionaryExtensionTest: XCTestCase {
     
-    override func setUp()  { }
+    override func setUp() { }
     
     override func tearDown() { }
     
-    func testDictionarySerialize_WhenValidDictionaryPassed_ShouldNotBeNilData()  {
-        let validDictionary = ["name": "test name", "age" : 1223] as [String : Any]
+    func testDictionarySerialize_WhenValidDictionaryPassed_ShouldNotBeNilData() {
+        let validDictionary = ["name": "test name", "age": 1223] as [String: Any]
         do {
             let data = try validDictionary.serialize()
             XCTAssertNotNil(data)
         } catch {
-            XCTFail()
+            XCTFail("Invalid dictionary paased")
         }
     }
 }

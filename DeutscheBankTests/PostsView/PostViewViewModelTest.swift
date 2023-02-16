@@ -73,7 +73,6 @@ final class PostViewViewModelTest: XCTestCase {
     }
     
     func testPostsViewViewModel_WhenPostModelLoadingFailed_ShouldReturnFetchPostsDidFail() async throws {
-        //Given
         let expectation = expectation(description: "ShouldReturnFetchPostsDidFail")
         sutPostViewModel = nil
         // Given
@@ -84,7 +83,7 @@ final class PostViewViewModelTest: XCTestCase {
         )
         let task = sutPostViewModel.fetchPostsTaskForLoggedIn(user: mockUser)
         let posts = try await task.value
-        //Then
+        // Then
         XCTAssertNil(posts)
         sutPostViewModel.requestOutput
             .sink { output in
@@ -98,7 +97,7 @@ final class PostViewViewModelTest: XCTestCase {
     }
     
     func testPostsViewViewModel_WhenPostModelLoaded_GetPostAtGivenIndexPathMustHaveEqualPostID() async throws {
-        //Given
+        // Given
         let expectation = expectation(description: "GetPostAtGivenIndexPathMustHaveEqualPostID")
         let postModels: [PostModel] = JSONLoader.load("Posts.json")
         let task = sutPostViewModel.fetchPostsTaskForLoggedIn(user: mockUser)
@@ -154,7 +153,6 @@ final class PostViewViewModelTest: XCTestCase {
         let task = sutPostViewModel.fetchPostsTaskForLoggedIn(user: mockUser)
         let posts = try await task.value
         XCTAssertNotNil(posts)
-        
         sutPostViewModel
             .requestOutput
             .dropFirst()
@@ -164,7 +162,7 @@ final class PostViewViewModelTest: XCTestCase {
                 expectation.fulfill()
             }
             .store(in: &cancellable)
-        //when
+        // When
         try await sutPostViewModel.readPostsFromRecieved(task: task)
         userInput.send(.showFavoriteTypePost(segment: .favoritePosts))
         wait(for: [expectation], timeout: 5)

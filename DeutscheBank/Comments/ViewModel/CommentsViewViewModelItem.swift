@@ -32,7 +32,6 @@ struct CommentsViewViewModelItem: CommentsViewViewModelItemProtocol {
     }
     
     let commentModel: CommentModel
-    
     // MARK: - init
     init(comment: CommentModel) {
         commentModel = comment
