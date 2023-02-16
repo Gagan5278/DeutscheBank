@@ -7,10 +7,9 @@
 
 import Foundation
 import CoreData
-import Combine
 
 class FavoritePostService {
-    @Published var savedFavoriteEntities: [FavoritePostEntity] = []
+    public private(set) var savedFavoriteEntities: [FavoritePostEntity] = []
     private let coreDataManager: CoreDataManagerProtocol
     
     // MARK: init

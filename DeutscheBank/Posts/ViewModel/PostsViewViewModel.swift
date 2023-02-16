@@ -14,7 +14,7 @@ class PostsViewViewModel {
     private var posts: [PostViewModelItemProtocol] = []
     private var recievedRawPostsModel: [PostModel] = []
     private var savedFavoritePostIDS: [Int] = []
-    private var isFavoriteFilsterEnabled: Bool = false
+    private var isFavoriteFilsterEnabled: Bool
     private let loginUserModel: LoginUserModel!
     private let serviceRequest: NetworkRequestProtocol
     public private(set) var favoritePostService: FavoritePostService
@@ -23,10 +23,10 @@ class PostsViewViewModel {
         request: NetworkRequestProtocol,
         user: LoginUserModel,
         codeDataManager: CoreDataManagerProtocol) {
+            isFavoriteFilsterEnabled = false
             serviceRequest = request
             loginUserModel = user
             favoritePostService = FavoritePostService(user: user, manager: codeDataManager)
-            addFavoritePostSubscriber()
         }
     
     func transform(input: AnyPublisher<UserInput, Never>) -> AnyPublisher<RequestOutput, Never> {
@@ -34,9 +34,7 @@ class PostsViewViewModel {
             guard let self = self else { return }
             switch userEvent {
             case .viewLoaded:
-                if NetworkReachability.isConnectedToNetwork() {
-                    self.fetchUserPostsFromServer()
-                }
+                self.loadPostsOnViewLoad()
             case .showFavoriteTypePost(let segment):
                 self.updatePostTableOnFavoiteAndAllSegment(segment)
             case .updateFavoriteStatusFor(let post):
@@ -80,6 +78,15 @@ class PostsViewViewModel {
 
 // MARK: - Private Section
 extension PostsViewViewModel {
+    private func loadPostsOnViewLoad() {
+        if NetworkReachability.isConnectedToNetwork() {
+            fetchUserPostsFromServer()
+        } else {
+            isFavoriteFilsterEnabled = true
+            checkForLocalSavedPostForLoggedInUser()
+        }
+    }
+    
     private func fetchUserPostsFromServer() {
         Task {
             let task = fetchPostsTaskForLoggedIn(user: self.loginUserModel)
@@ -117,30 +124,28 @@ extension PostsViewViewModel {
         }
     }
     
-    private func addFavoritePostSubscriber() {
-        favoritePostService.$savedFavoriteEntities
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] savedPosts in
-                if NetworkReachability.isConnectedToNetwork(){
-                    self?.savedFavoritePostIDS =  savedPosts.map { Int($0.postID) }
-                } else {
-                    self?.posts = savedPosts.map({
-                        PostViewModelItem(
-                            postModel: PostModel(
-                                userId: Int($0.userID),
-                                id: Int($0.postID),
-                                title: $0.postTitle ?? "",
-                                body: $0.postBody ?? ""
-                            ),
-                            isFavorite: true)
-                    })
-                    self?.requestOutput.send(.favoriteLocalPosts)
-                }
-            }
-            .store(in: &cancellables)
+    private func checkForLocalSavedPostForLoggedInUser() {
+        if NetworkReachability.isConnectedToNetwork(){
+            savedFavoritePostIDS =  favoritePostService.savedFavoriteEntities.map { Int($0.postID) }
+        } else {
+            posts = favoritePostService.savedFavoriteEntities.map({
+                PostViewModelItem(
+                    postModel: PostModel(
+                        userId: Int($0.userID),
+                        id: Int($0.postID),
+                        title: $0.postTitle ?? "",
+                        body: $0.postBody ?? ""
+                    ),
+                    isFavorite: true)
+            })
+            requestOutput.send(.favoriteLocalPosts)
+        }
     }
     
     private func createPostModelsFromPostRecieved(_ postsRecived: [PostModel]) {
+        checkForLocalSavedPostForLoggedInUser()
+        guard !postsRecived.isEmpty else { return }
+        
         if savedFavoritePostIDS.isEmpty {
             posts = postsRecived.map({
                 PostViewModelItem(postModel: $0)
