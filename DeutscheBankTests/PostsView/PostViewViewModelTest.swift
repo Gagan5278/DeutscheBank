@@ -134,7 +134,7 @@ final class PostViewViewModelTest: XCTestCase {
             .dropFirst()
             .sink { req in
                 print(req)
-                XCTAssertTrue(req == .reloadPost)
+                XCTAssertTrue(req == .reloadPosts)
                 let post = postViewModel.getPost(at: IndexPath(row: 0, section: 0))
                 XCTAssertTrue(post.isFavoritePost)
                 expectation.fulfill()
@@ -160,7 +160,7 @@ final class PostViewViewModelTest: XCTestCase {
             .requestOutput
             .dropFirst()
             .sink { [weak self] output in
-                XCTAssertTrue(output == .reloadPost)
+                XCTAssertTrue(output == .reloadPosts)
                 XCTAssertTrue(self?.sutPostViewModel.numberOfRowsInPostTableView == 0)
                 expectation.fulfill()
             }

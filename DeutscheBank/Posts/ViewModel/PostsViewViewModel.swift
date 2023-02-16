@@ -95,7 +95,7 @@ extension PostsViewViewModel {
             posts = posts.filter({$0.isFavoritePost})
         }
         self.isFavoriteFilsterEnabled = segment == .favoritePosts
-        requestOutput.send(.reloadPost)
+        requestOutput.send(.reloadPosts)
     }
     
     private func updatePostfavoriteStatus(_ post: PostViewModelItemProtocol) {
@@ -113,7 +113,7 @@ extension PostsViewViewModel {
             if isFavoriteFilsterEnabled {
                 posts = posts.filter ({ $0.isFavoritePost })
             }
-            self.requestOutput.send(.reloadPost)
+            self.requestOutput.send(.reloadPosts)
         }
     }
     
@@ -168,7 +168,7 @@ extension PostsViewViewModel {
         case fetchPostsDidFail
         case fetchPostsDidSucceed
         case fetchPostsDidSucceedWithEmptyList
-        case reloadPost
+        case reloadPosts
         case favoriteLocalPosts
     }
     

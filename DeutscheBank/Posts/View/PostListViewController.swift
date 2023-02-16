@@ -48,7 +48,7 @@ class PostListViewController: BaseViewController {
         addSubViewsOnMainViewAndApplyConstraints()
         bindViewModel()
         startActivityIndicatorAnimation()
-        loadPostFromServer()
+        startLoadingPostFromServerForLoggedInUser()
         displayAlertIfNoInterentAccessibility()
     }
     
@@ -57,7 +57,7 @@ class PostListViewController: BaseViewController {
         postsViewModel = viewModel
     }
     
-    func loadPostFromServer() {
+    func startLoadingPostFromServerForLoggedInUser() {
         userInput.send(.viewLoaded)
     }
 }
@@ -83,7 +83,7 @@ extension PostListViewController {
                         with: AppConstants.PostListScreenConstants.commonAlertTitle,
                         message: AppConstants.PostListScreenConstants.errorPostAlertMessage
                     )
-                case .reloadPost:
+                case .reloadPosts:
                     self?.reloadPostTableView()
                 case .favoriteLocalPosts:
                     self?.adjustSegmentControllerForOfflineFavoritePostsWhenThereIsNoNetwork()
