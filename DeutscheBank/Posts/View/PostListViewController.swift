@@ -158,7 +158,7 @@ class PostListViewController: BaseViewController {
         if postsViewModel.numberOfRowsInPostTableView == 0 {
             postTableView.setEmptyView(with: AppConstants.PostListScreenConstants.emptyPostMessage)
         } else {
-            postTableView.restore()
+            postTableView.resetBackgroundViewToNil()
         }
     }
 }

@@ -27,13 +27,11 @@ extension UITableView {
         lbl.numberOfLines = 0
         lbl.textAlignment = .center
         lbl.text = message
-        
         backgroundView = lbl
         lbl.centerInSuperview()
     }
     
-    func restore() {
+    func resetBackgroundViewToNil() {
         self.backgroundView = nil
     }
-
 }
