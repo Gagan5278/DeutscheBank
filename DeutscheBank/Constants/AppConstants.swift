@@ -16,8 +16,8 @@ enum AppConstants {
 
 extension AppConstants {
     enum APIRequest {
-        /* Can be injected in PLIST or UserDefinedSetting as per envoirnment
-         after having different target in the app e.g. DEV, STAGE, PROD
+        /* Can be injected & Read from PLIST or UserDefinedSetting as per envoirnment
+         after having different target in the app e.g. DEV, STAGE, PROD. For Our demo we can use here.
          */
         static let baseURL = "https://jsonplaceholder.typicode.com/"
     }
