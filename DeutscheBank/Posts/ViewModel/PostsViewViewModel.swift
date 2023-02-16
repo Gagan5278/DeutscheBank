@@ -9,15 +9,15 @@ import Foundation
 import Combine
 
 class PostsViewViewModel {
-    private let serviceRequest: NetworkRequestProtocol
     public private(set) var requestOutput: PassthroughSubject<RequestOutput, Never> = .init()
     private var cancellables = Set<AnyCancellable>()
-    public private(set) var favoritePostService: FavoritePostService
     private var posts: [PostViewModelItemProtocol] = []
     private var recievedRawPostsModel: [PostModel] = []
-    private var isFavoriteFilsterEnabled: Bool = false
     private var savedFavoritePostIDS: [Int] = []
-    let loginUserModel: LoginUserModel!
+    private var isFavoriteFilsterEnabled: Bool = false
+    private let loginUserModel: LoginUserModel!
+    private let serviceRequest: NetworkRequestProtocol
+    public private(set) var favoritePostService: FavoritePostService
     // MARK: - init
     init(
         request: NetworkRequestProtocol,
@@ -35,7 +35,7 @@ class PostsViewViewModel {
             switch userEvent {
             case .viewLoaded:
                 if NetworkReachability.isConnectedToNetwork() {
-                    self.loadUser()
+                    self.fetchUserPostsFromServer()
                 }
             case .showFavoriteTypePost(let segment):
                 self.updatePostTableOnFavoiteAndAllSegment(segment)
@@ -80,8 +80,7 @@ class PostsViewViewModel {
 
 // MARK: - Private Section
 extension PostsViewViewModel {
-    
-    private func loadUser() {
+    private func fetchUserPostsFromServer() {
          Task {
              let task = fetchPostsTaskForLoggedIn(user: self.loginUserModel)
              try await readPostsFromRecieved(task: task)
@@ -103,7 +102,7 @@ extension PostsViewViewModel {
         self.favoritePostService.updateEntity(for: post)
         if let postIndex = self.posts.firstIndex(where: {$0.postID == post.postID}) {
             let postItem = posts[postIndex]
-            posts[postIndex] = post.updatePostStatus(post:
+            posts[postIndex] = post.updatePostStatusFor(post:
                                                         PostModel(
                                                             userId: postItem.userID,
                                                             id: postItem.postID,

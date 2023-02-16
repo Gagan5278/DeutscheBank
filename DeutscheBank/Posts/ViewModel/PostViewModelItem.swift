@@ -20,7 +20,7 @@ protocol PostViewModelItemProtocol {
     var userID: Int {get}
     var postID: Int {get}
     var isFavoritePost: Bool {get set}
-    func updatePostStatus(post: PostModel, isFavorite: Bool) -> PostViewModelItemProtocol
+    func updatePostStatusFor(post: PostModel, isFavorite: Bool) -> PostViewModelItemProtocol
 }
 
 struct PostViewModelItem: PostViewModelItemProtocol {
@@ -49,7 +49,7 @@ struct PostViewModelItem: PostViewModelItemProtocol {
         isFavoritePost = isFavorite
     }
     
-    func updatePostStatus(post: PostModel, isFavorite: Bool) -> PostViewModelItemProtocol {
+    func updatePostStatusFor(post: PostModel, isFavorite: Bool) -> PostViewModelItemProtocol {
         PostViewModelItem(postModel: post, isFavorite: isFavorite)
     }
 }
