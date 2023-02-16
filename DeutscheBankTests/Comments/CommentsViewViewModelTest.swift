@@ -59,7 +59,7 @@ final class CommentsViewViewModelTest: XCTestCase {
             .sink { [weak self] output in
                 guard let self = self else { return }
                 XCTAssertTrue(output == .fetchCommentsDidSucceed)
-                XCTAssertTrue(self.sutCommentsViewViewModel.getPostComment(at: IndexPath(row: 0, section: 0)).postId == self.mockPostViewModelItem.postID)
+                XCTAssertTrue(self.sutCommentsViewViewModel.getComment(at: IndexPath(row: 0, section: 0)).postId == self.mockPostViewModelItem.postID)
                 expectation.fulfill()
             }
             .store(in: &cancellable)

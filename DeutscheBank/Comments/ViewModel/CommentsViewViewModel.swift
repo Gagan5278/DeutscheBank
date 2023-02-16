@@ -55,7 +55,7 @@ class CommentsViewViewModel {
         comments.count
     }
     
-    func getPostComment(at indexPath: IndexPath) -> CommentsViewViewModelItemProtocol {
+    func getComment(at indexPath: IndexPath) -> CommentsViewViewModelItemProtocol {
         comments[indexPath.row]
     }
     

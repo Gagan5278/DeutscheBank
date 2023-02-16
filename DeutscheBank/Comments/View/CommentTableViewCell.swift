@@ -30,16 +30,11 @@ class CommentTableViewCell: BaseTableViewCell<CommentsViewViewModelItemProtocol>
     // MARK: - Contraint setup for vertical stack view
     private func verticalStackViewConstraintSetup()  {
         contentView.addSubview(infoView)
-        infoView.anchor(
-            top: contentView.topAnchor,
-            leading: contentView.leadingAnchor,
-            bottom: contentView.bottomAnchor,
-            trailing: contentView.trailingAnchor,
-            padding: UIEdgeInsets(
-                top: AppConstants.commonPadingConstants,
-                left: AppConstants.commonPadingConstants,
-                bottom: AppConstants.commonPadingConstants,
-                right: AppConstants.commonPadingConstants)
+        infoView.fillSuperview(padding: UIEdgeInsets(
+            top: AppConstants.commonPadingConstants,
+            left: AppConstants.commonPadingConstants,
+            bottom: AppConstants.commonPadingConstants,
+            right: AppConstants.commonPadingConstants)
         )
     }
     

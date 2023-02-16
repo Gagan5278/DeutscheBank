@@ -11,7 +11,7 @@ class CommentsTableSectionHeaderView: UITableViewHeaderFooterView {
 
     static let commentsTableSectionHeaderViewIdentifier = "CommentsTableSectionHeaderViewdentifier"
     
-    let headerTitleLable: UILabel = {
+    let sectionHeaderTitleLable: UILabel = {
         let lbl = UILabel()
         lbl.font = .headerFont
         lbl.textColor = .appPrimaryColor
@@ -31,7 +31,7 @@ class CommentsTableSectionHeaderView: UITableViewHeaderFooterView {
     }
     
     private func addHeaderTitleOnContentViewAndSetupConstraint() {
-        contentView.addSubview(headerTitleLable)
-        headerTitleLable.fillSuperview()
+        contentView.addSubview(sectionHeaderTitleLable)
+        sectionHeaderTitleLable.fillSuperview()
     }
 }

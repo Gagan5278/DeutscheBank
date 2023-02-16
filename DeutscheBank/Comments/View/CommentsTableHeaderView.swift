@@ -45,9 +45,12 @@ class CommentsTableHeaderView: UIView {
         )
     }
         
-    func setHeader(title: String, message: String, isFavoritePost: Bool = false) {
-        infoView.set(title: title, body: message)
-        if isFavoritePost {
+    func setHeader(with model: CommentsViewViewModel) {
+        infoView.set(
+            title: model.selectedPostTitle,
+            body: model.selectedPostBody
+        )
+        if model.isFavoritePost {
             favoriteIcon.isHidden = false
         } else {
             favoriteIcon.isHidden = true

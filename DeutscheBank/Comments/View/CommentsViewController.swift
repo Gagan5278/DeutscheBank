@@ -32,18 +32,18 @@ class CommentsViewController: BaseViewController {
         return tblView
     }()
     
+    private let tableSectionHeaderHeightConstant: CGFloat = AppConstants.commonPadingConstants*5
     private var commentSubscriber: AnyCancellable?
-    private let tableSectionHeight: CGFloat = AppConstants.commonPadingConstants*5
     public private(set) var commentViewModel: CommentsViewViewModel!
     
     // MARK: - View Controller life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = AppConstants.CommentListScreenConstants.navigationTitle
-        commentsTableViewSetup()
+        addVommentsTableViewOnMainViewAndSetupConstraints()
         bindViewModel()
         startActivityIndicatorAnimation()
-        commentViewModel.loadCommentsFromServer()
+        startFetchingCommentsFromServer()
     }
     
     convenience init(viewModel: CommentsViewViewModel) {
@@ -54,12 +54,13 @@ class CommentsViewController: BaseViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         if let headerView = commentTableView.tableHeaderView as? CommentsTableHeaderView {
-            headerView.setHeader(
-                title: commentViewModel.selectedPostTitle,
-                message: commentViewModel.selectedPostBody,
-                isFavoritePost: commentViewModel.isFavoritePost)
+            headerView.setHeader(with: commentViewModel)
         }
         commentTableView.sizeHeaderToFit()
+    }
+    
+    private func startFetchingCommentsFromServer() {
+        commentViewModel.loadCommentsFromServer()
     }
     
     // MARK: - ViewModel Bidnding/Listner
@@ -70,14 +71,14 @@ class CommentsViewController: BaseViewController {
             .sink(receiveValue: { [weak self] commentOutput in
                 switch commentOutput {
                 case .fetchCommentsDidSucceed:
-                    self?.reloadCommentTableView()
+                    self?.showAndReloadCommentTableView()
                 case .didFailToFetchComments:
-                    self?.showAlertOnComment(
+                    self?.showAlertOnCommentScreen(
                         with: AppConstants.CommentListScreenConstants.alertTitle,
                         message: AppConstants.CommentListScreenConstants.errorCommentAlertMessage
                     )
                 case .fetchCommentssDidSucceedWithEmptyList:
-                    self?.showAlertOnComment(
+                    self?.showAlertOnCommentScreen(
                         with: AppConstants.CommentListScreenConstants.alertTitle,
                         message: AppConstants.CommentListScreenConstants.emptyPostAlertMessage
                     )
@@ -86,19 +87,19 @@ class CommentsViewController: BaseViewController {
             })
     }
     
-    private func commentsTableViewSetup() {
+    private func addVommentsTableViewOnMainViewAndSetupConstraints() {
         self.view.addSubview(commentTableView)
         commentTableView.fillSuperview()
     }
     
     // MARK: - Reload table view on fetch success
-    private func reloadCommentTableView() {
+    private func showAndReloadCommentTableView() {
         commentTableView.isHidden = false
         commentTableView.reloadData()
     }
     
     // MARK: - Display alert
-    private func showAlertOnComment(with title: String, message: String) {
+    private func showAlertOnCommentScreen(with title: String, message: String) {
         self.showAlertWith(
             title: title,
             message: message,
@@ -114,14 +115,16 @@ extension CommentsViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: CommentsTableSectionHeaderView.commentsTableSectionHeaderViewIdentifier) as? CommentsTableSectionHeaderView {
+        if let header = tableView.dequeueReusableHeaderFooterView(
+            withIdentifier: CommentsTableSectionHeaderView.commentsTableSectionHeaderViewIdentifier)
+            as? CommentsTableSectionHeaderView {
             return header
         }
         return nil
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        tableSectionHeight
+        tableSectionHeaderHeightConstant
     }
 }
 
@@ -132,10 +135,12 @@ extension CommentsViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let commentCell = tableView.dequeueReusableCell(withIdentifier: CommentTableViewCell.commentCellIdentifier, for: indexPath) as? CommentTableViewCell else {
-            return UITableViewCell()
+        guard let commentCell = tableView.dequeueReusableCell(
+            withIdentifier: CommentTableViewCell.commentCellIdentifier,
+            for: indexPath) as? CommentTableViewCell else {
+            fatalError("Invalid UITableViewCell found")
         }
-        commentCell.cellItem = commentViewModel.getPostComment(at: indexPath)
+        commentCell.cellItem = commentViewModel.getComment(at: indexPath)
         return commentCell
     }
 }
