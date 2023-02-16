@@ -17,8 +17,8 @@ class CoreDataStackInMemory: CoreDataManagerProtocol  {
     var viewContext: NSManagedObjectContext {
         context
     }
-    private let persistantContainer: NSPersistentContainer
     
+    private let persistantContainer: NSPersistentContainer
     // MARK: - init
     init() {
         persistantContainer = {
