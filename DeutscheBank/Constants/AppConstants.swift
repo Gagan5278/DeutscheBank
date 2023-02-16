@@ -44,7 +44,7 @@ extension AppConstants {
         static let emptyPostAlertMessage = "No post found for entered user id. Please enter a valid user id"
         static let alertGoBackButtonTitle = "Go Back"
         static let errorPostAlertMessage = "An error occured while loading post from server. Please check your internet and try again"
-        static let offlineModeErrorAlertTitle = "Off line mode"
+        static let offlineModeErrorAlertTitle = "Offline mode"
         static let offlineModeErrorAlertMessageForFavoritePost = "Internet is not available. Only favorite post will be visible if available."
         static let emptyPostMessage =  "📋 No post to display"
     }
