@@ -60,7 +60,10 @@ class PostListViewController: BaseViewController {
     func loadPostFromServer() {
         userInput.send(.viewLoaded)
     }
-    
+}
+
+// MARK: - PostListViewController Private section
+extension PostListViewController {
     // MARK: - Bind View Model
     private func bindViewModel() {
         let output = postsViewModel.transform(input: userInput.eraseToAnyPublisher())
@@ -125,7 +128,7 @@ class PostListViewController: BaseViewController {
         )
     }
     
-    // MARK: - Display alert
+    // MARK: - Display error alert
     private func showAlert(with title: String, message: String) {
         self.showAlertWith(
             title: title,
@@ -139,7 +142,7 @@ class PostListViewController: BaseViewController {
         postListCoordinator?.popToLastScreen()
     }
     
-    // MARK: - Post filter on segment action
+    // MARK: - Post filter segment action event
     @objc
     private func segmentedValueChanged(sender: UISegmentedControl) {
         if let segmentSelected = PostsViewViewModel.PostSegmentControllerEnum(rawValue: sender.selectedSegmentIndex) {
