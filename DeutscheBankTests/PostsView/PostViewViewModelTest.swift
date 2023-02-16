@@ -9,7 +9,6 @@ import Combine
 @testable import DeutscheBank
 
 final class PostViewViewModelTest: XCTestCase {
-    
     private var cancellable = Set<AnyCancellable>()
     private let mockUser = LoginUserModel(userid: 1)
     private var coreDataManager: CoreDataManagerProtocol!
@@ -22,7 +21,7 @@ final class PostViewViewModelTest: XCTestCase {
         sutPostViewModel = PostsViewViewModel(
             request: request,
             user: mockUser, codeDataManager: coreDataManager
-    )
+        )
     }
     
     override func tearDown() {
@@ -52,7 +51,7 @@ final class PostViewViewModelTest: XCTestCase {
     func testPostsViewViewModel_WhenPostModelLoadingFailed_ShouldReturnFetchPostsDidSucceedWithEmptyList() async throws {
         let expectation = expectation(description: "ShouldReturnFetchPostsDidSucceedWithEmptyList")
         sutPostViewModel = nil
-       let mocksutPostViewModel =  PostsViewViewModel(
+        let mocksutPostViewModel =  PostsViewViewModel(
             request: MockNetworkRequestPostSuccessWithEmptyModel(),
             user: LoginUserModel(userid: 1),
             codeDataManager: CoreDataStackInMemory()
@@ -67,7 +66,7 @@ final class PostViewViewModelTest: XCTestCase {
             .sink { output in
                 XCTAssertTrue(output == .fetchPostsDidSucceedWithEmptyList)
                 expectation.fulfill()
-                      }
+            }
             .store(in: &cancellable)
         try await mocksutPostViewModel.readPostsFromRecieved(task: task)
         wait(for: [expectation], timeout: 5)
@@ -155,7 +154,7 @@ final class PostViewViewModelTest: XCTestCase {
         let task = sutPostViewModel.fetchPostsTaskForLoggedIn(user: mockUser)
         let posts = try await task.value
         XCTAssertNotNil(posts)
-
+        
         sutPostViewModel
             .requestOutput
             .dropFirst()

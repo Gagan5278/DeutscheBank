@@ -18,7 +18,7 @@ class CommentsTableHeaderView: UIView {
         imgView.widthAnchor.constraint(equalToConstant: AppConstants.commonPadingConstants*2.5).isActive = true
         return imgView
     }()
-
+    
     private lazy var horizontalStack: UIStackView = {
         let stkView = UIStackView(arrangedSubviews: [infoView, favoriteIcon])
         return stkView
@@ -33,7 +33,7 @@ class CommentsTableHeaderView: UIView {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
-
+    
     private func addOnMainView() {
         addSubview(horizontalStack)
         horizontalStack.fillSuperview(
@@ -44,7 +44,7 @@ class CommentsTableHeaderView: UIView {
                 right: AppConstants.commonPadingConstants)
         )
     }
-        
+    
     func setHeader(with model: CommentsViewViewModel) {
         infoView.set(
             title: model.selectedPostTitle,

@@ -9,7 +9,6 @@ import UIKit
 import Combine
 
 class CommentsViewController: BaseViewController {
-    
     public private(set) lazy var commentTableView: UITableView = {
         let tblView = UITableView()
         tblView.isHidden = true

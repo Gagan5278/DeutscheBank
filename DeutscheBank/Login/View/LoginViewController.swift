@@ -7,14 +7,14 @@
 
 import UIKit
 import Combine
+
 class LoginViewController: BaseViewController {
-    
     var loginCoordinator: Coordinator?
     private var userIDTextFieldSubscriber: AnyCancellable?
     private let userTextFieldHeight: CGFloat = AppConstants.commonPadingConstants*4.4
     private let loginButtonHeight: CGFloat = AppConstants.commonPadingConstants*4.4
     private var loginViewModel: LoginViewViewModel!
-
+    
     public private(set) lazy var userIDEntryTextField: UITextField = {
         let txtField = UITextField()
         txtField.borderStyle = .roundedRect
@@ -23,7 +23,7 @@ class LoginViewController: BaseViewController {
         txtField.addBorder()
         txtField.addToolbarButtonWith(title: AppConstants.LoginScreenConstants.textFieldToolbarButtonTitle, onPress: (
             target: self,
-            action: #selector(doneButtonAction))
+            action: #selector(hideKeyboard))
         )
         txtField.heightAnchor.constraint(equalToConstant: userTextFieldHeight).isActive = true
         return txtField
@@ -56,7 +56,7 @@ class LoginViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = AppConstants.LoginScreenConstants.navigationTitle
-        addViewsOnMainView()
+        addVerticalStackViewOnMainViewAndApplyConstraints()
         addTextFieldSubscriber()
         addTapGestureToHideKeyboard()
         displayAlertIfNoInterentAccessibility()
@@ -71,19 +71,12 @@ class LoginViewController: BaseViewController {
         super.viewWillDisappear(animated)
         resetUserEntryStateOnViewWillDisappear()
     }
-     
-    // MARK: - TextField event subscriber/listner
-    private func addTextFieldSubscriber() {
-        userIDTextFieldSubscriber = loginViewModel
-            .validateEnteredUserID(userIDEntryTextField.textPublisher())
-            .assign(
-                to: \.isEnabled,
-                on: loginButton
-            )
-    }
-    
-    // MARK: - Add Views in main view
-    private func addViewsOnMainView() {
+}
+
+// MARK: - LoginViewController Private section
+extension LoginViewController {
+    // MARK: - Add stackview in main view and apply constraint
+    private func addVerticalStackViewOnMainViewAndApplyConstraints() {
         self.view.addSubviews(verticalStackView)
         verticalStackViewConstraintSetup()
     }
@@ -102,28 +95,32 @@ class LoginViewController: BaseViewController {
         verticalStackView.centerInSuperview()
     }
     
+    // MARK: - TextField event subscriber/listner
+    private func addTextFieldSubscriber() {
+        userIDTextFieldSubscriber = loginViewModel
+            .validateEnteredUserID(userIDEntryTextField.textPublisher())
+            .assign(
+                to: \.isEnabled,
+                on: loginButton
+            )
+    }
+    
+    // MARK: - UITapGesture handle
     private func addTapGestureToHideKeyboard() {
         self.view.addGestureRecognizer(UITapGestureRecognizer(
             target: self,
-            action: #selector(doneButtonAction))
+            action: #selector(hideKeyboard))
         )
     }
     
-    private func displayAlertIfNoInterentAccessibility() {
-        checkForInternetAndShowAlertOnStart(
-            with: AppConstants.netowrkErrorAlertTitle,
-            message: AppConstants.netowrkErrorAlertMessage
-        )
-    }
-    
-    // MARK: - Hide Keyboard
+    // MARK: - Hide Keyboard on Toolbar done button action
     @objc
-    private func doneButtonAction() {
+    private func hideKeyboard() {
         userIDEntryTextField.resignFirstResponder()
     }
     
     private func resetUserEntryStateOnViewWillDisappear() {
-        doneButtonAction()
+        hideKeyboard()
         userIDEntryTextField.text = ""
         loginButton.isEnabled = false
     }
@@ -134,5 +131,13 @@ class LoginViewController: BaseViewController {
         if let userID = userIDEntryTextField.text?.integer {
             loginCoordinator?.pushToShowPosts(for: userID)
         }
+    }
+    
+    // MARK: - Alert if there is no netowrk
+    private func displayAlertIfNoInterentAccessibility() {
+        checkForInternetAndShowAlertOnStart(
+            with: AppConstants.netowrkErrorAlertTitle,
+            message: AppConstants.netowrkErrorAlertMessage
+        )
     }
 }

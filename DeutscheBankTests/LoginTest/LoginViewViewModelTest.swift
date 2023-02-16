@@ -10,19 +10,18 @@ import Combine
 @testable import DeutscheBank
 
 final class LoginViewViewModelTest: XCTestCase {
-
     private var loginViewModel: LoginViewViewModel!
     private var cancellables: AnyCancellable?
     
     override func setUp() {
         loginViewModel = LoginViewViewModel()
     }
-
+    
     override func tearDown() {
         loginViewModel = nil
         cancellables = nil
     }
-
+    
     func testLoginViewModel_WhenValidUserNameEnetered_ShouldReturnTrue() {
         // Given
         let value = "12"

@@ -15,7 +15,6 @@ protocol CommentsViewViewModelItemProtocol {
 }
 
 struct CommentsViewViewModelItem: CommentsViewViewModelItemProtocol {
-    
     var commenterEmail: String {
         commentModel.email.lowercased()
     }
@@ -27,7 +26,7 @@ struct CommentsViewViewModelItem: CommentsViewViewModelItemProtocol {
     var comment: String {
         commentModel.body.capitalizeFirstLetterOfSentence
     }
-        
+    
     var postId: Int {
         commentModel.postId
     }

@@ -20,7 +20,7 @@ extension APIManagerError {
         self.errorDescription
     }
     
-   private var errorDescription: String {
+    private var errorDescription: String {
         switch self {
         case .conversionFailedToHTTPURLResponse:
             return AppConstants.APIError.conversionFailedToHTTPURLResponse

@@ -81,11 +81,11 @@ class PostsViewViewModel {
 // MARK: - Private Section
 extension PostsViewViewModel {
     private func fetchUserPostsFromServer() {
-         Task {
-             let task = fetchPostsTaskForLoggedIn(user: self.loginUserModel)
-             try await readPostsFromRecieved(task: task)
-         }
-     }
+        Task {
+            let task = fetchPostsTaskForLoggedIn(user: self.loginUserModel)
+            try await readPostsFromRecieved(task: task)
+        }
+    }
     
     private func updatePostTableOnFavoiteAndAllSegment(_ segment: PostsViewViewModel.PostSegmentControllerEnum) {
         switch segment {
@@ -103,12 +103,12 @@ extension PostsViewViewModel {
         if let postIndex = self.posts.firstIndex(where: {$0.postID == post.postID}) {
             let postItem = posts[postIndex]
             posts[postIndex] = post.updatePostStatusFor(post:
-                                                        PostModel(
-                                                            userId: postItem.userID,
-                                                            id: postItem.postID,
-                                                            title: postItem.postTitle,
-                                                            body: postItem.postBody),
-                                                     isFavorite: !postItem.isFavoritePost
+                                                            PostModel(
+                                                                userId: postItem.userID,
+                                                                id: postItem.postID,
+                                                                title: postItem.postTitle,
+                                                                body: postItem.postBody),
+                                                        isFavorite: !postItem.isFavoritePost
             )
             if isFavoriteFilsterEnabled {
                 posts = posts.filter ({ $0.isFavoritePost })

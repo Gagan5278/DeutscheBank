@@ -9,7 +9,6 @@ import Foundation
 import Combine
 
 class CommentsViewViewModel {
-    
     public private(set) var commentRequestOutput: PassthroughSubject<CommentOutput, Never> = .init()
     private var comments: [CommentsViewViewModelItemProtocol] = []
     private let commentServiceRequest: NetworkRequestProtocol
@@ -43,14 +42,14 @@ class CommentsViewViewModel {
             commentRequestOutput.send(.didFailToFetchComments)
         }
     }
-
+    
     func loadCommentsFromServer() {
-         Task {
-             let task = fetchCommentsTaskForSelectedPost()
-             try await readCommentsFromRecieved(task: task)
-         }
-     }
-        
+        Task {
+            let task = fetchCommentsTaskForSelectedPost()
+            try await readCommentsFromRecieved(task: task)
+        }
+    }
+    
     var numberOfRowsInCommentTableView: Int {
         comments.count
     }

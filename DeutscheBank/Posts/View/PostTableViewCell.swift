@@ -38,7 +38,7 @@ class PostTableViewCell: BaseTableViewCell<PostViewModelItemProtocol> {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
-          
+    
     override var cellItem: PostViewModelItemProtocol! {
         didSet {
             setPostTitleAndBody()

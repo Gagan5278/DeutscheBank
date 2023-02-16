@@ -8,15 +8,15 @@
 import XCTest
 
 final class DeutscheBankUITestsLaunchTests: XCTestCase {
-
+    
     override class var runsForEachTargetApplicationUIConfiguration: Bool {
         true
     }
-
+    
     override func setUpWithError() throws {
         continueAfterFailure = false
     }
-
+    
     func testAppLaunchScreen() throws {
         let app = XCUIApplication()
         app.launch()

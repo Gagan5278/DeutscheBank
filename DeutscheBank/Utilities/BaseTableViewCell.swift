@@ -8,9 +8,7 @@
 import UIKit
 
 class BaseTableViewCell<U: Any>: UITableViewCell {
-    
     var cellItem: U!
-
     public private(set) lazy var infoView: CommonTitleAndSubTitleInfoView = {
         let view = CommonTitleAndSubTitleInfoView()
         return view

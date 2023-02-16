@@ -8,7 +8,6 @@
 import UIKit
 
 class BaseViewController: UIViewController {
-
     private let activityIndicator: UIActivityIndicatorView = {
         let actView  = UIActivityIndicatorView()
         actView.hidesWhenStopped = true
@@ -26,7 +25,7 @@ class BaseViewController: UIViewController {
         self.view.bringSubviewToFront(activityIndicator)
     }
     
-   // MARK: - Activity indicator setup
+    // MARK: - Activity indicator setup
     private func setupActivityIndicator() {
         self.view.addSubview(activityIndicator)
         activityIndicator.centerInSuperview()

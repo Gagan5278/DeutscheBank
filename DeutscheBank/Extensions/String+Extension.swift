@@ -13,6 +13,6 @@ extension String {
     }
     
     var capitalizeFirstLetterOfSentence: Self {
-         prefix(1).capitalized + dropFirst()
+        prefix(1).capitalized + dropFirst()
     }
 }

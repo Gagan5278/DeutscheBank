@@ -86,39 +86,4 @@ final class CommentsViewViewModelTest: XCTestCase {
         try await sutCommentsViewViewModel.readCommentsFromRecieved(task: task)
         wait(for: [expectation], timeout: 5)
     }
-    
-    
-    /*
-     func testCommentsViewViewModel_WhenCommentsLoaded_NumberOfRowsSouldBeMoreThanZero()  {
-     sutCommentsViewViewModel.commentOutput
-     .sink { output in
-     XCTAssertTrue(output == .fetchCommentsDidSucceed)
-     XCTAssertTrue(self.sutCommentsViewViewModel.numberOfRowsInCommentTableView > 0)
-     }
-     .store(in: &cancellable)
-     }
-     
-     func testCommentsViewViewModel_WhenCommentsLoaded_GetPostCommentHasSamePostID()  {
-     sutCommentsViewViewModel.commentOutput
-     .sink { [weak self] output in
-     guard let self = self else { return }
-     XCTAssertTrue(output == .fetchCommentsDidSucceed)
-     XCTAssertTrue(self.sutCommentsViewViewModel.getPostComment(at: IndexPath(row: 0, section: 0)).postId == self.mockPostViewModelItem.postID)
-     }
-     .store(in: &cancellable)
-     }
-     
-     func testCommentsViewViewModel_WhenCommentsLoadingFailed_ShouldReturnDidFailToFetchComments()  {
-     sutCommentsViewViewModel = nil
-     sutCommentsViewViewModel = CommentsViewViewModel(
-     request: MockNetworkRequestCommentsFailure(),
-     post: mockPostViewModelItem
-     )
-     sutCommentsViewViewModel.commentOutput
-     .sink { output  in
-     XCTAssertTrue(output == .didFailToFetchComments)
-     }
-     .store(in: &cancellable)
-     }
-     */
 }

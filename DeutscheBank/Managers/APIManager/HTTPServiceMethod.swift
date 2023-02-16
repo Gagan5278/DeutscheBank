@@ -8,9 +8,9 @@
 import Foundation
 
 enum HTTPServiceMethod: String {
-  case get = "GET"
-  case post = "POST"
-  case delete = "DELETE"
-  case put = "PUT"
-  case patch = "PATCH"
+    case get = "GET"
+    case post = "POST"
+    case delete = "DELETE"
+    case put = "PUT"
+    case patch = "PATCH"
 }

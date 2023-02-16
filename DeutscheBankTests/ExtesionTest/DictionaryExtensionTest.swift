@@ -9,11 +9,11 @@ import XCTest
 @testable import DeutscheBank
 
 final class DictionaryExtensionTest: XCTestCase {
-
+    
     override func setUp()  { }
-
+    
     override func tearDown() { }
-
+    
     func testDictionarySerialize_WhenValidDictionaryPassed_ShouldNotBeNilData()  {
         let validDictionary = ["name": "test name", "age" : 1223] as [String : Any]
         do {
@@ -23,5 +23,4 @@ final class DictionaryExtensionTest: XCTestCase {
             XCTFail()
         }
     }
-
 }

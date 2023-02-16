@@ -18,7 +18,7 @@ class CoreDataManager: CoreDataManagerProtocol {
     private let persistantContainerName: String = "DeutscheBank"
     private let entityName: String = "FavoritePostEntity"
     private lazy var context: NSManagedObjectContext = {
-         persistantContainer.viewContext
+        persistantContainer.viewContext
     }()
     
     // MARK: - init

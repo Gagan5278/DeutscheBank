@@ -11,11 +11,11 @@ import Combine
 
 final class LoginViewControllerTest: XCTestCase {
     private var cancellables: AnyCancellable?
-
+    
     private var loginViewModel: LoginViewViewModel!
     private var sutloginViewController: LoginViewController!
     private var mockNavigationController: UINavigationControllerMock!
-
+    
     override func setUp() {
         loginViewModel = LoginViewViewModel()
         sutloginViewController = LoginViewController(viewModel: loginViewModel)
@@ -23,16 +23,16 @@ final class LoginViewControllerTest: XCTestCase {
         sutloginViewController.viewDidLoad()
         mockNavigationController = UINavigationControllerMock(rootViewController: sutloginViewController)
     }
-
+    
     override func tearDown() {
         loginViewModel = nil
         sutloginViewController = nil
     }
-
+    
     func testLoginViewController_WhenLoaded_ViewIsNotNil() {
         XCTAssertNotNil(sutloginViewController.view)
     }
-
+    
     func testLoginViewController_WhenLoaded_NavigationControllerTitleIsNotNil() {
         XCTAssertNotNil(sutloginViewController.navigationItem.title)
     }

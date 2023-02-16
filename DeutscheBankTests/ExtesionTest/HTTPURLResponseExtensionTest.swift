@@ -7,12 +7,13 @@
 
 import XCTest
 @testable import DeutscheBank
+
 final class HTTPURLResponseExtensionTest: XCTestCase {
-
+    
     override func setUp() { }
-
+    
     override func tearDown() { }
-
+    
     func testHTTPURLResponseChecker_WhenValidResponseSupplied_ShouldBeTrueInTryBlock()  {
         let urlResponse = HTTPURLResponse(url: URL(string: "https://google.com/")!, statusCode: 244, httpVersion: nil, headerFields: nil)
         do {
@@ -22,7 +23,7 @@ final class HTTPURLResponseExtensionTest: XCTestCase {
             XCTFail()
         }
     }
-
+    
     func testHTTPURLResponseChecker_WhenInValidResponseSupplied_ShouldBeTrueInCatchBlock()  {
         let urlResponse = HTTPURLResponse(url: URL(string: "https://google.com/")!, statusCode: 344, httpVersion: nil, headerFields: nil)
         do {

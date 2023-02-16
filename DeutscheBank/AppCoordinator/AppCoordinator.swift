@@ -51,9 +51,8 @@ class AppCoordinator: Coordinator {
                                                             post: post))
         commentController.view.backgroundColor = .appBackgroundColor
         navigationController.pushViewController(commentController, animated: true)
-
     }
-
+    
     func popToLastScreen() {
         navigationController.popViewController(animated: true)
     }

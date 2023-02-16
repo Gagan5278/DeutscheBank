@@ -8,7 +8,6 @@
 import UIKit
 
 class CommonTitleAndSubTitleInfoView: UIView {
-
     private let titleLabel: UILabel = {
         let lbl = UILabel()
         lbl.font = .titleFont
@@ -29,7 +28,7 @@ class CommonTitleAndSubTitleInfoView: UIView {
         let stackView = VerticalStackView(views: titleLabel, bodyLabel)
         return stackView
     }()
-        
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         verticalStackViewSetup()

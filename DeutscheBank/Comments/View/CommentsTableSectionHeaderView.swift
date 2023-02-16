@@ -8,7 +8,7 @@
 import UIKit
 
 class CommentsTableSectionHeaderView: UITableViewHeaderFooterView {
-
+    
     static let commentsTableSectionHeaderViewIdentifier = "CommentsTableSectionHeaderViewdentifier"
     
     let sectionHeaderTitleLable: UILabel = {
@@ -20,7 +20,7 @@ class CommentsTableSectionHeaderView: UITableViewHeaderFooterView {
         lbl.textAlignment = .center
         return lbl
     }()
-        
+    
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
         addHeaderTitleOnContentViewAndSetupConstraint()

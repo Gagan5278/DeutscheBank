@@ -8,7 +8,6 @@
 import UIKit
 
 class CommentTableViewCell: BaseTableViewCell<CommentsViewViewModelItemProtocol> {
-
     static let commentCellIdentifier = "commentCellIdentifier"
     
     // MARK: - View Life cycle
@@ -20,7 +19,7 @@ class CommentTableViewCell: BaseTableViewCell<CommentsViewViewModelItemProtocol>
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
-
+    
     override var cellItem: CommentsViewViewModelItemProtocol! {
         didSet {
             setCommenterNameAndCommentBody()

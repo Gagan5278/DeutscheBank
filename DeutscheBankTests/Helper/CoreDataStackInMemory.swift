@@ -21,7 +21,7 @@ class CoreDataStackInMemory: CoreDataManagerProtocol  {
     
     // MARK: - init
     init() {
-          persistantContainer = {
+        persistantContainer = {
             let container = NSPersistentContainer(name: "DeutscheBank")
             //Create NSPersistentStoreDescription
             let persistentDecsription = NSPersistentStoreDescription()
@@ -38,10 +38,9 @@ class CoreDataStackInMemory: CoreDataManagerProtocol  {
             return container
         }()
     }
-
-   
-   private lazy var context: NSManagedObjectContext = {
-       return persistantContainer.viewContext
-   }()
+    
+    private lazy var context: NSManagedObjectContext = {
+        return persistantContainer.viewContext
+    }()
 }
 

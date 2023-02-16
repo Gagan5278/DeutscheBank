@@ -14,11 +14,11 @@ final class InMemoryCoreDataSaveFavoriteTest: XCTestCase {
     override func setUp() {
         coreDataStackInMemory = CoreDataStackInMemory()
     }
-
+    
     override func tearDown() {
         coreDataStackInMemory = nil
     }
-
+    
     func testCoreDataStackInMemory_ViewContextIsNotNil() {
         XCTAssertNotNil(coreDataStackInMemory.viewContext)
     }

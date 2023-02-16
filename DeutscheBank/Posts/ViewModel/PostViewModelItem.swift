@@ -10,8 +10,8 @@ import Foundation
 /*
  This entity can be used to modify/update raw data coming from codable model.
  Example:
-   if we get 'firstName' and 'secondName' from model.
-   Here we can get 'fullName' by adding business logic in this file.
+ if we get 'firstName' and 'secondName' from model.
+ Here we can get 'fullName' by adding business logic in this file.
  */
 
 protocol PostViewModelItemProtocol {
@@ -37,7 +37,7 @@ struct PostViewModelItem: PostViewModelItemProtocol {
     var postID: Int {
         postModel.id
     }
-
+    
     var userID: Int {
         postModel.userId
     }

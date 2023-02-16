@@ -8,7 +8,6 @@
 import UIKit
 
 class VerticalStackView: UIStackView {
-
     // MARK: - init
     override init(frame: CGRect) {
         super.init(frame: frame)

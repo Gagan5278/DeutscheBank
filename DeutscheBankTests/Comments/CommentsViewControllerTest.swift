@@ -9,7 +9,7 @@ import XCTest
 @testable import DeutscheBank
 
 final class CommentsViewControllerTest: XCTestCase {
-
+    
     private var sutCommentsViewController: CommentsViewController!
     private var mockPostViewModelItem: PostViewModelItemProtocol!
     private var mockRequest: MockNetworkRequestCommentsSuccess!
@@ -27,7 +27,7 @@ final class CommentsViewControllerTest: XCTestCase {
         sutCommentsViewController.loadViewIfNeeded()
         sutCommentsViewController.viewDidLoad()
     }
-
+    
     override func tearDown() {
         sutCommentsViewController = nil
         mockPostViewModelItem = nil
@@ -53,7 +53,7 @@ final class CommentsViewControllerTest: XCTestCase {
     func testCommentsViewController_ViewHasBeenLoaded_PostTableViewDelegateIsNotNil() {
         XCTAssertNotNil(sutCommentsViewController.commentTableView.delegate, "commentTableView Delegate is nil")
     }
-
+    
     func testCommentsViewController_ViewHasBeenLoaded_ConfirmsUITableViewDelegate() {
         XCTAssertTrue(sutCommentsViewController.conforms(to: UITableViewDelegate.self), "CommentsViewController does not confirm UITableViewDelegate")
     }
@@ -65,7 +65,7 @@ final class CommentsViewControllerTest: XCTestCase {
     func testCommentsViewController_ViewHasBeenLoaded_ConfirmsUITableViewDataSource() {
         XCTAssertTrue(sutCommentsViewController.conforms(to: UITableViewDataSource.self), "CommentsViewController does not confirm UITableViewDataSource")
     }
-
+    
     func testCommentsViewController_ViewHasBeenLoaded_TableViewCellHasReuseIdentifier() {
         let cell = sutCommentsViewController.tableView(sutCommentsViewController.commentTableView, cellForRowAt: IndexPath(row: 0, section: 0)) as? CommentTableViewCell
         let actualReuseIdentifer = cell?.reuseIdentifier
