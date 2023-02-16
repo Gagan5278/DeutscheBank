@@ -10,7 +10,7 @@ import UIKit
 protocol Coordinator {
     var navigationController: UINavigationController {get set}
     func start()
-    func pushToShowPostsFor(userID: Int)
+    func pushToShowPosts(for userID: Int)
     func pushToShowCommentScreen(for post: PostViewModelItemProtocol)
     func popToLastScreen()
 }
@@ -30,7 +30,7 @@ class AppCoordinator: Coordinator {
         navigationController.pushViewController(loginViewController, animated: true)
     }
     
-    func pushToShowPostsFor(userID: Int) {
+    func pushToShowPosts(for userID: Int) {
         let userModel = LoginUserModel(userid: userID)
         let postListViewController = PostListViewController(
             viewModel: PostsViewViewModel(

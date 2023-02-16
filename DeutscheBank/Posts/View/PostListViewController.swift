@@ -161,7 +161,6 @@ class PostListViewController: BaseViewController {
             postTableView.restore()
         }
     }
-    
 }
 
 // MARK: - UITableViewDelegate

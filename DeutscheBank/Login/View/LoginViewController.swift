@@ -132,7 +132,7 @@ class LoginViewController: BaseViewController {
     @objc
     private func nextButtonAction(sender: UIAction?) {
         if let userID = userIDEntryTextField.text?.integer {
-            loginCoordinator?.pushToShowPostsFor(userID: userID)
+            loginCoordinator?.pushToShowPosts(for: userID)
         }
     }
 }
