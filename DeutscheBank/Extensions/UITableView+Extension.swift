@@ -19,4 +19,21 @@ extension UITableView {
             self.tableHeaderView = headerView
         }
     }
+    
+    func setEmptyView(with message: String) {
+        let lbl = UILabel()
+        lbl.font = .headerFont
+        lbl.textColor = .appPrimaryColor
+        lbl.numberOfLines = 0
+        lbl.textAlignment = .center
+        lbl.text = message
+        
+        backgroundView = lbl
+        lbl.centerInSuperview()
+    }
+    
+    func restore() {
+        self.backgroundView = nil
+    }
+
 }

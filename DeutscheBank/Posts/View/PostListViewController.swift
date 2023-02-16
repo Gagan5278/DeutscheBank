@@ -153,6 +153,15 @@ class PostListViewController: BaseViewController {
             self?.input.send(.updateFavoriteStatusFor(post: selectedPost))
         }
     }
+    
+    private func addEmptyPostMessageOnTableView() {
+        if postsViewModel.numberOfRowsInPostTableView == 0 {
+            postTableView.setEmptyView(with: AppConstants.PostListScreenConstants.emptyPostMessage)
+        } else {
+            postTableView.restore()
+        }
+    }
+    
 }
 
 // MARK: - UITableViewDelegate
@@ -167,8 +176,10 @@ extension PostListViewController: UITableViewDelegate {
 
 // MARK: - UITableViewDataSource
 extension PostListViewController: UITableViewDataSource {
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        postsViewModel.numberOfRowsInPostTableView
+        addEmptyPostMessageOnTableView()
+        return postsViewModel.numberOfRowsInPostTableView
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

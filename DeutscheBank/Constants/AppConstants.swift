@@ -46,6 +46,7 @@ extension AppConstants {
         static let errorPostAlertMessage = "An error occured while loading post from server. Please check your internet and try again"
         static let offlineModeErrorAlertTitle = "Off line mode"
         static let offlineModeErrorAlertMessageForFavoritePost = "Internet is not available. Only favorite post will be visible if available."
+        static let emptyPostMessage =  "📋 No post to display"
     }
 }
 
