@@ -10,7 +10,7 @@ import Combine
 
 class CommentsViewViewModel {
     
-    public private(set) var commentOutput: PassthroughSubject<CommentOutput, Never> = .init()
+    public private(set) var commentRequestOutput: PassthroughSubject<CommentOutput, Never> = .init()
     private var comments: [CommentsViewViewModelItemProtocol] = []
     private let commentServiceRequest: NetworkRequestProtocol
     private let selectedPost: PostViewModelItemProtocol
@@ -34,13 +34,13 @@ class CommentsViewViewModel {
     func readCommentsFromRecieved(task: Task<[CommentModel]?, Error>) async throws  {
         if let commentsRecieved = try? await task.value {
             if commentsRecieved.isEmpty {
-                commentOutput.send(.fetchCommentssDidSucceedWithEmptyList)
+                commentRequestOutput.send(.fetchCommentssDidSucceedWithEmptyList)
             } else {
                 createCommetModelsFromRecieved(rawComments: commentsRecieved)
-                commentOutput.send(.fetchCommentsDidSucceed)
+                commentRequestOutput.send(.fetchCommentsDidSucceed)
             }
         } else {
-            commentOutput.send(.didFailToFetchComments)
+            commentRequestOutput.send(.didFailToFetchComments)
         }
     }
 

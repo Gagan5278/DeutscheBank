@@ -66,7 +66,7 @@ class CommentsViewController: BaseViewController {
     // MARK: - ViewModel Bidnding/Listner
     private func bindViewModel() {
         commentSubscriber = commentViewModel
-            .commentOutput
+            .commentRequestOutput
             .receive(on: DispatchQueue.main)
             .sink(receiveValue: { [weak self] commentOutput in
                 switch commentOutput {

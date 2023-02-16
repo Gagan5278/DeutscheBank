@@ -38,7 +38,7 @@ final class CommentsViewViewModelTest: XCTestCase {
         XCTAssertNotNil(posts)
         XCTAssertTrue(posts!.count > 0)
         sutCommentsViewViewModel
-            .commentOutput
+            .commentRequestOutput
             .sink { output in
                 XCTAssertTrue(output == .fetchCommentsDidSucceed)
                 XCTAssertTrue(self.sutCommentsViewViewModel.numberOfRowsInCommentTableView > 0)
@@ -55,7 +55,7 @@ final class CommentsViewViewModelTest: XCTestCase {
         let posts = try await task.value
         XCTAssertNotNil(posts)
         XCTAssertTrue(posts!.count > 0)
-        sutCommentsViewViewModel.commentOutput
+        sutCommentsViewViewModel.commentRequestOutput
             .sink { [weak self] output in
                 guard let self = self else { return }
                 XCTAssertTrue(output == .fetchCommentsDidSucceed)
@@ -77,7 +77,7 @@ final class CommentsViewViewModelTest: XCTestCase {
         let task = sutCommentsViewViewModel.fetchCommentsTaskForSelectedPost()
         let posts = try await task.value
         XCTAssertNil(posts)
-        sutCommentsViewViewModel.commentOutput
+        sutCommentsViewViewModel.commentRequestOutput
             .sink { output  in
                 XCTAssertTrue(output == .didFailToFetchComments)
                 expectation.fulfill()
