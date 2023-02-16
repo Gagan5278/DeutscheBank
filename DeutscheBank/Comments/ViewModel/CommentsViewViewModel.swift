@@ -14,32 +14,43 @@ class CommentsViewViewModel {
     private var comments: [CommentsViewViewModelItemProtocol] = []
     private let commentServiceRequest: NetworkRequestProtocol
     private let selectedPost: PostViewModelItemProtocol
+    
+    // MARK: - init
     init(request: NetworkRequestProtocol, post: PostViewModelItemProtocol) {
         commentServiceRequest = request
         selectedPost = post
-        loadCommentssFromServerFor(post: post)
     }
     
-    private func loadCommentssFromServerFor(post: PostViewModelItemProtocol) {
-        Task {
-            do {
-                let commentsRecieved = try await self.commentServiceRequest.callService(
-                    with: ServiceEndPoint.fetchCommentsForPost(id: post.postID),
-                    model: [CommentModel].self,
-                    serviceMethod: .get
-                )
-                if commentsRecieved.isEmpty {
-                    commentOutput.send(.fetchCommentssDidSucceedWithEmptyList)
-                } else {
-                    createCommetModelsFromRecieved(rawComments: commentsRecieved)
-                    commentOutput.send(.fetchCommentsDidSucceed)
-                }
-            } catch {
-                commentOutput.send(.didFailToFetchComments)
-            }
+    func fetchCommentsTaskForSelectedPost() -> Task<[CommentModel]?, Error> {
+        return Task {
+            try? await self.commentServiceRequest.callService(
+                with: ServiceEndPoint.fetchCommentsForPost(id: selectedPost.postID),
+                model: [CommentModel].self,
+                serviceMethod: .get
+            )
         }
     }
     
+    func readCommentsFromRecieved(task: Task<[CommentModel]?, Error>) async throws  {
+        if let commentsRecieved = try? await task.value {
+            if commentsRecieved.isEmpty {
+                commentOutput.send(.fetchCommentssDidSucceedWithEmptyList)
+            } else {
+                createCommetModelsFromRecieved(rawComments: commentsRecieved)
+                commentOutput.send(.fetchCommentsDidSucceed)
+            }
+        } else {
+            commentOutput.send(.didFailToFetchComments)
+        }
+    }
+
+    func loadCommentsFromServer() {
+         Task {
+             let task = fetchCommentsTaskForSelectedPost()
+             try await readCommentsFromRecieved(task: task)
+         }
+     }
+        
     var numberOfRowsInCommentTableView: Int {
         comments.count
     }

@@ -49,6 +49,8 @@ class PostListViewController: BaseViewController {
         setupSubViewsOnMainView()
         bindViewModel()
         startActivityIndicatorAnimation()
+        loadPostFromServer()
+        displayAlertIfNoInterentAccessibility()
     }
     
     convenience init(viewModel: PostsViewViewModel) {
@@ -56,6 +58,11 @@ class PostListViewController: BaseViewController {
         postsViewModel = viewModel
     }
     
+    func loadPostFromServer() {
+        input.send(.viewLoaded)
+    }
+    
+    // MARK: - Bind View Model
     private func bindViewModel() {
         let output = postsViewModel.transform(input: input.eraseToAnyPublisher())
         output
@@ -76,6 +83,9 @@ class PostListViewController: BaseViewController {
                     )
                 case .reloadPost:
                     self?.reloadPostTableView()
+                case .favoriteLocalPosts:
+                    self?.adjustSegmentControllerWhenThereIsNoNetwork()
+                    self?.reloadPostTableView()
                 }
                 self?.stopActivityIndicatorAnimation()
             }.store(in: &cancellables)
@@ -83,6 +93,13 @@ class PostListViewController: BaseViewController {
         
     private func reloadPostTableView() {
         postTableView.reloadData()
+    }
+    
+    private func adjustSegmentControllerWhenThereIsNoNetwork() {
+        postFilterSegmentController.removeSegment(
+            at: PostsViewViewModel.PostSegmentControllerEnum.allPosts.rawValue,
+            animated: false
+        )
     }
     
     private func setupSubViewsOnMainView() {
@@ -101,6 +118,14 @@ class PostListViewController: BaseViewController {
         )
     }
     
+    // MARK: - Display alert when no internet availble and only favorite post will be visible (If saved)
+    private func displayAlertIfNoInterentAccessibility() {
+        checkForInternetAndShowAlertOnStart(
+            with: AppConstants.PostListScreenConstants.offlineModeErrorAlertTitle,
+            message: AppConstants.PostListScreenConstants.offlineModeErrorAlertMessageForFavoritePost
+        )
+    }
+    
     // MARK: - Display alert
     private func showAlert(with title: String, message: String) {
         self.showAlertWith(
@@ -116,7 +141,8 @@ class PostListViewController: BaseViewController {
     }
     
     // MARK: - Post filter on segment action
-    @objc private func segmentedValueChanged(sender: UISegmentedControl) {
+    @objc
+    private func segmentedValueChanged(sender: UISegmentedControl) {
         if let segmentSelected = PostsViewViewModel.PostSegmentControllerEnum(rawValue: sender.selectedSegmentIndex) {
             input.send(.showFavoriteTypePost(segment: segmentSelected))
         }
@@ -133,7 +159,9 @@ class PostListViewController: BaseViewController {
 extension PostListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
-        postListCoordinator?.pushToShowCommentScreen(for: postsViewModel.getPost(at: indexPath))
+        if NetworkReachability.isConnectedToNetwork() {
+            postListCoordinator?.pushToShowCommentScreen(for: postsViewModel.getPost(at: indexPath))
+        }
     }
 }
 

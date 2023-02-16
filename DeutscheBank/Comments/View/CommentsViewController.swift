@@ -12,6 +12,7 @@ class CommentsViewController: BaseViewController {
     
     public private(set) lazy var commentTableView: UITableView = {
         let tblView = UITableView()
+        tblView.isHidden = true
         tblView.dataSource = self
         tblView.delegate = self
         tblView.estimatedRowHeight = AppConstants.commonPadingConstants*10
@@ -41,6 +42,8 @@ class CommentsViewController: BaseViewController {
         self.title = AppConstants.CommentListScreenConstants.navigationTitle
         commentsTableViewSetup()
         bindViewModel()
+        startActivityIndicatorAnimation()
+        commentViewModel.loadCommentsFromServer()
     }
     
     convenience init(viewModel: CommentsViewViewModel) {
@@ -51,7 +54,10 @@ class CommentsViewController: BaseViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         if let headerView = commentTableView.tableHeaderView as? CommentsTableHeaderView {
-            headerView.setHeader(title: commentViewModel.selectedPostTitle, message: commentViewModel.selectedPostBody, isFavoritePost: commentViewModel.isFavoritePost)
+            headerView.setHeader(
+                title: commentViewModel.selectedPostTitle,
+                message: commentViewModel.selectedPostBody,
+                isFavoritePost: commentViewModel.isFavoritePost)
         }
         commentTableView.sizeHeaderToFit()
     }
@@ -64,7 +70,7 @@ class CommentsViewController: BaseViewController {
             .sink(receiveValue: { [weak self] commentOutput in
                 switch commentOutput {
                 case .fetchCommentsDidSucceed:
-                    self?.commentTableView.reloadData()
+                    self?.reloadCommentTableView()
                 case .didFailToFetchComments:
                     self?.showAlertOnComment(
                         with: AppConstants.CommentListScreenConstants.alertTitle,
@@ -85,12 +91,18 @@ class CommentsViewController: BaseViewController {
         commentTableView.fillSuperview()
     }
     
+    // MARK: - Reload table view on fetch success
+    private func reloadCommentTableView() {
+        commentTableView.isHidden = false
+        commentTableView.reloadData()
+    }
+    
     // MARK: - Display alert
     private func showAlertOnComment(with title: String, message: String) {
         self.showAlertWith(
             title: title,
             message: message,
-            firstButtonTitle: AppConstants.PostListScreenConstants.alertGoBackButtonTitle
+            firstButtonTitle: AppConstants.CommentListScreenConstants.alertButtonTitle
         )
     }
 }

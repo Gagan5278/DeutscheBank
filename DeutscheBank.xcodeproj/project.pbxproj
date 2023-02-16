@@ -45,7 +45,6 @@
 		5D59A6AB2997D5FE007FA87C /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D59A6AA2997D5FE007FA87C /* UIView+Extension.swift */; };
 		5D59A6AE2997DACF007FA87C /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D59A6AD2997DACF007FA87C /* AppConstants.swift */; };
 		5D59A6B02997E1A8007FA87C /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D59A6AF2997E1A7007FA87C /* Color+Extension.swift */; };
-		5D59A6B22997E882007FA87C /* AppCoordinatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D59A6B12997E882007FA87C /* AppCoordinatorTest.swift */; };
 		5D59A6BA2997EC40007FA87C /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D59A6B92997EC40007FA87C /* String+Extension.swift */; };
 		5D59A6BD29980865007FA87C /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D59A6BC29980865007FA87C /* APIManager.swift */; };
 		5D59A6BF299808C3007FA87C /* HTTPServiceMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D59A6BE299808C3007FA87C /* HTTPServiceMethod.swift */; };
@@ -70,6 +69,7 @@
 		5D5B18F7299C38D000549750 /* CommentsTableSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5B18F6299C38D000549750 /* CommentsTableSectionHeaderView.swift */; };
 		5D5DFD6E299D5297000FA71A /* HTTPURLResponseExtensionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5DFD6D299D5297000FA71A /* HTTPURLResponseExtensionTest.swift */; };
 		5D5DFD70299D557F000FA71A /* DictionaryExtensionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5DFD6F299D557F000FA71A /* DictionaryExtensionTest.swift */; };
+		5D5DFD74299D7640000FA71A /* NetworkReachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5DFD73299D7640000FA71A /* NetworkReachability.swift */; };
 		5DF0FC49299A6C7000D2ED02 /* CommentsViewViewModelItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF0FC48299A6C7000D2ED02 /* CommentsViewViewModelItem.swift */; };
 		5DF0FC4B299A722D00D2ED02 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF0FC4A299A722D00D2ED02 /* BaseViewController.swift */; };
 		5DF0FC4D299A748300D2ED02 /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF0FC4C299A748300D2ED02 /* CommentTableViewCell.swift */; };
@@ -140,7 +140,6 @@
 		5D59A6AA2997D5FE007FA87C /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		5D59A6AD2997DACF007FA87C /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
 		5D59A6AF2997E1A7007FA87C /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
-		5D59A6B12997E882007FA87C /* AppCoordinatorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinatorTest.swift; sourceTree = "<group>"; };
 		5D59A6B92997EC40007FA87C /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		5D59A6BC29980865007FA87C /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		5D59A6BE299808C3007FA87C /* HTTPServiceMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPServiceMethod.swift; sourceTree = "<group>"; };
@@ -165,6 +164,7 @@
 		5D5B18F6299C38D000549750 /* CommentsTableSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsTableSectionHeaderView.swift; sourceTree = "<group>"; };
 		5D5DFD6D299D5297000FA71A /* HTTPURLResponseExtensionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPURLResponseExtensionTest.swift; sourceTree = "<group>"; };
 		5D5DFD6F299D557F000FA71A /* DictionaryExtensionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryExtensionTest.swift; sourceTree = "<group>"; };
+		5D5DFD73299D7640000FA71A /* NetworkReachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkReachability.swift; sourceTree = "<group>"; };
 		5DF0FC48299A6C7000D2ED02 /* CommentsViewViewModelItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsViewViewModelItem.swift; sourceTree = "<group>"; };
 		5DF0FC4A299A722D00D2ED02 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		5DF0FC4C299A748300D2ED02 /* CommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
@@ -354,16 +354,13 @@
 			children = (
 				5D59A6D129981062007FA87C /* Mock */,
 				5DF0FC55299AEFB300D2ED02 /* Helper */,
+				5D5DFD71299D5F3C000FA71A /* ExtesionTest */,
 				5D054A1F2999AA5800CCF4F5 /* LoginTest */,
 				5DF0FC56299AF01700D2ED02 /* PostsView */,
 				5D5B18E1299BE3A300549750 /* Comments */,
-				5D59A6B12997E882007FA87C /* AppCoordinatorTest.swift */,
 				5D59A6CF2998104B007FA87C /* NetworkRequestTest.swift */,
 				5D4E807E29987BA400D5745B /* UIViewControllerExtensionTest.swift */,
-				5D4E808029987BB700D5745B /* StringExtensionTest.swift */,
 				5D054A1829993FC300CCF4F5 /* InMemoryCoreDataSaveFavoriteTest.swift */,
-				5D5DFD6D299D5297000FA71A /* HTTPURLResponseExtensionTest.swift */,
-				5D5DFD6F299D557F000FA71A /* DictionaryExtensionTest.swift */,
 			);
 			path = DeutscheBankTests;
 			sourceTree = "<group>";
@@ -494,6 +491,7 @@
 		5D59A6C829980BD9007FA87C /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				5D5DFD72299D7633000FA71A /* Reachability */,
 				5D054A1129992FFC00CCF4F5 /* FavoritePostService */,
 				5D054A1029992FE600CCF4F5 /* NetworkRequest */,
 			);
@@ -522,6 +520,24 @@
 				5D5B18EA299BF10D00549750 /* CommentsViewControllerTest.swift */,
 			);
 			path = Comments;
+			sourceTree = "<group>";
+		};
+		5D5DFD71299D5F3C000FA71A /* ExtesionTest */ = {
+			isa = PBXGroup;
+			children = (
+				5D4E808029987BB700D5745B /* StringExtensionTest.swift */,
+				5D5DFD6D299D5297000FA71A /* HTTPURLResponseExtensionTest.swift */,
+				5D5DFD6F299D557F000FA71A /* DictionaryExtensionTest.swift */,
+			);
+			path = ExtesionTest;
+			sourceTree = "<group>";
+		};
+		5D5DFD72299D7633000FA71A /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				5D5DFD73299D7640000FA71A /* NetworkReachability.swift */,
+			);
+			path = Reachability;
 			sourceTree = "<group>";
 		};
 		5DF0FC55299AEFB300D2ED02 /* Helper */ = {
@@ -719,6 +735,7 @@
 				5D59A6C52998095C007FA87C /* APIManagerError.swift in Sources */,
 				5D4E806B299845C800D5745B /* PostModel.swift in Sources */,
 				5D59A6A92997D3DF007FA87C /* UITextField+Extension.swift in Sources */,
+				5D5DFD74299D7640000FA71A /* NetworkReachability.swift in Sources */,
 				5D59A6CE29980D20007FA87C /* ServiceEndPoint.swift in Sources */,
 				5D054A2C2999B41700CCF4F5 /* CommentsViewController.swift in Sources */,
 				5D59A66A2997CDDE007FA87C /* AppDelegate.swift in Sources */,
@@ -749,7 +766,6 @@
 				5D054A1729993F9800CCF4F5 /* CoreDataStackInMemory.swift in Sources */,
 				5D59A6D5299810A8007FA87C /* MockNetworkRequestPostFailure.swift in Sources */,
 				5DF0FC54299AAC2B00D2ED02 /* MockNetworkRequestPostSuccessWithEmptyModel.swift in Sources */,
-				5D59A6B22997E882007FA87C /* AppCoordinatorTest.swift in Sources */,
 				5D5B18E9299BEAE700549750 /* MockNetworkRequestCommentsFailure.swift in Sources */,
 				5D4E807F29987BA400D5745B /* UIViewControllerExtensionTest.swift in Sources */,
 				5D5B18EB299BF10D00549750 /* CommentsViewControllerTest.swift in Sources */,
@@ -924,8 +940,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5DR5YYJ2CC;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DeutscheBank/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -937,8 +955,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.learning.swiftui.DeutscheBank;
+				PRODUCT_BUNDLE_IDENTIFIER = com.schwarz.digitalTwin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -950,8 +969,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5DR5YYJ2CC;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DeutscheBank/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -963,8 +984,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.learning.swiftui.DeutscheBank;
+				PRODUCT_BUNDLE_IDENTIFIER = com.schwarz.digitalTwin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -978,10 +1000,11 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5DR5YYJ2CC;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.learning.swiftui.DeutscheBankTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.schwarz.digitalTwin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
@@ -997,10 +1020,11 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5DR5YYJ2CC;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.learning.swiftui.DeutscheBankTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.schwarz.digitalTwin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
@@ -1015,9 +1039,10 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5DR5YYJ2CC;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.learning.swiftui.DeutscheBankUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.schwarz.digitalTwin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
@@ -1032,9 +1057,10 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5DR5YYJ2CC;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.learning.swiftui.DeutscheBankUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.schwarz.digitalTwin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;

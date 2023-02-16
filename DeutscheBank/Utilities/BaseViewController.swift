@@ -39,4 +39,24 @@ class BaseViewController: UIViewController {
     func stopActivityIndicatorAnimation() {
         activityIndicator.stopAnimating()
     }
+    
+    // MARK: - Check for internet and show alert if not available
+    func checkForInternetAndShowAlertOnStart(with title: String, message: String) {
+        if !NetworkReachability.isConnectedToNetwork() {
+            presentNoNetworkErrorAlert(
+                title: title,
+                message: message
+            )
+        }
+    }
+    
+    private func presentNoNetworkErrorAlert(title: String, message: String) {
+        DispatchQueue.main.async { [weak self] in
+            self?.showAlertWith(
+                title: title,
+                message: message,
+                firstButtonTitle: AppConstants.netowrkErrorAlertButtonTitle
+            )
+        }
+    }
 }

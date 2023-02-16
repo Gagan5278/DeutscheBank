@@ -7,7 +7,7 @@
 
 import UIKit
 import Combine
-class LoginViewController: UIViewController {
+class LoginViewController: BaseViewController {
     
     var loginCoordinator: Coordinator?
     private var userIDTextFieldSubscriber: AnyCancellable?
@@ -59,6 +59,7 @@ class LoginViewController: UIViewController {
         addViewsOnMainView()
         addTextFieldSubscriber()
         addTapGestureToHideKeyboard()
+        displayAlertIfNoInterentAccessibility()
     }
     
     convenience init(viewModel: LoginViewViewModel) {
@@ -108,8 +109,16 @@ class LoginViewController: UIViewController {
         )
     }
     
+    private func displayAlertIfNoInterentAccessibility() {
+        checkForInternetAndShowAlertOnStart(
+            with: AppConstants.netowrkErrorAlertTitle,
+            message: AppConstants.netowrkErrorAlertMessage
+        )
+    }
+    
     // MARK: - Hide Keyboard
-    @objc private func doneButtonAction() {
+    @objc
+    private func doneButtonAction() {
         userIDEntryTextField.resignFirstResponder()
     }
     
@@ -120,7 +129,8 @@ class LoginViewController: UIViewController {
     }
     
     // MARK: - Next Button Action
-    @objc private func nextButtonAction(sender: UIAction?) {
+    @objc
+    private func nextButtonAction(sender: UIAction?) {
         if let userID = userIDEntryTextField.text?.integer {
             loginCoordinator?.pushToShowPostsFor(userID: userID)
         }

@@ -31,35 +31,94 @@ final class CommentsViewViewModelTest: XCTestCase {
         cancellable = []
     }
     
-    func testCommentsViewViewModel_WhenCommentsLoaded_NumberOfRowsSouldBeMoreThanZero()  {
-        sutCommentsViewViewModel.commentOutput
+    func testCommentsViewViewModel_WhenCommentsLoaded_NumberOfRowsSouldBeMoreThanZero() async throws  {
+        let expectation = expectation(description: "NumberOfRowsSouldBeMoreThanZero")
+        let task = sutCommentsViewViewModel.fetchCommentsTaskForSelectedPost()
+        let posts = try await task.value
+        XCTAssertNotNil(posts)
+        XCTAssertTrue(posts!.count > 0)
+        sutCommentsViewViewModel
+            .commentOutput
             .sink { output in
                 XCTAssertTrue(output == .fetchCommentsDidSucceed)
                 XCTAssertTrue(self.sutCommentsViewViewModel.numberOfRowsInCommentTableView > 0)
+                expectation.fulfill()
             }
             .store(in: &cancellable)
+        try await sutCommentsViewViewModel.readCommentsFromRecieved(task: task)
+        wait(for: [expectation], timeout: 5)
     }
     
-    func testCommentsViewViewModel_WhenCommentsLoaded_GetPostCommentHasSamePostID()  {
+    func testCommentsViewViewModel_WhenCommentsLoaded_GetPostCommentHasSamePostID() async throws {
+        let expectation = expectation(description: "GetPostCommentHasSamePostID")
+        let task = sutCommentsViewViewModel.fetchCommentsTaskForSelectedPost()
+        let posts = try await task.value
+        XCTAssertNotNil(posts)
+        XCTAssertTrue(posts!.count > 0)
         sutCommentsViewViewModel.commentOutput
             .sink { [weak self] output in
                 guard let self = self else { return }
                 XCTAssertTrue(output == .fetchCommentsDidSucceed)
                 XCTAssertTrue(self.sutCommentsViewViewModel.getPostComment(at: IndexPath(row: 0, section: 0)).postId == self.mockPostViewModelItem.postID)
+                expectation.fulfill()
             }
             .store(in: &cancellable)
+        try await sutCommentsViewViewModel.readCommentsFromRecieved(task: task)
+        wait(for: [expectation], timeout: 5)
     }
     
-    func testCommentsViewViewModel_WhenCommentsLoadingFailed_ShouldReturnDidFailToFetchComments()  {
+    func testCommentsViewViewModel_WhenCommentsLoadingFailed_ShouldReturnDidFailToFetchComments() async throws {
+        let expectation = expectation(description: "ShouldReturnDidFailToFetchComments")
         sutCommentsViewViewModel = nil
         sutCommentsViewViewModel = CommentsViewViewModel(
             request: MockNetworkRequestCommentsFailure(),
             post: mockPostViewModelItem
         )
+        let task = sutCommentsViewViewModel.fetchCommentsTaskForSelectedPost()
+        let posts = try await task.value
+        XCTAssertNil(posts)
         sutCommentsViewViewModel.commentOutput
             .sink { output  in
                 XCTAssertTrue(output == .didFailToFetchComments)
+                expectation.fulfill()
             }
             .store(in: &cancellable)
+        try await sutCommentsViewViewModel.readCommentsFromRecieved(task: task)
+        wait(for: [expectation], timeout: 5)
     }
+    
+    
+    /*
+     func testCommentsViewViewModel_WhenCommentsLoaded_NumberOfRowsSouldBeMoreThanZero()  {
+     sutCommentsViewViewModel.commentOutput
+     .sink { output in
+     XCTAssertTrue(output == .fetchCommentsDidSucceed)
+     XCTAssertTrue(self.sutCommentsViewViewModel.numberOfRowsInCommentTableView > 0)
+     }
+     .store(in: &cancellable)
+     }
+     
+     func testCommentsViewViewModel_WhenCommentsLoaded_GetPostCommentHasSamePostID()  {
+     sutCommentsViewViewModel.commentOutput
+     .sink { [weak self] output in
+     guard let self = self else { return }
+     XCTAssertTrue(output == .fetchCommentsDidSucceed)
+     XCTAssertTrue(self.sutCommentsViewViewModel.getPostComment(at: IndexPath(row: 0, section: 0)).postId == self.mockPostViewModelItem.postID)
+     }
+     .store(in: &cancellable)
+     }
+     
+     func testCommentsViewViewModel_WhenCommentsLoadingFailed_ShouldReturnDidFailToFetchComments()  {
+     sutCommentsViewViewModel = nil
+     sutCommentsViewViewModel = CommentsViewViewModel(
+     request: MockNetworkRequestCommentsFailure(),
+     post: mockPostViewModelItem
+     )
+     sutCommentsViewViewModel.commentOutput
+     .sink { output  in
+     XCTAssertTrue(output == .didFailToFetchComments)
+     }
+     .store(in: &cancellable)
+     }
+     */
 }

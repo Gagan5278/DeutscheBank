@@ -21,7 +21,7 @@ final class PostListViewControllerTest: XCTestCase {
         request = MockNetworkRequestPostSuccess()
         sutPostListViewController = PostListViewController(viewModel: PostsViewViewModel(request: request, user: mockUser, codeDataManager: coreDataManager))
         mockNavigationController = UINavigationControllerMock(rootViewController: sutPostListViewController)
-        sutPostListViewController.loadView()
+        sutPostListViewController.loadViewIfNeeded()
         sutPostListViewController.viewDidLoad()
     }
 
@@ -64,6 +64,7 @@ final class PostListViewControllerTest: XCTestCase {
     }
 
     func testPostListViewController_ViewHasBeenLoaded_TableViewCellHasReuseIdentifier() {
+        sutPostListViewController.loadPostFromServer()
         let cell = sutPostListViewController.tableView(sutPostListViewController.postTableView, cellForRowAt: IndexPath(row: 0, section: 0)) as? PostTableViewCell
         let actualReuseIdentifer = cell?.reuseIdentifier
         let expectedReuseIdentifier = PostTableViewCell.postCellIdentifier
@@ -71,11 +72,15 @@ final class PostListViewControllerTest: XCTestCase {
     }
     
     func testPostListViewController_PostsHasBeenLoaded_NumberOfRowsInUICollectionViewIsGreaterThanZero() {
+        sutPostListViewController.loadPostFromServer()
+
         let postCount =  sutPostListViewController.postTableView.dataSource?.tableView(sutPostListViewController.postTableView, numberOfRowsInSection: 0)
         XCTAssertTrue(postCount != 0)
     }
     
     func testPostListViewController_PostsHasBeenLoaded_CellForItemAtIndexPathOfUITableViewViewCell() {
+        sutPostListViewController.loadPostFromServer()
+        _ = XCTWaiter.wait(for: [expectation(description: "Wait for n seconds")], timeout: 2.0)
         let indexPath = IndexPath(item: 0, section: 0)
         let cell = sutPostListViewController.postTableView.dataSource?.tableView(sutPostListViewController.postTableView, cellForRowAt: indexPath) as! PostTableViewCell
         XCTAssertEqual(sutPostListViewController.postsViewModel.getPost(at: indexPath).postID, cell.cellItem.postID)

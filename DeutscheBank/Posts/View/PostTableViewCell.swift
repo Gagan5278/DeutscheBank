@@ -32,7 +32,7 @@ class PostTableViewCell: BaseTableViewCell<PostViewModelItemProtocol> {
     // MARK: - View Life cycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        accessoryType = .disclosureIndicator
+        accessoryType =  NetworkReachability.isConnectedToNetwork() ? .disclosureIndicator : .none
         addViewsOnContentViewAndSetupConstraints()
     }
     
@@ -91,7 +91,8 @@ class PostTableViewCell: BaseTableViewCell<PostViewModelItemProtocol> {
     }
     
     // MARK: - Favorite button action
-    @objc private func didTapFavoriteButton(sender: UIButton) {
+    @objc
+    private func didTapFavoriteButton(sender: UIButton) {
         sender.isSelected = !sender.isSelected
         favoriteSelectionCompletionHandler?(cellItem)
     }

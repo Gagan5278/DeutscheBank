@@ -17,25 +17,30 @@ class PostsViewViewModel {
     private var recievedRawPostsModel: [PostModel] = []
     private var isFavoriteFilsterEnabled: Bool = false
     private var savedFavoritePostIDS: [Int] = []
-    
+    let loginUserModel: LoginUserModel!
     // MARK: - init
     init(
         request: NetworkRequestProtocol,
         user: LoginUserModel,
         codeDataManager: CoreDataManagerProtocol) {
             serviceRequest = request
+            loginUserModel = user
             favoritePostService = FavoritePostService(user: user, manager: codeDataManager)
             addFavoritePostSubscriber()
-            loadPostsFromServerFor(user: user)
         }
     
     func transform(input: AnyPublisher<UserInput, Never>) -> AnyPublisher<RequestOutput, Never> {
         input.sink { [weak self] userEvent in
+            guard let self = self else { return }
             switch userEvent {
+            case .viewLoaded:
+                if NetworkReachability.isConnectedToNetwork() {
+                    self.loadUser()
+                }
             case .showFavoriteTypePost(let segment):
-                self?.updatePostTableOnFavoiteAndAllSegment(segment)
+                self.updatePostTableOnFavoiteAndAllSegment(segment)
             case .updateFavoriteStatusFor(let post):
-                self?.updatePostfavoriteStatus(post)
+                self.updatePostfavoriteStatus(post)
             }
         }.store(in: &cancellables)
         return requestOutput.eraseToAnyPublisher()
@@ -48,10 +53,40 @@ class PostsViewViewModel {
     func getPost(at indexPath: IndexPath) -> PostViewModelItemProtocol {
         posts[indexPath.row]
     }
+    
+    func fetchPostsTaskForLoggedIn(user: LoginUserModel) -> Task<[PostModel]?, Error> {
+        return Task {
+            try? await serviceRequest.callService(
+                with: ServiceEndPoint.fetchPostsForUser(id: user.userid),
+                model: [PostModel].self,
+                serviceMethod: .get)
+        }
+    }
+    
+    func readPostsFromRecieved(task: Task<[PostModel]?, Error>) async throws  {
+        if let postsRecived = try? await task.value {
+            if postsRecived.isEmpty {
+                requestOutput.send(.fetchPostsDidSucceedWithEmptyList)
+            } else {
+                recievedRawPostsModel = postsRecived
+                createPostModelsFromPostRecieved(postsRecived)
+                requestOutput.send(.fetchPostsDidSucceed)
+            }
+        } else {
+            requestOutput.send(.fetchPostsDidFail)
+        }
+    }
 }
 
 // MARK: - Private Section
 extension PostsViewViewModel {
+    
+    private func loadUser() {
+         Task {
+             let task = fetchPostsTaskForLoggedIn(user: self.loginUserModel)
+             try await readPostsFromRecieved(task: task)
+         }
+     }
     
     private func updatePostTableOnFavoiteAndAllSegment(_ segment: PostsViewViewModel.PostSegmentControllerEnum) {
         switch segment {
@@ -85,31 +120,25 @@ extension PostsViewViewModel {
     
     private func addFavoritePostSubscriber() {
         favoritePostService.$savedFavoriteEntities
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] savedPosts in
-                self?.savedFavoritePostIDS =  savedPosts.map { Int($0.postID) }
+                if NetworkReachability.isConnectedToNetwork(){
+                    self?.savedFavoritePostIDS =  savedPosts.map { Int($0.postID) }
+                } else {
+                    self?.posts = savedPosts.map({
+                        PostViewModelItem(
+                            postModel: PostModel(
+                                userId: Int($0.userID),
+                                id: Int($0.postID),
+                                title: $0.postTitle ?? "",
+                                body: $0.postBody ?? ""
+                            ),
+                            isFavorite: true)
+                    })
+                    self?.requestOutput.send(.favoriteLocalPosts)
+                }
             }
             .store(in: &cancellables)
-    }
-    
-    private func loadPostsFromServerFor(user: LoginUserModel) {
-        Task {
-            do {
-                let postsRecived = try await serviceRequest.callService(
-                    with: ServiceEndPoint.fetchPostsForUser(id: user.userid),
-                    model: [PostModel].self,
-                    serviceMethod: .get
-                )
-                if postsRecived.isEmpty {
-                    requestOutput.send(.fetchPostsDidSucceedWithEmptyList)
-                } else {
-                    recievedRawPostsModel = postsRecived
-                    createPostModelsFromPostRecieved(postsRecived)
-                    requestOutput.send(.fetchPostsDidSucceed)
-                }
-            } catch {
-                requestOutput.send(.fetchPostsDidFail)
-            }
-        }
     }
     
     private func createPostModelsFromPostRecieved(_ postsRecived: [PostModel]) {
@@ -131,6 +160,7 @@ extension PostsViewViewModel {
 // MARK: - User Input and Request Output
 extension PostsViewViewModel {
     enum UserInput {
+        case viewLoaded
         case showFavoriteTypePost(segment: PostSegmentControllerEnum)
         case updateFavoriteStatusFor(post: PostViewModelItemProtocol)
     }
@@ -140,6 +170,7 @@ extension PostsViewViewModel {
         case fetchPostsDidSucceed
         case fetchPostsDidSucceedWithEmptyList
         case reloadPost
+        case favoriteLocalPosts
     }
     
     enum PostSegmentControllerEnum: Int  {

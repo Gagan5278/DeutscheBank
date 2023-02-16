@@ -9,6 +9,9 @@ import Foundation
 
 enum AppConstants {
     static let commonPadingConstants: CGFloat = 10
+    static let netowrkErrorAlertTitle = "No Internet!"
+    static let netowrkErrorAlertMessage = "Please check for your internet connetion and try again later."
+    static let netowrkErrorAlertButtonTitle = "OK"
 }
 
 extension AppConstants {
@@ -41,6 +44,8 @@ extension AppConstants {
         static let emptyPostAlertMessage = "No post found for entered user id. Please enter a valid user id"
         static let alertGoBackButtonTitle = "Go Back"
         static let errorPostAlertMessage = "An error occured while loading post from server. Please check your internet and try again"
+        static let offlineModeErrorAlertTitle = "Off line mode"
+        static let offlineModeErrorAlertMessageForFavoritePost = "Internet is not available. Only favorite post will be visible if available."
     }
 }
 
