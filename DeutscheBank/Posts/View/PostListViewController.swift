@@ -29,6 +29,7 @@ class PostListViewController: BaseViewController {
         let tblView = UITableView()
         tblView.dataSource = self
         tblView.delegate = self
+        tblView.isHidden = true
         tblView.estimatedRowHeight = AppConstants.commonPadingConstants*10
         tblView.rowHeight = UITableView.automaticDimension
         tblView.register(
@@ -89,8 +90,13 @@ extension PostListViewController {
                     self?.adjustSegmentControllerForOfflineFavoritePostsWhenThereIsNoNetwork()
                     self?.reloadPostTableView()
                 }
-                self?.stopActivityIndicatorAnimation()
+                self?.showTableViewAndStopAcitivityIndicator()
             }.store(in: &outputSubscribers)
+    }
+    
+    private func showTableViewAndStopAcitivityIndicator() {
+        postTableView.isHidden = false
+        stopActivityIndicatorAnimation()
     }
     
     private func reloadPostTableView() {
