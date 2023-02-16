@@ -8,7 +8,6 @@
 import UIKit
 
 class PostTableViewCell: BaseTableViewCell<PostViewModelItemProtocol> {
-    
     static let postCellIdentifier: String = "postCellIdentifier"
     var favoriteSelectionCompletionHandler: ((PostViewModelItemProtocol) -> Void)?
     
@@ -39,8 +38,29 @@ class PostTableViewCell: BaseTableViewCell<PostViewModelItemProtocol> {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
-      
-    // MARK: - Conetnt View UI Seup
+          
+    override var cellItem: PostViewModelItemProtocol! {
+        didSet {
+            setPostTitleAndBody()
+        }
+    }
+}
+
+// MARK: - PostTableViewCell Private Section
+extension PostTableViewCell {
+    private func setPostTitleAndBody() {
+        setup(title: cellItem.postTitle, body: cellItem.postBody)
+        favoriteButton.isSelected = cellItem.isFavoritePost
+    }
+    
+    // MARK: - Favorite button action
+    @objc
+    private func didTapFavoriteButton(sender: UIButton) {
+        sender.isSelected = !sender.isSelected
+        favoriteSelectionCompletionHandler?(cellItem)
+    }
+    
+    // MARK: -  Contents's view setup and apply constraints
     private func addViewsOnContentViewAndSetupConstraints() {
         contentView.addSubviews(infoView, favoriteButton)
         favoriteButtonConstraintSetup()
@@ -77,23 +97,5 @@ class PostTableViewCell: BaseTableViewCell<PostViewModelItemProtocol> {
                 right: 0
             )
         )
-    }
-    
-    override var cellItem: PostViewModelItemProtocol! {
-        didSet {
-            setPostTitleAndBody()
-        }
-    }
-    
-    private func setPostTitleAndBody() {
-        setup(title: cellItem.postTitle, body: cellItem.postBody)
-        favoriteButton.isSelected = cellItem.isFavoritePost
-    }
-    
-    // MARK: - Favorite button action
-    @objc
-    private func didTapFavoriteButton(sender: UIButton) {
-        sender.isSelected = !sender.isSelected
-        favoriteSelectionCompletionHandler?(cellItem)
     }
 }

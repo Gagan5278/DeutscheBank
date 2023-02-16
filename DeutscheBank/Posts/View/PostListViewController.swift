@@ -9,8 +9,7 @@ import UIKit
 import Combine
 
 class PostListViewController: BaseViewController {
-    
-   public private(set) var postsViewModel: PostsViewViewModel!
+    public private(set) var postsViewModel: PostsViewViewModel!
     var postListCoordinator: Coordinator?
     private lazy var postFilterSegmentController: UISegmentedControl = {
         let sgmntCntl = UISegmentedControl(items: [
@@ -38,15 +37,15 @@ class PostListViewController: BaseViewController {
         )
         return tblView
     }()
-        
-    private let input: PassthroughSubject<PostsViewViewModel.UserInput, Never> = .init()
-    private var cancellables = Set<AnyCancellable>()
+    
+    private let userInput: PassthroughSubject<PostsViewViewModel.UserInput, Never> = .init()
+    private var outputSubscribers = Set<AnyCancellable>()
     
     // MARK: - View Controller life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = AppConstants.PostListScreenConstants.navigationTitle
-        setupSubViewsOnMainView()
+        addSubViewsOnMainViewAndApplyConstraints()
         bindViewModel()
         startActivityIndicatorAnimation()
         loadPostFromServer()
@@ -59,12 +58,12 @@ class PostListViewController: BaseViewController {
     }
     
     func loadPostFromServer() {
-        input.send(.viewLoaded)
+        userInput.send(.viewLoaded)
     }
     
     // MARK: - Bind View Model
     private func bindViewModel() {
-        let output = postsViewModel.transform(input: input.eraseToAnyPublisher())
+        let output = postsViewModel.transform(input: userInput.eraseToAnyPublisher())
         output
             .receive(on: DispatchQueue.main)
             .sink { [weak self] event in
@@ -84,25 +83,25 @@ class PostListViewController: BaseViewController {
                 case .reloadPost:
                     self?.reloadPostTableView()
                 case .favoriteLocalPosts:
-                    self?.adjustSegmentControllerWhenThereIsNoNetwork()
+                    self?.adjustSegmentControllerForOfflineFavoritePostsWhenThereIsNoNetwork()
                     self?.reloadPostTableView()
                 }
                 self?.stopActivityIndicatorAnimation()
-            }.store(in: &cancellables)
+            }.store(in: &outputSubscribers)
     }
-        
+    
     private func reloadPostTableView() {
         postTableView.reloadData()
     }
     
-    private func adjustSegmentControllerWhenThereIsNoNetwork() {
+    private func adjustSegmentControllerForOfflineFavoritePostsWhenThereIsNoNetwork() {
         postFilterSegmentController.removeSegment(
             at: PostsViewViewModel.PostSegmentControllerEnum.allPosts.rawValue,
             animated: false
         )
     }
     
-    private func setupSubViewsOnMainView() {
+    private func addSubViewsOnMainViewAndApplyConstraints() {
         self.view.addSubviews(postFilterSegmentController, postTableView)
         postFilterSegmentController.anchor(
             top: self.view.safeAreaLayoutGuide.topAnchor,
@@ -144,17 +143,17 @@ class PostListViewController: BaseViewController {
     @objc
     private func segmentedValueChanged(sender: UISegmentedControl) {
         if let segmentSelected = PostsViewViewModel.PostSegmentControllerEnum(rawValue: sender.selectedSegmentIndex) {
-            input.send(.showFavoriteTypePost(segment: segmentSelected))
+            userInput.send(.showFavoriteTypePost(segment: segmentSelected))
         }
     }
     
     private func onFavoriteIconSelectionFor(_ postCell: PostTableViewCell) {
         postCell.favoriteSelectionCompletionHandler = { [weak self] selectedPost in
-            self?.input.send(.updateFavoriteStatusFor(post: selectedPost))
+            self?.userInput.send(.updateFavoriteStatusFor(post: selectedPost))
         }
     }
     
-    private func addEmptyPostMessageOnTableView() {
+    private func showAndHideEmptyPostMessageOnTableView() {
         if postsViewModel.numberOfRowsInPostTableView == 0 {
             postTableView.setEmptyView(with: AppConstants.PostListScreenConstants.emptyPostMessage)
         } else {
@@ -175,15 +174,16 @@ extension PostListViewController: UITableViewDelegate {
 
 // MARK: - UITableViewDataSource
 extension PostListViewController: UITableViewDataSource {
-
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        addEmptyPostMessageOnTableView()
+        showAndHideEmptyPostMessageOnTableView()
         return postsViewModel.numberOfRowsInPostTableView
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let postCell = tableView.dequeueReusableCell(withIdentifier: PostTableViewCell.postCellIdentifier, for: indexPath) as? PostTableViewCell else {
-            return UITableViewCell()
+        guard let postCell = tableView.dequeueReusableCell(
+            withIdentifier: PostTableViewCell.postCellIdentifier,
+            for: indexPath) as? PostTableViewCell else {
+            fatalError("Invalid PostTableViewCell found")
         }
         postCell.cellItem = postsViewModel.getPost(at: indexPath)
         onFavoriteIconSelectionFor(postCell)
