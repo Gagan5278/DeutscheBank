@@ -9,13 +9,13 @@ import UIKit
 
 class BaseTableViewCell<U: Any>: UITableViewCell {
     
+    var cellItem: U!
+
     public private(set) lazy var infoView: CommonTitleAndSubTitleInfoView = {
         let view = CommonTitleAndSubTitleInfoView()
         return view
     }()
     
-    var cellItem: U!
-
     // MARK: - View Life cycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

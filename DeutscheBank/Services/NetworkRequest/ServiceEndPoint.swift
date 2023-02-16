@@ -23,10 +23,19 @@ enum ServiceEndPoint: ServiceEndPointProtocol {
     case fetchPostsForUser(id: Int)
     var requestURLString: String {
           switch self {
-          case .fetchCommentsForPost(let id):
-              return baseURLString + "post/\(id)/comments"
-          case .fetchPostsForUser(let userID):
-              return baseURLString + "posts?userId=\(userID)"
+          case .fetchCommentsForPost(_):
+              return baseURLString + path
+          case .fetchPostsForUser(_):
+              return baseURLString + path
           }
       }
+    
+    var path: String {
+        switch self {
+        case .fetchCommentsForPost(let id):
+            return "post/\(id)/comments"
+        case .fetchPostsForUser(let userID):
+            return "posts?userId=\(userID)"
+        }
+    }
 }

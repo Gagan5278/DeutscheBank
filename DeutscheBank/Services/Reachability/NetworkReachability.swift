@@ -9,12 +9,12 @@ import Foundation
 import SystemConfiguration
 /*
  SO Code https://stackoverflow.com/questions/30743408/check-for-internet-connection-with-swift
+ 
+ here we code any third party library for network monitoring. In this de
  */
 
 class NetworkReachability {
-    
     class func isConnectedToNetwork() -> Bool {
-        
         var zeroAddress = sockaddr_in()
         zeroAddress.sin_len = UInt8(MemoryLayout.size(ofValue: zeroAddress))
         zeroAddress.sin_family = sa_family_t(AF_INET)
