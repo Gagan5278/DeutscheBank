@@ -75,6 +75,8 @@ final class CommentsViewControllerTest: XCTestCase {
     }
     
     func testCommentsViewController_PostsHasBeenLoaded_NumberOfRowsInUICollectionViewIsGreaterThanZero() {
+        _ = XCTWaiter.wait(for: [expectation(description: "Wait for 1 seconds")], timeout: 1.0)
+        let indexPath = IndexPath(item: 0, section: 0)
         let postCount =  sutCommentsViewController.commentTableView.dataSource?.tableView(
             sutCommentsViewController.commentTableView,
             numberOfRowsInSection: 0

@@ -88,7 +88,7 @@ final class PostListViewControllerTest: XCTestCase {
     
     func testPostListViewController_PostsHasBeenLoaded_CellForItemAtIndexPathOfUITableViewViewCell() {
         sutPostListViewController.startLoadingPostFromServerForLoggedInUser()
-        _ = XCTWaiter.wait(for: [expectation(description: "Wait for n seconds")], timeout: 2.0)
+        _ = XCTWaiter.wait(for: [expectation(description: "Wait for 2 seconds")], timeout: 2.0)
         let indexPath = IndexPath(item: 0, section: 0)
         let cell = sutPostListViewController.postTableView.dataSource?.tableView(
             sutPostListViewController.postTableView,
