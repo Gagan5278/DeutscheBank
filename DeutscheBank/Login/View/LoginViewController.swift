@@ -25,6 +25,8 @@ class LoginViewController: BaseViewController {
             target: self,
             action: #selector(hideKeyboard))
         )
+        txtField.spellCheckingType = .no
+        txtField.inputAccessoryView = nil
         txtField.heightAnchor.constraint(equalToConstant: userTextFieldHeight).isActive = true
         return txtField
     }()
@@ -60,6 +62,7 @@ class LoginViewController: BaseViewController {
         addTextFieldSubscriber()
         addTapGestureToHideKeyboard()
         displayAlertIfNoInterentAccessibility()
+        keybaordAppearnceNotification()
     }
     
     convenience init(viewModel: LoginViewViewModel) {
@@ -105,7 +108,7 @@ extension LoginViewController {
                 on: loginButton
             )
     }
-        
+    
     // MARK: - UITapGesture handle
     private func addTapGestureToHideKeyboard() {
         self.view.addGestureRecognizer(UITapGestureRecognizer(
@@ -140,5 +143,44 @@ extension LoginViewController {
             with: AppConstants.netowrkErrorAlertTitle,
             message: AppConstants.netowrkErrorAlertMessage
         )
+    }
+    
+    // MARK: - Handle Keyboard Hide and Show Notification
+    private func keybaordAppearnceNotification() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillShow),
+            name: UIResponder.keyboardWillShowNotification,
+            object: nil
+        )
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillHide),
+            name: UIResponder.keyboardWillHideNotification,
+            object: nil
+        )
+    }
+    
+    @objc
+    private func keyboardWillShow(sender: NSNotification) {
+        if let keyboardSize = (sender.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            let myViewGlobalFrame = verticalStackView.convert(
+                verticalStackView.frame,
+                to: self.view
+            )
+            
+            if myViewGlobalFrame.origin.y > keyboardSize.origin.y {
+                let heightMargin = keyboardSize.origin.y - verticalStackView.center.y - AppConstants.commonPadingConstants*4
+                if heightMargin < 0 {
+                    self.view.frame.origin.y = heightMargin
+                }
+            }
+        }
+    }
+    
+    @objc
+    private func keyboardWillHide(sender: NSNotification) {
+        self.view.frame.origin.y = 0
     }
 }
