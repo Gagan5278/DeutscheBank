@@ -85,7 +85,8 @@ extension LoginViewController {
         verticalStackView.anchor(
             top: nil,
             leading: self.view.leadingAnchor,
-            bottom: nil, trailing: self.view.trailingAnchor,
+            bottom: nil,
+            trailing: self.view.trailingAnchor,
             padding: UIEdgeInsets(
                 top: 0,
                 left: AppConstants.commonPadingConstants,
@@ -104,7 +105,7 @@ extension LoginViewController {
                 on: loginButton
             )
     }
-    
+        
     // MARK: - UITapGesture handle
     private func addTapGestureToHideKeyboard() {
         self.view.addGestureRecognizer(UITapGestureRecognizer(
